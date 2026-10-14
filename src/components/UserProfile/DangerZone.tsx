@@ -1,17 +1,19 @@
+import { useTranslation } from "react-i18next";
 export default function DangerZone() {
+  const { t } = useTranslation();
   return (
     <div className="mb-6 rounded-2xl border border-gray-200  p-5 lg:p-6 dark:border-gray-800 ">
       <h4 className="text-lg mb-4 font-semibold text-gray-800 lg:mb-6 dark:text-white/90">
-        Danger Zone
+        {t("userProfile.dangerZone")}
       </h4>
       <div>
         <div className="flex flex-col justify-between gap-4 border-b border-gray-200 py-4 first:pt-0 last:border-b-0 last:pb-0 sm:flex-row sm:items-end dark:border-gray-800">
           <div>
             <span className="block mb-1 font-medium text-base text-gray-800 dark:text-white/90">
-              Logout all devices
+              {t("userProfile.logoutAllDevices")}
             </span>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Sign out from every active session.
+              {t("userProfile.logoutAllDevicesDesc")}
             </p>
           </div>
           <div>
@@ -31,18 +33,17 @@ export default function DangerZone() {
                   strokeLinejoin="round"
                 />
               </svg>
-              Logout
+              {t("userProfile.logout")}
             </button>
           </div>
         </div>
         <div className="flex flex-col justify-between gap-4 border-b border-gray-200 py-4 first:pt-0 last:border-b-0 last:pb-0 sm:flex-row sm:items-end dark:border-gray-800">
           <div>
             <span className="block mb-1 font-medium text-base text-gray-800 dark:text-white/90">
-              Delete account
+              {t("userProfile.deleteAccount")}
             </span>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Once you delete your account, there is no going back. Please be
-              certain.
+              {t("userProfile.deleteAccountDesc")}
             </p>
           </div>
           <div>

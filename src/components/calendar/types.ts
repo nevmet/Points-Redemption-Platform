@@ -1,16 +1,20 @@
-import type { EventInput } from "@fullcalendar/react";
-
 export type CalendarEventLevel = "Danger" | "Success" | "Primary" | "Warning";
 
-export interface CalendarEvent extends EventInput {
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  start: string | Date;
+  end?: string | Date;
+  allDay?: boolean;
   extendedProps: {
     calendar: string;
+    titleKey?: string;
   };
 }
 
 export interface CalendarViewOption {
   key: string;
-  label: string;
+  labelKey: string;
 }
 
 export interface EventFormData {
@@ -28,9 +32,9 @@ export const CALENDAR_EVENT_LEVELS: Record<CalendarEventLevel, string> = {
 };
 
 export const CALENDAR_VIEW_OPTIONS: CalendarViewOption[] = [
-  { key: "multiMonthYear", label: "Year" },
-  { key: "dayGridMonth", label: "Month" },
-  { key: "timeGridWeek", label: "Week" },
-  { key: "timeGridDay", label: "Day" },
+  { key: "multiMonthYear", labelKey: "calendar.views.year" },
+  { key: "dayGridMonth", labelKey: "calendar.views.month" },
+  { key: "timeGridWeek", labelKey: "calendar.views.week" },
+  { key: "timeGridDay", labelKey: "calendar.views.day" },
 ];
 

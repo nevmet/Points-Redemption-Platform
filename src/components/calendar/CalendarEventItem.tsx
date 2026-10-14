@@ -1,15 +1,22 @@
 import { cn } from "@/utils";
 import type { EventDisplayInfo } from "@fullcalendar/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export interface CalendarEventItemProps {
   eventInfo: EventDisplayInfo;
 }
 
 const CalendarEventItem: React.FC<CalendarEventItemProps> = ({ eventInfo }) => {
+  const { t } = useTranslation();
   const calendarLevel = (
     eventInfo.event.extendedProps?.calendar || "primary"
   ).toLowerCase();
+
+  const titleKey = eventInfo.event.extendedProps?.titleKey;
+  const title = titleKey
+    ? t(`calendar.events.${titleKey}`)
+    : eventInfo.event.title || "";
 
   // Color mappings
   const colorMap: Record<
@@ -67,7 +74,7 @@ const CalendarEventItem: React.FC<CalendarEventItemProps> = ({ eventInfo }) => {
               colors.title,
             )}
           >
-            {eventInfo.event.title || ""}
+            {title}
           </div>
         </div>
         {eventInfo.timeText && (
@@ -104,7 +111,7 @@ const CalendarEventItem: React.FC<CalendarEventItemProps> = ({ eventInfo }) => {
         </div>
       )}
       <div className="fc-event-title truncate p-0 text-[11px] font-medium text-gray-700 sm:text-xs dark:text-white">
-        {eventInfo.event.title || ""}
+        {title}
       </div>
     </div>
   );

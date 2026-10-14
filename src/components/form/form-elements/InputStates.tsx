@@ -3,8 +3,10 @@ import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import { cn } from "@/utils";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function InputStates() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [emailTwo, setEmailTwo] = useState("");
   const [error, setError] = useState(false);
@@ -29,44 +31,44 @@ export default function InputStates() {
   };
   return (
     <ComponentCard
-      title="Input States"
-      desc="Validation styles for error, success and disabled states on form controls."
+      title={t("form.titles.inputStates")}
+      desc={t("form.inputStates.description")}
     >
       <div className={cn("space-y-5 sm:space-y-6")}>
         {/* Error Input */}
         <div>
-          <Label>Email</Label>
+          <Label>{t("form.labels.email")}</Label>
           <Input
             type="email"
             value={email}
             error={error}
             onChange={handleEmailChange}
-            placeholder="Enter your email"
-            hint={error ? "This is an invalid email address." : ""}
+            placeholder={t("form.placeholders.enterYourEmail")}
+            hint={error ? t("form.hints.invalidEmail") : ""}
           />
         </div>
 
         {/* Success Input */}
         <div>
-          <Label>Email</Label>
+          <Label>{t("form.labels.email")}</Label>
           <Input
             type="email"
             value={emailTwo}
             success={!error}
             onChange={handleEmailTwoChange}
-            placeholder="Enter your email"
-            hint={!error ? "This is an success message." : ""}
+            placeholder={t("form.placeholders.enterYourEmail")}
+            hint={!error ? t("form.hints.successMessage") : ""}
           />
         </div>
 
         {/* Disabled Input */}
         <div>
-          <Label>Email</Label>
+          <Label>{t("form.labels.email")}</Label>
           <Input
             type="text"
             value="disabled@example.com"
             disabled={true}
-            placeholder="Disabled email"
+            placeholder={t("form.placeholders.disabledEmail")}
           />
         </div>
       </div>

@@ -3,112 +3,114 @@ import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import Button from "@/components/ui/button/Button";
 import { BoxIcon } from "@/icons";
+import { useTranslation } from "react-i18next";
 
 export default function Buttons() {
+  const { t } = useTranslation();
   return (
     <div>
       <PageMeta
-        title="React.js Buttons Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Buttons Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("buttons.pageTitle")}
+        description={t("buttons.pageDescription")}
       />
-      <PageBreadcrumb pageTitle="Buttons" />
+      <PageBreadcrumb pageTitle={t("buttons.title")} />
       <div className="space-y-5 sm:space-y-6">
         {/* Primary Button */}
-        <ComponentCard title="Primary Button">
+        <ComponentCard title={t("buttons.primaryButton")}>
           <div className="flex items-center gap-5">
             <Button size="sm" variant="primary">
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button size="md" variant="primary">
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>
         {/* Primary Button with Start Icon */}
-        <ComponentCard title="Primary Button with Leading Icon">
+        <ComponentCard title={t("buttons.primaryLeadingIcon")}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="primary"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button
               size="md"
               variant="primary"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>
         {/* Primary Button with Start Icon */}
-        <ComponentCard title="Primary Button with Trailing Icon">
+        <ComponentCard title={t("buttons.primaryTrailingIcon")}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="primary"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button
               size="md"
               variant="primary"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>
         {/* Outline Button */}
-        <ComponentCard title="Secondary Button">
+        <ComponentCard title={t("buttons.secondaryButton")}>
           <div className="flex items-center gap-5">
             {/* Outline Button */}
             <Button size="sm" variant="outline">
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button size="md" variant="outline">
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>
         {/* Outline Button with Start Icon */}
-        <ComponentCard title="Outline Button with Leading Icon">
+        <ComponentCard title={t("buttons.outlineLeadingIcon")}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="outline"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button
               size="md"
               variant="outline"
               startIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>{" "}
         {/* Outline Button with Start Icon */}
-        <ComponentCard title="Outline Button with Trailing Icon">
+        <ComponentCard title={t("buttons.outlineTrailingIcon")}>
           <div className="flex items-center gap-5">
             <Button
               size="sm"
               variant="outline"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
             <Button
               size="md"
               variant="outline"
               endIcon={<BoxIcon className="size-5" />}
             >
-              Button Text
+              {t("buttons.buttonText")}
             </Button>
           </div>
         </ComponentCard>

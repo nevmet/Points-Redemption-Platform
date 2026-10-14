@@ -1,221 +1,149 @@
 {
-  "common": {
-    "home": "Home",
-    "edit": "Edit",
-    "close": "Close",
-    "saveChanges": "Save Changes",
-    "viewMore": "View More",
-    "delete": "Delete",
-    "filter": "Filter",
-    "seeAll": "See all"
+  "brand": {
+    "name": "BAGS STAR",
+    "logoAlt": "Bags Star company logo",
+    "homeLabel": "Bags Star rewards home"
   },
-  "sidebar": {
-    "groups": {
-      "menu": "Menu",
-      "support": "Support",
-      "others": "Others"
-    },
-    "badges": {
-      "new": "new",
-      "pro": "pro"
-    },
-    "items": {
-      "dashboard": "Dashboard",
-      "ecommerceHome": "Ecommerce",
-      "analytics": "Analytics",
-      "marketing": "Marketing",
-      "crm": "CRM",
-      "stocks": "Stocks",
-      "saas": "SaaS",
-      "logistics": "Logistics",
-      "ai": "AI",
-      "sales": "Sales",
-      "finance": "Finance",
-      "aiAssistant": "AI Assistant",
-      "textGenerator": "Text Generator",
-      "imageGenerator": "Image Generator",
-      "codeGenerator": "Code Generator",
-      "videoGenerator": "Video Generator",
-      "aiSettings": "AI Settings",
-      "ecommerce": "E-commerce",
-      "products": "Products",
-      "addProduct": "Add Product",
-      "billing": "Billing",
-      "invoices": "Invoices",
-      "singleInvoice": "Single Invoice",
-      "createInvoice": "Create Invoice",
-      "transactions": "Transactions",
-      "singleTransaction": "Single Transaction",
-      "calendar": "Calendar",
-      "userProfile": "User Profile",
-      "task": "Task",
-      "taskList": "List",
-      "kanban": "Kanban",
-      "forms": "Forms",
-      "formElements": "Form Elements",
-      "formLayout": "Form Layout",
-      "tables": "Tables",
-      "basicTables": "Basic Tables",
-      "dataTables": "Data Tables",
-      "pages": "Pages",
-      "fileManager": "File Manager",
-      "pricingTables": "Pricing Tables",
-      "faq": "FAQ",
-      "apiKeys": "API Keys",
-      "integrations": "Integrations",
-      "blankPage": "Blank Page",
-      "error404": "404 Error",
-      "error500": "500 Error",
-      "error503": "503 Error",
-      "comingSoon": "Coming Soon",
-      "maintenance": "Maintenance",
-      "successPage": "Success",
-      "layouts": "Layouts",
-      "layoutOne": "Layout One",
-      "layoutTwo": "Layout Two",
-      "layoutThree": "Layout Three",
-      "layoutFour": "Layout Four",
-      "layoutFive": "Layout Five",
-      "layoutSix": "Layout Six",
-      "charts": "Charts",
-      "lineChart": "Line Chart",
-      "barChart": "Bar Chart",
-      "pieChart": "Pie Chart",
-      "radarChart": "Radar Chart",
-      "radialChart": "Radial Chart",
-      "maps": "Maps",
-      "mapsGoogle": "Maps",
-      "vectorMap": "Vector Map",
-      "uiElements": "UI Elements",
-      "alerts": "Alerts",
-      "avatar": "Avatar",
-      "badge": "Badge",
-      "breadcrumb": "Breadcrumb",
-      "buttons": "Buttons",
-      "buttonsGroup": "Buttons Group",
-      "cards": "Cards",
-      "carousel": "Carousel",
-      "dropdowns": "Dropdowns",
-      "images": "Images",
-      "links": "Links",
-      "listView": "List",
-      "modals": "Modals",
-      "notificationUi": "Notification",
-      "pagination": "Pagination",
-      "popovers": "Popovers",
-      "progressbar": "Progressbar",
-      "ribbons": "Ribbons",
-      "spinners": "Spinners",
-      "tabs": "Tabs",
-      "tooltips": "Tooltips",
-      "videos": "Videos",
-      "authentication": "Authentication",
-      "signIn": "Sign In",
-      "signUp": "Sign Up",
-      "resetPassword": "Reset Password",
-      "twoStepVerification": "Two Step Verification",
-      "chat": "Chat",
-      "supportMenu": "Support Ticket",
-      "supportList": "Ticket List",
-      "supportReply": "Ticket Reply",
-      "email": "Email",
-      "inbox": "Inbox",
-      "inboxDetails": "Details"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Leading Tailwind CSS Admin Template with 500+ UI Component and Pages.",
-      "purchasePlan": "Purchase Plan"
-    }
+  "adminProducts": {
+    "pageTitle": "Product Center | Bags Star",
+    "pageDescription": "Manage the products available in the Bags Star points catalog.",
+    "eyebrow": "Admin preview",
+    "title": "Product Center",
+    "description": "Publish useful products and set the points required for redemption.",
+    "addReward": "Add reward",
+    "publishedRewards": "Published rewards",
+    "totalItems": "Total catalog items",
+    "requestsThisMonth": "Requests this month",
+    "allRewards": "All rewards",
+    "catalogHint": "Click publish status to preview a live update.",
+    "searchPlaceholder": "Search catalog",
+    "unpublish": "Unpublish",
+    "publish": "Publish",
+    "edit": "Edit {name}",
+    "saved": "Product saved.",
+    "reviewRequests": "Review redemption requests",
+    "statusPublished": "Published",
+    "statusDraft": "Unpublished",
+    "statusFilter": "Filter by publication status",
+    "noMatches": "No products match these filters.",
+    "delete": "Delete product",
+    "deleteTitle": "Delete unpublished product",
+    "deleteConfirm": "Delete “{name}” from the product center? Existing redemption records, fulfillment status, points history and uploaded image files will be kept. The catalog entry cannot be restored.",
+    "confirmDelete": "Confirm deletion",
+    "deleting": "Deleting…",
+    "deleted": "Product deleted.",
+    "productNotDraft": "The product is published or no longer exists. Refresh the list; only unpublished products can be deleted."
   },
-  "header": {
-    "searchPlaceholder": "Search or type command...",
-    "toggleSidebar": "Toggle Sidebar",
-    "notifications": {
-      "title": "Notification",
-      "requestsPermission": "requests permission to change",
-      "project": "Project",
-      "minAgo": "{count} min ago",
-      "hrAgo": "{count} hr ago",
-      "viewAll": "View All Notifications"
-    }
+  "adminRedemptions": {
+    "pageTitle": "Redemption Requests | Bags Star",
+    "pageDescription": "Review and update customer reward redemption requests.",
+    "eyebrow": "Admin preview",
+    "title": "Redemption requests",
+    "description": "Move a request through the sales follow-up process and keep the customer informed.",
+    "pendingReview": "Pending review",
+    "inProgress": "In progress",
+    "completedThisMonth": "Completed this month",
+    "saved": "Saved",
+    "pending": "Pending",
+    "processing": "Processing",
+    "completed": "Completed",
+    "cancelled": "Cancelled (points refunded)",
+    "rejected": "Rejected (points refunded)"
   },
-  "userDropdown": {
-    "editProfile": "Edit profile",
-    "accountSettings": "Account settings",
-    "support": "Support",
-    "language": "Language",
-    "signOut": "Sign out"
-  },
-  "ecommerce": {
-    "title": "E-commerce Dashboard",
-    "metrics": {
-      "customers": "Customers",
-      "orders": "Orders"
-    },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "monthlySales": {
-      "title": "Monthly Sales",
-      "series": "Sales"
-    },
-    "monthlyTarget": {
-      "title": "Monthly Target",
-      "subtitle": "Target you’ve set for each month",
-      "earned": "You earn {amount} today, it's higher than last month. Keep up your good work!",
-      "target": "Target",
+  "aiDashboard": {
+    "stats": {
+      "users": "Users",
+      "projects": "Projects",
       "revenue": "Revenue",
-      "today": "Today"
+      "paidUsers": "Paid Users",
+      "last30Days": "Last 30 Days"
     },
-    "statistics": {
-      "title": "Statistics",
-      "subtitle": "Target you've set for each month",
-      "sales": "Sales",
+    "userRevenue": {
+      "title": "Users & Revenue Statistics",
+      "subtitle": "Visualize month-to-month progress and engagement.",
+      "users": "Users",
       "revenue": "Revenue",
       "monthly": "Monthly",
       "quarterly": "Quarterly",
-      "annually": "Annually",
-      "selectDateRange": "Select date range"
+      "annually": "Annually"
     },
-    "recentOrders": {
-      "title": "Recent Orders",
-      "products": "Products",
-      "category": "Category",
-      "price": "Price",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variant} other {# Variants}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Watch",
-        "smartphone": "SmartPhone",
-        "electronics": "Electronics",
-        "accessories": "Accessories"
+    "apiToken": {
+      "title": "API Token Usages",
+      "totalApiTokenUsed": "Total API Token Used",
+      "tokenUsed": "Token used",
+      "configuredKey": "{count, plural, one {# API key configured} other {# API keys configured}",
+      "viewAllUsageDetails": "View All Usage Details"
+    },
+    "userAnalytics": {
+      "title": "User Analytics",
+      "subtitle": "Platform user insights",
+      "totalUsers": "Total Users",
+      "freeUsers": "Free Users",
+      "paidUsers": "Paid Users",
+      "ofTotalUser": "of total user",
+      "thisMonth": "This Month",
+      "fromLastMonth": "from last month",
+      "thisYear": "This Year",
+      "fromLastYear": "from last year"
+    },
+    "projectAnalytics": {
+      "title": "Projects Analytics",
+      "subtitle": "View detailed project insights",
+      "totalProjects": "Total Projects",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "projectCreated": "Project created",
+      "thisMonth": "This Month",
+      "fromLastMonth": "from last month",
+      "thisYear": "This Year",
+      "fromLastYear": "from last year"
+    },
+    "recentTransactions": {
+      "title": "Recent Transactions",
+      "searchPlaceholder": "Search...",
+      "filter": "Filter",
+      "table": {
+        "paidBy": "Paid By",
+        "packageName": "Package Name",
+        "price": "Price",
+        "paidDate": "Paid Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "packages": {
+        "starterMonthly": "Starter - Monthly",
+        "growthYearly": "Growth - Yearly",
+        "premiumMonthly": "Premium - Monthly"
       },
       "statuses": {
-        "delivered": "Delivered",
-        "pending": "Pending",
-        "canceled": "Canceled"
-      }
-    },
-    "demographic": {
-      "title": "Customers Demographic",
-      "subtitle": "Number of customer based on country",
-      "customers": "{count} Customers",
-      "usa": "USA",
-      "france": "France"
+        "active": "Active",
+        "expired": "Expired"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "pageOf": "Page {current} of {total}"
+      },
+      "noResults": "No results found"
     }
+  },
+  "alert": {
+    "learnMore": "Learn more"
+  },
+  "alerts": {
+    "pageTitle": "React.js Alerts Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Alerts Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Alerts",
+    "successAlert": "Success Alert",
+    "warningAlert": "Warning Alert",
+    "errorAlert": "Error Alert",
+    "infoAlert": "Info Alert",
+    "successMessage": "Success Message",
+    "warningMessage": "Warning Message",
+    "errorMessage": "Error Message",
+    "infoMessage": "Info Message",
+    "cautionMessage": "Be cautious when performing this action.",
+    "learnMore": "Learn more"
   },
   "analytics": {
     "metrics": {
@@ -276,59 +204,133 @@
       "crDashboard": "Dashboard"
     }
   },
-  "notFound": {
-    "error": "ERROR",
-    "message": "We can’t seem to find the page you are looking for!",
-    "backHome": "Back to Home Page"
+  "auth": {
+    "logoAlt": "Logo",
+    "promoText": "Bags Star Customer Gift Center"
   },
-  "marketing": {
-    "metrics": {
-      "avgClientRating": "Avg. Client Rating",
-      "instagramFollowers": "Instagram Followers",
-      "totalRevenue": "Total Revenue",
-      "vsLastMonth": "Vs last month"
-    },
-    "impressionChart": {
-      "title": "Impression & Data Traffic",
-      "totalRevenue": "Total Revenue",
-      "sales": "Sales",
-      "revenue": "Revenue"
-    },
-    "featuredCampaign": {
-      "title": "Featured Campaigns",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "products": "Products",
-      "campaign": "Campaign",
-      "status": "Status",
-      "adsCampaign": "Ads campaign",
-      "campaigns": {
-        "growBrand": "Grow your brand by...",
-        "betterIdeas": "Make Better Ideas...",
-        "increaseTraffic": "Increase your website tra..."
-      },
-      "statuses": {
-        "success": "Success",
-        "pending": "Pending",
-        "failed": "Failed"
-      }
-    },
-    "trafficStats": {
-      "title": "Traffic Stats",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "newSubscribers": "New Subscribers",
-      "conversionRate": "Conversion Rate",
-      "pageBounceRate": "Page Bounce Rate",
-      "thenLastWeek": "then last Week",
-      "newSales": "New Sales"
-    },
-    "trafficSource": {
-      "title": "Top Traffic Source",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "viewAll": "View All"
+  "avatar": {
+    "altText": "User Avatar"
+  },
+  "avatars": {
+    "pageTitle": "React.js Avatars Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Avatars Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Avatars",
+    "defaultAvatar": "Default Avatar",
+    "avatarGroup": "Avatar Group",
+    "withOnlineIndicator": "Avatar with online indicator",
+    "withOfflineIndicator": "Avatar with Offline indicator",
+    "withBusyIndicator": "Avatar with busy indicator"
+  },
+  "badges": {
+    "pageTitle": "React.js Badges Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Badges Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Badges",
+    "withLightBackground": "With Light Background",
+    "withSolidBackground": "With Solid Background",
+    "lightWithLeadingIcon": "Light Background with Leading Icon",
+    "solidWithTrailingIcon": "Solid Background with Trailing Icon",
+    "labels": {
+      "primary": "Primary",
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning",
+      "info": "Info",
+      "light": "Light",
+      "dark": "Dark"
     }
+  },
+  "barChart": {
+    "title": "Bar Chart",
+    "chartOne": "Bar Chart 1"
+  },
+  "basicTables": {
+    "pageTitle": "React.js Basic Tables Dashboard | TailAdmin - Next.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Basic Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Basic Tables",
+    "tableOne": "Basic Table 1",
+    "columns": {
+      "user": "User",
+      "projectName": "Project Name",
+      "team": "Team",
+      "status": "Status",
+      "budget": "Budget"
+    },
+    "roles": {
+      "webDesigner": "Web Designer",
+      "projectManager": "Project Manager",
+      "contentWriting": "Content Writing",
+      "digitalMarketer": "Digital Marketer",
+      "frontendDeveloper": "Front-end Developer"
+    },
+    "statuses": {
+      "active": "Active",
+      "pending": "Pending",
+      "cancel": "Cancel"
+    },
+    "teamMemberAlt": "Team member {index}"
+  },
+  "blank": {
+    "pageTitle": "React.js Blank Page | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Blank Page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Blank Page",
+    "cardTitle": "Card Title Here",
+    "description": "Start putting content on grids or panels, you can also use different combinations of grids.Please check out the dashboard and other pages"
+  },
+  "buttons": {
+    "pageTitle": "React.js Buttons Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Buttons Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Buttons",
+    "primaryButton": "Primary Button",
+    "primaryLeadingIcon": "Primary Button with Leading Icon",
+    "primaryTrailingIcon": "Primary Button with Trailing Icon",
+    "secondaryButton": "Secondary Button",
+    "outlineLeadingIcon": "Outline Button with Leading Icon",
+    "outlineTrailingIcon": "Outline Button with Trailing Icon",
+    "buttonText": "Button Text"
+  },
+  "calendar": {
+    "pageTitle": "React.js Calendar Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Calendar Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Calendar",
+    "addEventButton": "Add Event +",
+    "addEvent": "Add Event",
+    "editEvent": "Edit Event",
+    "newEvent": "New Event",
+    "event": "Event",
+    "modalDescription": "Plan your next big moment: schedule or edit an event to stay on track",
+    "eventTitle": "Event Title",
+    "eventColor": "Event Color",
+    "startDate": "Enter Start Date",
+    "endDate": "Enter End Date",
+    "updateChanges": "Update Changes",
+    "more": "+{count} more",
+    "views": {
+      "year": "Year",
+      "month": "Month",
+      "week": "Week",
+      "day": "Day"
+    },
+    "levels": {
+      "danger": "Danger",
+      "success": "Success",
+      "primary": "Primary",
+      "warning": "Warning"
+    },
+    "events": {
+      "eventConference": "Event Conf.",
+      "meeting": "Meeting",
+      "workshop": "Workshop"
+    }
+  },
+  "common": {
+    "home": "Home",
+    "edit": "Edit",
+    "close": "Close",
+    "saveChanges": "Save Changes",
+    "viewMore": "View More",
+    "delete": "Delete",
+    "filter": "Filter",
+    "seeAll": "See all"
   },
   "crm": {
     "metrics": {
@@ -402,387 +404,74 @@
       }
     }
   },
-  "stocks": {
-    "title": "Stocks",
-    "dividend": {
-      "title": "Dividend",
-      "viewMore": "View More",
-      "delete": "Delete"
-    },
-    "portfolioPerformance": {
-      "title": "Portfolio Performance",
-      "subtitle": "Here is your performance stats of each month",
-      "series": "Portfolio Performance"
-    },
-    "trendingStocks": {
-      "title": "Trending Stocks",
-      "shortStock": "Short Stock",
-      "buyStock": "Buy Stock"
-    },
-    "watchlist": {
-      "title": "My Watchlist",
-      "viewMore": "View More",
-      "delete": "Delete"
-    },
-    "latestTransactions": {
-      "title": "Latest Transactions",
-      "searchPlaceholder": "Search...",
-      "table": {
-        "name": "Name",
-        "date": "Date",
-        "price": "Price",
-        "category": "Category",
-        "status": "Status"
-      },
-      "actions": {
-        "bought": "Bought {symbol}",
-        "sell": "Sell {symbol}"
-      },
-      "categories": {
-        "finance": "Finance"
-      },
-      "statuses": {
-        "success": "Success",
-        "pending": "Pending",
-        "failed": "Failed"
-      }
-    }
-  },
-  "saas": {
-    "title": "SaaS",
+  "ecommerce": {
+    "title": "E-commerce Dashboard",
     "metrics": {
-      "overview": "Overview",
-      "totalRevenue": "Total Revenue",
-      "activeUsers": "Active Users",
-      "clv": "Customer Lifetime Value",
-      "cac": "Customer Acquisition Cost"
+      "customers": "Customers",
+      "orders": "Orders"
     },
-    "churnRate": {
-      "title": "Churn Rate",
-      "subtitle": "Downgrade to Free plan",
-      "thanLastWeek": "than last Week",
-      "series": "Churn Rate",
-      "viewMore": "View More",
-      "delete": "Delete"
+    "months": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
     },
-    "userGrowth": {
-      "title": "User Growth",
-      "subtitle": "New signups website + mobile",
-      "thanLastWeek": "than last Week",
-      "series": "Revenue",
-      "viewMore": "View More",
-      "delete": "Delete"
+    "monthlySales": {
+      "title": "Monthly Sales",
+      "series": "Sales"
     },
-    "conversionFunnel": {
-      "title": "Conversion Funnel",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "series": {
-        "adImpressions": "Ad Impressions",
-        "websiteSession": "Website Session",
-        "appDownload": "App Download",
-        "newUsers": "New Users"
-      }
-    },
-    "recentInvoices": {
-      "title": "Recent Invoices",
-      "table": {
-        "serialNo": "Serial No:",
-        "closeDate": "Close Date",
-        "user": "User",
-        "amount": "Amount",
-        "status": "Status"
-      },
-      "statuses": {
-        "complete": "Complete",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
-      }
-    },
-    "productPerformance": {
-      "title": "Product Performance",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "tabs": {
-        "dailySales": "Daily Sales",
-        "onlineSales": "Online Sales",
-        "newUsers": "New Users"
-      },
-      "digitalProduct": "Digital Product",
-      "physicalProduct": "Physical Product",
-      "avgDailySales": "Average Daily Sales",
-      "totalOnlineSales": "Total Online Sales",
-      "addedLastMonth": "Added last month",
-      "totalNewUsers": "Total New Users",
-      "series": {
-        "sales": "Sales",
-        "revenue": "Revenue"
-      }
-    },
-    "activities": {
-      "title": "Activities",
-      "viewMore": "View More",
-      "delete": "Delete",
-      "newInvoice": "New invoice",
-      "createdInvoice": "created invoice",
-      "justNow": "Just Now",
-      "fifteenMinAgo": "15 minutes ago",
-      "fiveMonthsAgo": "5 months ago",
-      "twoWeeksAgo": "2 weeks ago"
-    }
-  },
-  "logistics": {
-    "title": "Logistics",
-    "metrics": {
-      "totalOrders": "Total Orders",
-      "ordersInTransit": "Orders in Transit"
-    },
-    "deliveryStatistics": {
-      "title": "Delivery Statistics",
-      "subtitle": "Total number of deliveries 70.5K",
-      "monthly": "Monthly",
-      "yearly": "Yearly",
-      "shipment": "Shipment",
-      "delivery": "Delivery"
-    },
-    "revenueEarned": {
-      "totalRevenue": "Total revenue earned",
-      "shippedQuantities": "Shipped quantities",
-      "newSales": "New Sales"
-    },
-    "deliveryVehicle": {
-      "title": "Delivery Vehicles",
-      "subtitle": "Vehicles operating on the road",
-      "thanLastWeek": "than last Week",
-      "onRoute": "On-route"
-    },
-    "trackingDelivery": {
-      "title": "Tracking Delivery",
-      "subtitle": "Last viewed delivery history"
-    },
-    "trackingProgress": {
-      "trackingId": "Tracking ID",
-      "inTransit": "In Transit",
-      "pickedUp": "Picked up",
-      "delivered": "Delivered"
-    },
-    "deliveryMan": {
-      "courier": "Courier"
-    },
-    "deliveriesActivity": {
-      "title": "Delivery Activities",
-      "subtitle": "Track your recent shipping activities",
-      "tabs": {
-        "all": "All",
-        "delivered": "Delivered",
-        "inTransit": "In-Transit",
-        "pending": "Pending",
-        "processing": "Processing"
-      },
-      "filter": {
-        "button": "Filter",
-        "category": "Category",
-        "searchCategory": "Search category...",
-        "company": "Company",
-        "searchCompany": "Search company...",
-        "apply": "Apply"
-      },
-      "table": {
-        "orderId": "Order ID",
-        "category": "Category",
-        "company": "Company",
-        "arrivalTime": "Arrival Time",
-        "route": "Route",
-        "price": "Price",
-        "status": "Status"
-      },
-      "categories": {
-        "furniture": "Furniture",
-        "clothing": "Clothing",
-        "books": "Books",
-        "automotive": "Automotive",
-        "electronics": "Electronics",
-        "health": "Health",
-        "toys": "Toys",
-        "kitchen": "Kitchen",
-        "beauty": "Beauty",
-        "sports": "Sports"
-      },
-      "statuses": {
-        "delivered": "Delivered",
-        "inTransit": "In Transit",
-        "canceled": "Canceled"
-      },
-      "pagination": {
-        "showing": "Showing",
-        "to": "to",
-        "of": "of",
-        "page": "Page"
-      }
-    }
-  },
-  "aiDashboard": {
-    "stats": {
-      "users": "Users",
-      "projects": "Projects",
+    "monthlyTarget": {
+      "title": "Monthly Target",
+      "subtitle": "Target you’ve set for each month",
+      "earned": "You earn {amount} today, it's higher than last month. Keep up your good work!",
+      "target": "Target",
       "revenue": "Revenue",
-      "paidUsers": "Paid Users",
-      "last30Days": "Last 30 Days"
+      "today": "Today"
     },
-    "userRevenue": {
-      "title": "Users & Revenue Statistics",
-      "subtitle": "Visualize month-to-month progress and engagement.",
-      "users": "Users",
+    "statistics": {
+      "title": "Statistics",
+      "subtitle": "Target you've set for each month",
+      "sales": "Sales",
       "revenue": "Revenue",
       "monthly": "Monthly",
       "quarterly": "Quarterly",
-      "annually": "Annually"
+      "annually": "Annually",
+      "selectDateRange": "Select date range"
     },
-    "apiToken": {
-      "title": "API Token Usages",
-      "totalApiTokenUsed": "Total API Token Used",
-      "tokenUsed": "Token used",
-      "configuredKey": "{count, plural, one {# API key configured} other {# API keys configured}}",
-      "viewAllUsageDetails": "View All Usage Details"
-    },
-    "userAnalytics": {
-      "title": "User Analytics",
-      "subtitle": "Platform user insights",
-      "totalUsers": "Total Users",
-      "freeUsers": "Free Users",
-      "paidUsers": "Paid Users",
-      "ofTotalUser": "of total user",
-      "thisMonth": "This Month",
-      "fromLastMonth": "from last month",
-      "thisYear": "This Year",
-      "fromLastYear": "from last year"
-    },
-    "projectAnalytics": {
-      "title": "Projects Analytics",
-      "subtitle": "View detailed project insights",
-      "totalProjects": "Total Projects",
-      "today": "Today",
-      "yesterday": "Yesterday",
-      "projectCreated": "Project created",
-      "thisMonth": "This Month",
-      "fromLastMonth": "from last month",
-      "thisYear": "This Year",
-      "fromLastYear": "from last year"
-    },
-    "recentTransactions": {
-      "title": "Recent Transactions",
-      "searchPlaceholder": "Search...",
-      "filter": "Filter",
-      "table": {
-        "paidBy": "Paid By",
-        "packageName": "Package Name",
-        "price": "Price",
-        "paidDate": "Paid Date",
-        "status": "Status",
-        "actions": "Actions"
-      },
-      "packages": {
-        "starterMonthly": "Starter - Monthly",
-        "growthYearly": "Growth - Yearly",
-        "premiumMonthly": "Premium - Monthly"
-      },
-      "statuses": {
-        "active": "Active",
-        "expired": "Expired"
-      },
-      "pagination": {
-        "previous": "Previous",
-        "next": "Next",
-        "pageOf": "Page {current} of {total}"
-      },
-      "noResults": "No results found"
-    }
-  },
-  "sales": {
-    "salesStats": {
-      "title": "Sales Dashboard",
-      "subtitle": "Track revenue, performance, and sales growth in real-time",
-      "selectDateRange": "Select date range",
-      "export": "Export",
-      "totalRevenue": "Total Revenue",
-      "totalSales": "Total Sales",
-      "conversionRate": "Conversion Rate",
-      "refundRate": "Refund Rate",
-      "vsLastMonth": "vs last month",
-      "newSales": "New Sales"
-    },
-    "userRevenueStats": {
-      "title": "Users & Revenue Statistics",
-      "subtitle": "Visualize month-to-month progress and engagement.",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly",
-      "onlineSales": "Online Sales",
-      "offlineSales": "Offline Sales"
-    },
-    "userRetention": {
-      "title": "User Retention",
-      "subtitle": "User engagement over time",
-      "increasedVsLastWeek": "Increased vs last week"
-    },
-    "salesByChannel": {
-      "title": "Sales by Channel",
-      "subtitle": "Channel performance overview",
-      "increasedVsLastWeek": "Increased vs last week",
-      "channels": {
-        "website": "Website",
-        "email": "Email",
-        "socialMedia": "Social Media"
-      },
-      "table": {
-        "channels": "Channels",
-        "metric": "Metric",
-        "total": "Total"
-      }
-    },
-    "salesByCountry": {
-      "title": "Sales by Country",
-      "subtitle": "Country-wise sales overview",
-      "countries": {
-        "usa": "USA",
-        "france": "France",
-        "japan": "Japan",
-        "germany": "Germany"
-      }
-    },
-    "topProducts": {
-      "title": "Top Products",
-      "table": {
-        "productName": "Product Name",
-        "category": "Category",
-        "sales": "Sales",
-        "earnings": "Earnings",
-        "stocks": "Stocks",
-        "status": "Status"
-      },
-      "products": {
-        "classicDenimJacket": "Classic Denim Jacket",
-        "slimFitChinos": "Slim Fit Chinos",
-        "organicCottonTShirt": "Organic Cotton T-Shirt",
-        "leatherAnkleBoots": "Leather Ankle Boots"
-      },
-      "variants": {
-        "threeSizes": "3 Sizes",
-        "fourColors": "4 Colors",
-        "fiveColors": "5 Colors",
-        "sixSizes": "6 Sizes"
-      },
+    "recentOrders": {
+      "title": "Recent Orders",
+      "products": "Products",
+      "category": "Category",
+      "price": "Price",
+      "status": "Status",
+      "variants": "{count, plural, one {# Variant} other {# Variants}",
       "categories": {
-        "jacket": "Jacket",
-        "pants": "Pants",
-        "tShirt": "T-Shirt",
-        "footwear": "Footwear"
+        "laptop": "Laptop",
+        "watch": "Watch",
+        "smartphone": "SmartPhone",
+        "electronics": "Electronics",
+        "accessories": "Accessories"
       },
       "statuses": {
-        "inStock": "In Stock",
-        "lowStock": "Low Stock",
-        "outOfStock": "Out of Stock"
+        "delivered": "Delivered",
+        "pending": "Pending",
+        "canceled": "Canceled"
       }
+    },
+    "demographic": {
+      "title": "Customers Demographic",
+      "subtitle": "Number of customer based on country",
+      "customers": "{count} Customers",
+      "usa": "USA",
+      "france": "France"
     }
   },
   "finance": {
@@ -876,5 +565,1043 @@
         "inProgress": "In Progress"
       }
     }
+  },
+  "form": {
+    "labels": {
+      "input": "Input",
+      "inputWithPlaceholder": "Input with Placeholder",
+      "selectInput": "Select Input",
+      "passwordInput": "Password Input",
+      "datePickerInput": "Date Picker Input",
+      "timePickerInput": "Time Picker Input",
+      "inputWithPayment": "Input with Payment",
+      "description": "Description",
+      "email": "Email",
+      "phone": "Phone",
+      "uploadFile": "Upload file",
+      "multipleSelectOptions": "Multiple Select Options"
+    },
+    "placeholders": {
+      "selectAnOption": "Select an option",
+      "selectOption": "Select Option",
+      "selectOptions": "Select options",
+      "enterYourPassword": "Enter your password",
+      "selectDate": "Select a date",
+      "cardNumber": "Card number",
+      "enterYourEmail": "Enter your email",
+      "disabledEmail": "Disabled email",
+      "enterYourMessage": "Enter your message"
+    },
+    "titles": {
+      "defaultInputs": "Default Inputs",
+      "selectInputs": "Select Inputs",
+      "textarea": "Textarea input field",
+      "inputStates": "Input States",
+      "inputGroup": "Input Group",
+      "fileInput": "File Input",
+      "checkbox": "Checkbox",
+      "radioButtons": "Radio Buttons",
+      "toggleSwitch": "Toggle switch input",
+      "dropzone": "Dropzone"
+    },
+    "inputStates": {
+      "description": "Validation styles for error, success and disabled states on form controls."
+    },
+    "states": {
+      "default": "Default",
+      "checked": "Checked",
+      "disabled": "Disabled",
+      "selected": "Selected"
+    },
+    "options": {
+      "marketing": "Marketing",
+      "template": "Template",
+      "development": "Development",
+      "optionNumber": "Option {number}"
+    },
+    "selectedValues": "Selected Values: {values}",
+    "hints": {
+      "validMessage": "Please enter a valid message.",
+      "invalidEmail": "This is an invalid email address.",
+      "successMessage": "This is an success message."
+    },
+    "password": {
+      "show": "Show password",
+      "hide": "Hide password"
+    },
+    "removeItem": "Remove {name}",
+    "dropzone": {
+      "fileTypeNotSupported": "File type not supported",
+      "dropImagesHere": "Drop images here",
+      "dropFilesHere": "Drop files here",
+      "dragDropFilesHere": "Drag & Drop Files Here",
+      "onlyAllowedHint": "Only PNG, JPG, WebP, and SVG images up to 5MB are allowed",
+      "dragOrBrowseHint": "Drag and drop your PNG, JPG, WebP, SVG images here or browse",
+      "browseFile": "Browse File",
+      "uploadedImages": "Uploaded Images ({count})",
+      "clearAll": "Clear all",
+      "previewImage": "Preview image",
+      "previewItem": "Preview {name}",
+      "removeImage": "Remove image",
+      "imagePreviewTitle": "Image Preview"
+    }
+  },
+  "formElements": {
+    "metaTitle": "React.js Form Elements Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "metaDescription": "This is React.js Form Elements  Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "pageTitle": "Form Elements"
+  },
+  "header": {
+    "searchPlaceholder": "Search or type command...",
+    "toggleSidebar": "Toggle Sidebar",
+    "notifications": {
+      "title": "Notifications",
+      "close": "Close notifications",
+      "ownOnly": "Your latest 50 notifications",
+      "markAllRead": "Mark all as read",
+      "unread": "{count} unread notifications",
+      "loading": "Loading notifications…",
+      "empty": "No notifications for you yet",
+      "retry": "Retry",
+      "points_credit": "Points added +{points}",
+      "points_debit": "Points deducted −{points}",
+      "order_pending": "Order points application awaiting review",
+      "order_approved": "Order points application approved",
+      "order_rejected": "Order points application declined",
+      "gift_pending": "Gift redemption submitted",
+      "gift_processing": "Gift redemption in progress",
+      "gift_completed": "Gift delivered",
+      "reviewNote": "Review note: {note}",
+      "gift_cancelled": "Redemption cancelled, points refunded",
+      "gift_rejected": "Redemption declined, points refunded",
+      "points_refund": "Redemption refund +{points}"
+    }
+  },
+  "image": {
+    "cover": "Cover",
+    "grid": " grid"
+  },
+  "images": {
+    "pageTitle": "React.js Images Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Images page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Images",
+    "responsiveImage": "Responsive image",
+    "twoColumnGrid": "Image in 2 Grid",
+    "threeColumnGrid": "Image in 3 Grid"
+  },
+  "lineChart": {
+    "pageTitle": "React.js Chart Dashboard | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Chart Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Line Chart",
+    "chartOne": "Line Chart 1"
+  },
+  "logistics": {
+    "title": "Logistics",
+    "metrics": {
+      "totalOrders": "Total Orders",
+      "ordersInTransit": "Orders in Transit"
+    },
+    "deliveryStatistics": {
+      "title": "Delivery Statistics",
+      "subtitle": "Total number of deliveries 70.5K",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "shipment": "Shipment",
+      "delivery": "Delivery"
+    },
+    "revenueEarned": {
+      "totalRevenue": "Total revenue earned",
+      "shippedQuantities": "Shipped quantities",
+      "newSales": "New Sales"
+    },
+    "deliveryVehicle": {
+      "title": "Delivery Vehicles",
+      "subtitle": "Vehicles operating on the road",
+      "thanLastWeek": "than last Week",
+      "onRoute": "On-route"
+    },
+    "trackingDelivery": {
+      "title": "Tracking Delivery",
+      "subtitle": "Last viewed delivery history"
+    },
+    "trackingProgress": {
+      "trackingId": "Tracking ID",
+      "inTransit": "In Transit",
+      "pickedUp": "Picked up",
+      "delivered": "Delivered"
+    },
+    "deliveryMan": {
+      "courier": "Courier"
+    },
+    "deliveriesActivity": {
+      "title": "Delivery Activities",
+      "subtitle": "Track your recent shipping activities",
+      "tabs": {
+        "all": "All",
+        "delivered": "Delivered",
+        "inTransit": "In-Transit",
+        "pending": "Pending",
+        "processing": "Processing"
+      },
+      "filter": {
+        "button": "Filter",
+        "category": "Category",
+        "searchCategory": "Search category...",
+        "company": "Company",
+        "searchCompany": "Search company...",
+        "apply": "Apply"
+      },
+      "table": {
+        "orderId": "Order ID",
+        "category": "Category",
+        "company": "Company",
+        "arrivalTime": "Arrival Time",
+        "route": "Route",
+        "price": "Price",
+        "status": "Status"
+      },
+      "categories": {
+        "furniture": "Furniture",
+        "clothing": "Clothing",
+        "books": "Books",
+        "automotive": "Automotive",
+        "electronics": "Electronics",
+        "health": "Health",
+        "toys": "Toys",
+        "kitchen": "Kitchen",
+        "beauty": "Beauty",
+        "sports": "Sports"
+      },
+      "statuses": {
+        "delivered": "Delivered",
+        "inTransit": "In Transit",
+        "canceled": "Canceled"
+      },
+      "pagination": {
+        "showing": "Showing",
+        "to": "to",
+        "of": "of",
+        "page": "Page"
+      }
+    }
+  },
+  "marketing": {
+    "metrics": {
+      "avgClientRating": "Avg. Client Rating",
+      "instagramFollowers": "Instagram Followers",
+      "totalRevenue": "Total Revenue",
+      "vsLastMonth": "Vs last month"
+    },
+    "impressionChart": {
+      "title": "Impression & Data Traffic",
+      "totalRevenue": "Total Revenue",
+      "sales": "Sales",
+      "revenue": "Revenue"
+    },
+    "featuredCampaign": {
+      "title": "Featured Campaigns",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "products": "Products",
+      "campaign": "Campaign",
+      "status": "Status",
+      "adsCampaign": "Ads campaign",
+      "campaigns": {
+        "growBrand": "Grow your brand by...",
+        "betterIdeas": "Make Better Ideas...",
+        "increaseTraffic": "Increase your website tra..."
+      },
+      "statuses": {
+        "success": "Success",
+        "pending": "Pending",
+        "failed": "Failed"
+      }
+    },
+    "trafficStats": {
+      "title": "Traffic Stats",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "newSubscribers": "New Subscribers",
+      "conversionRate": "Conversion Rate",
+      "pageBounceRate": "Page Bounce Rate",
+      "thenLastWeek": "then last Week",
+      "newSales": "New Sales"
+    },
+    "trafficSource": {
+      "title": "Top Traffic Source",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "viewAll": "View All"
+    }
+  },
+  "notFound": {
+    "error": "ERROR",
+    "message": "We can’t seem to find the page you are looking for!",
+    "backHome": "Back to Home Page",
+    "pageTitle": "Page not found | Bags Star",
+    "pageDescription": "Bags Star customer points and gift redemption portal."
+  },
+  "redemptions": {
+    "pageTitle": "My Redemption Requests | Bags Star",
+    "pageDescription": "Track your customer reward redemption requests.",
+    "eyebrow": "Customer portal",
+    "title": "My redemption requests",
+    "description": "Your sales contact will update the request after confirming availability.",
+    "totalRequests": "Total requests",
+    "pointsRedeemed": "Points redeemed",
+    "activeRequest": "Active request",
+    "requestHistory": "Request history",
+    "deliveryTitle": "Delivery is handled by your business contact",
+    "deliveryDescription": "For shipping timing, send your request ID to {email} or call {phone}.",
+    "contactSales": "Contact sales about {id}"
+  },
+  "rewards": {
+    "pageTitle": "Gift Center | Bags Star",
+    "pageDescription": "Browse your Bags Star rewards and redeem customer benefits.",
+    "customerRewards": "Gift Center",
+    "heroTitle": "A gift from the mysterious East",
+    "heroDescription": "Redeem practical products and brand services with points earned from your verified orders.",
+    "browseRewards": "Browse rewards",
+    "viewMyRequests": "View my requests",
+    "availablePoints": "Available points",
+    "points": "points",
+    "pointsShort": "pts",
+    "activeRequests": "Active requests",
+    "trackRequest": "Track request",
+    "catalog": "Rewards catalog",
+    "chooseUseful": "Choose something useful",
+    "searchLabel": "Search rewards",
+    "searchPlaceholder": "Search rewards",
+    "categories": {
+      "all": "All",
+      "travel": "Travel",
+      "daily": "Daily",
+      "branding": "Branding"
+    },
+    "featured": "Featured",
+    "redeem": "Redeem this reward",
+    "needHelp": "Need help?",
+    "deliveryHelp": "Your business contact will confirm availability and share the delivery timeline.",
+    "viewRequestStatus": "View request status",
+    "recentActivity": "Recent activity",
+    "seeAll": "See all",
+    "close": "Close notification",
+    "requestTitle": "Redemption request",
+    "redeemQuestion": "Redeem {name}?",
+    "representativeContact": "A business representative will contact you to confirm availability and delivery details.",
+    "cancel": "Cancel",
+    "submitRequest": "Submit request",
+    "requestAdded": "{name} added to your redemption request.",
+    "products": {
+      "weekendExplorerBackpack": {
+        "name": "Weekend Explorer Backpack",
+        "category": "Travel",
+        "description": "A lightweight everyday backpack for short trips and city commutes."
+      },
+      "arcticLunchCooler": {
+        "name": "Arctic Lunch Cooler",
+        "category": "Daily",
+        "description": "Compact insulated storage for lunches, samples, and daily essentials."
+      },
+      "everydayCanvasTote": {
+        "name": "Everyday Canvas Tote",
+        "category": "Daily",
+        "description": "A durable canvas tote with room for documents and small accessories."
+      },
+      "customTravelDuffel": {
+        "name": "Custom Travel Duffel",
+        "category": "Travel",
+        "description": "A roomy duffel designed for travel, trade shows, and weekend plans."
+      },
+      "canvasUtilityPouch": {
+        "name": "Canvas Utility Pouch",
+        "category": "Branding",
+        "description": "A practical pouch for samples, cables, stationery, or small gifts."
+      }
+    },
+    "activity": {
+      "order1048": "Order #BS-1048 confirmed",
+      "backpackRedeemed": "Weekend Explorer Backpack redeemed",
+      "order1019": "Order #BS-1019 confirmed"
+    },
+    "noCategoryProducts": "No published products in this category yet.",
+    "pointsAutoSync": "Points sync every 5 seconds",
+    "pointsSyncing": "Syncing…",
+    "refreshPoints": "Refresh points",
+    "pointsSyncFailed": "Points could not sync. The displayed balance may be out of date. Please retry."
+  },
+  "saas": {
+    "title": "SaaS",
+    "metrics": {
+      "overview": "Overview",
+      "totalRevenue": "Total Revenue",
+      "activeUsers": "Active Users",
+      "clv": "Customer Lifetime Value",
+      "cac": "Customer Acquisition Cost"
+    },
+    "churnRate": {
+      "title": "Churn Rate",
+      "subtitle": "Downgrade to Free plan",
+      "thanLastWeek": "than last Week",
+      "series": "Churn Rate",
+      "viewMore": "View More",
+      "delete": "Delete"
+    },
+    "userGrowth": {
+      "title": "User Growth",
+      "subtitle": "New signups website + mobile",
+      "thanLastWeek": "than last Week",
+      "series": "Revenue",
+      "viewMore": "View More",
+      "delete": "Delete"
+    },
+    "conversionFunnel": {
+      "title": "Conversion Funnel",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "series": {
+        "adImpressions": "Ad Impressions",
+        "websiteSession": "Website Session",
+        "appDownload": "App Download",
+        "newUsers": "New Users"
+      }
+    },
+    "recentInvoices": {
+      "title": "Recent Invoices",
+      "table": {
+        "serialNo": "Serial No:",
+        "closeDate": "Close Date",
+        "user": "User",
+        "amount": "Amount",
+        "status": "Status"
+      },
+      "statuses": {
+        "complete": "Complete",
+        "pending": "Pending",
+        "cancelled": "Cancelled"
+      }
+    },
+    "productPerformance": {
+      "title": "Product Performance",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "tabs": {
+        "dailySales": "Daily Sales",
+        "onlineSales": "Online Sales",
+        "newUsers": "New Users"
+      },
+      "digitalProduct": "Digital Product",
+      "physicalProduct": "Physical Product",
+      "avgDailySales": "Average Daily Sales",
+      "totalOnlineSales": "Total Online Sales",
+      "addedLastMonth": "Added last month",
+      "totalNewUsers": "Total New Users",
+      "series": {
+        "sales": "Sales",
+        "revenue": "Revenue"
+      }
+    },
+    "activities": {
+      "title": "Activities",
+      "viewMore": "View More",
+      "delete": "Delete",
+      "newInvoice": "New invoice",
+      "createdInvoice": "created invoice",
+      "justNow": "Just Now",
+      "fifteenMinAgo": "15 minutes ago",
+      "fiveMonthsAgo": "5 months ago",
+      "twoWeeksAgo": "2 weeks ago"
+    }
+  },
+  "sales": {
+    "salesStats": {
+      "title": "Sales Dashboard",
+      "subtitle": "Track revenue, performance, and sales growth in real-time",
+      "selectDateRange": "Select date range",
+      "export": "Export",
+      "totalRevenue": "Total Revenue",
+      "totalSales": "Total Sales",
+      "conversionRate": "Conversion Rate",
+      "refundRate": "Refund Rate",
+      "vsLastMonth": "vs last month",
+      "newSales": "New Sales"
+    },
+    "userRevenueStats": {
+      "title": "Users & Revenue Statistics",
+      "subtitle": "Visualize month-to-month progress and engagement.",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "onlineSales": "Online Sales",
+      "offlineSales": "Offline Sales"
+    },
+    "userRetention": {
+      "title": "User Retention",
+      "subtitle": "User engagement over time",
+      "increasedVsLastWeek": "Increased vs last week"
+    },
+    "salesByChannel": {
+      "title": "Sales by Channel",
+      "subtitle": "Channel performance overview",
+      "increasedVsLastWeek": "Increased vs last week",
+      "channels": {
+        "website": "Website",
+        "email": "Email",
+        "socialMedia": "Social Media"
+      },
+      "table": {
+        "channels": "Channels",
+        "metric": "Metric",
+        "total": "Total"
+      }
+    },
+    "salesByCountry": {
+      "title": "Sales by Country",
+      "subtitle": "Country-wise sales overview",
+      "countries": {
+        "usa": "USA",
+        "france": "France",
+        "japan": "Japan",
+        "germany": "Germany"
+      }
+    },
+    "topProducts": {
+      "title": "Top Products",
+      "table": {
+        "productName": "Product Name",
+        "category": "Category",
+        "sales": "Sales",
+        "earnings": "Earnings",
+        "stocks": "Stocks",
+        "status": "Status"
+      },
+      "products": {
+        "classicDenimJacket": "Classic Denim Jacket",
+        "slimFitChinos": "Slim Fit Chinos",
+        "organicCottonTShirt": "Organic Cotton T-Shirt",
+        "leatherAnkleBoots": "Leather Ankle Boots"
+      },
+      "variants": {
+        "threeSizes": "3 Sizes",
+        "fourColors": "4 Colors",
+        "fiveColors": "5 Colors",
+        "sixSizes": "6 Sizes"
+      },
+      "categories": {
+        "jacket": "Jacket",
+        "pants": "Pants",
+        "tShirt": "T-Shirt",
+        "footwear": "Footwear"
+      },
+      "statuses": {
+        "inStock": "In Stock",
+        "lowStock": "Low Stock",
+        "outOfStock": "Out of Stock"
+      }
+    }
+  },
+  "pointsExchange": {
+    "pageTitle": "Redeem Points | Bags Star",
+    "title": "Redeem Points",
+    "description": "Submit your purchase order number. Our sales team will verify it and add points to your account.",
+    "browseGifts": "Browse gifts",
+    "stepsLabel": "How to redeem order points",
+    "steps": {
+      "enter": {
+        "title": "Submit your order",
+        "description": "Enter your order number to apply."
+      },
+      "verify": {
+        "title": "Team review",
+        "description": "Our sales team verifies your order."
+      },
+      "claim": {
+        "title": "Receive points",
+        "description": "Our team adds points after approval."
+      }
+    },
+    "formTitle": "Submit an order, receive points",
+    "formDescription": "Just enter your order number. Our sales team will handle the rest.",
+    "orderNumber": "Order number",
+    "orderPlaceholder": "Enter your purchase order number",
+    "orderHint": "Copy the full number from your order details or confirmation. Up to 100 characters.",
+    "orderRequired": "Please enter your order number.",
+    "confirmHint": "Our sales team will review your request. Track its status and awarded points below.",
+    "guideTitle": "A quick guide",
+    "guide": {
+      "findOrder": {
+        "title": "Where is my order number?",
+        "description": "Look in your purchase order details or confirmation. Your sales representative can also help you find it."
+      },
+      "review": {
+        "title": "What happens after I submit?",
+        "description": "Our sales team will review your order and contact you if more information is needed. You can track the status below."
+      },
+      "gifts": {
+        "title": "How do I use my points?",
+        "description": "Visit the Gift Center to browse gifts and redeem them with your points."
+      }
+    },
+    "historyTitle": "Order application status",
+    "historyDescription": "View your submitted order numbers and review status. Pending order numbers can be edited.",
+    "historyHint": "Submitted orders will appear here. Points are added after our team completes its review.",
+    "manualReview": "Reviewed by our team",
+    "submitOrder": "Submit order number",
+    "submitting": "Submitting…",
+    "submitFailed": "Submission not confirmed",
+    "submitted": "Order {order} has been submitted for review. Our sales team will add points to your account once it is approved.",
+    "historyEmpty": "No points requests yet",
+    "refresh": "Refresh",
+    "loading": "Loading…",
+    "requestedAt": "Submitted: {date}",
+    "reviewedAt": "Reviewed: {date}",
+    "reviewNote": "Review note: {note}",
+    "status": {
+      "pending": "Pending review",
+      "approved": "Points added",
+      "rejected": "Not approved",
+      "all": "All"
+    },
+    "errors": {
+      "unavailable": "This service is temporarily unavailable. Please try again later or contact your sales representative.",
+      "signin": "Please sign in to view or submit points requests.",
+      "forbidden": "Only authorized staff can view and review points requests.",
+      "duplicate": "This order has already been submitted or awarded points. Refresh the history or contact your sales representative.",
+      "reviewed": "This request has already been reviewed. Refresh to see its latest status.",
+      "failed": "The operation could not be confirmed. Refresh to check the latest status before trying again.",
+      "changed": "The customer changed the order number. Refresh and verify it again."
+    },
+    "edit": "Edit order number",
+    "editSave": "Save changes",
+    "editCancel": "Cancel",
+    "editSaving": "Saving…",
+    "editSaved": "Order number updated, awaiting staff review.",
+    "editLocked": "This application has been reviewed and can no longer be edited."
+  },
+  "sidebar": {
+    "customerPortal": "Customer portal",
+    "adminPreview": "Administration",
+    "rewardsCenter": "Gift Center",
+    "pointsExchange": "Redeem Points",
+    "myRedemptions": "My Redemptions",
+    "myProfile": "My Profile",
+    "rewardCatalog": "Product Center",
+    "redemptionRequests": "Redemption Requests",
+    "rewardsHub": "Rewards hub",
+    "needHand": "Need a hand?",
+    "contactSales": "Contact sales",
+    "businessHelp": "Your business contact can help with availability and delivery.",
+    "orderPointsReview": "Order Points Review",
+    "productCategories": "Product Categories"
+  },
+  "signIn": {
+    "pageTitle": "Sign in | Bags Star",
+    "pageDescription": "Bags Star customer points and gift redemption portal.",
+    "backToDashboard": "Back to home",
+    "title": "Sign In",
+    "subtitle": "Sign in to manage your points and rewards.",
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithX": "Sign in with X",
+    "or": "Or",
+    "email": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "keepMeLoggedIn": "Keep me logged in",
+    "forgotPassword": "Forgot password?",
+    "signInButton": "Sign in",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign Up"
+  },
+  "signUp": {
+    "pageTitle": "Sign up | Bags Star",
+    "pageDescription": "Bags Star customer points and gift redemption portal.",
+    "backToDashboard": "Back to home",
+    "title": "Sign Up",
+    "subtitle": "Enter your email and password to sign up!",
+    "signUpWithGoogle": "Sign up with Google",
+    "signUpWithX": "Sign up with X",
+    "or": "Or",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNamePlaceholder": "Enter your last name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "terms": "By creating an account means you agree to the",
+    "termsAndConditions": "Terms and Conditions,",
+    "andOur": "and our",
+    "privacyPolicy": "Privacy Policy",
+    "signUpButton": "Sign Up",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInLink": "Sign In"
+  },
+  "stocks": {
+    "title": "Stocks",
+    "dividend": {
+      "title": "Dividend",
+      "viewMore": "View More",
+      "delete": "Delete"
+    },
+    "portfolioPerformance": {
+      "title": "Portfolio Performance",
+      "subtitle": "Here is your performance stats of each month",
+      "series": "Portfolio Performance"
+    },
+    "trendingStocks": {
+      "title": "Trending Stocks",
+      "shortStock": "Short Stock",
+      "buyStock": "Buy Stock"
+    },
+    "watchlist": {
+      "title": "My Watchlist",
+      "viewMore": "View More",
+      "delete": "Delete"
+    },
+    "latestTransactions": {
+      "title": "Latest Transactions",
+      "searchPlaceholder": "Search...",
+      "table": {
+        "name": "Name",
+        "date": "Date",
+        "price": "Price",
+        "category": "Category",
+        "status": "Status"
+      },
+      "actions": {
+        "bought": "Bought {symbol}",
+        "sell": "Sell {symbol}"
+      },
+      "categories": {
+        "finance": "Finance"
+      },
+      "statuses": {
+        "success": "Success",
+        "pending": "Pending",
+        "failed": "Failed"
+      }
+    }
+  },
+  "userDropdown": {
+    "editProfile": "Edit profile",
+    "accountSettings": "Account settings",
+    "support": "Support",
+    "language": "Language",
+    "signOut": "Sign out"
+  },
+  "userProfile": {
+    "pageTitle": "My profile | Bags Star",
+    "pageDescription": "Manage your account details and password.",
+    "title": "Profile",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailAddress": "Email address",
+    "emailAddressLabel": "Email Address",
+    "phone": "Phone",
+    "bio": "Bio",
+    "socialLinks": "Social Links",
+    "edit": "Edit",
+    "editPersonalInfo": "Edit Personal Information",
+    "updateDetails": "Update your details to keep your profile up-to-date.",
+    "changeProfilePicture": "Change Profile Picture",
+    "uploadHint": "Upload a square image (200×200 px) in JPEG or PNG format.",
+    "personalInformation": "Personal Information",
+    "address": "Address",
+    "country": "Country",
+    "cityState": "City/State",
+    "postalCode": "Postal Code",
+    "taxId": "TAX ID",
+    "editAddress": "Edit Address",
+    "security": "Security",
+    "changePassword": "Change Password",
+    "securityPasswordDesc": "Verify your current password and set a new password for your account.",
+    "twoFactor": "Two-factor authentication (2FA)",
+    "twoFactorDesc": "Keep your account secure by enabling 2FA",
+    "dangerZone": "Danger Zone",
+    "logoutAllDevices": "Logout all devices",
+    "logoutAllDevicesDesc": "Sign out from every active session.",
+    "logout": "Logout",
+    "deleteAccount": "Delete account",
+    "deleteAccountDesc": "Once you delete your account, there is no going back. Please be certain."
+  },
+  "video": {
+    "youTubeTitle": "YouTube video"
+  },
+  "videos": {
+    "pageTitle": "React.js Videos Tabs | TailAdmin - React.js Admin Dashboard Template",
+    "pageDescription": "This is React.js Videos page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template",
+    "title": "Videos",
+    "ratio169": "Video Ratio 16:9",
+    "ratio43": "Video Ratio 4:3",
+    "ratio219": "Video Ratio 21:9",
+    "ratio11": "Video Ratio 1:1"
+  },
+  "adminOrderPoints": {
+    "pageTitle": "Order Points Review | Bags Star",
+    "title": "Order Points Review",
+    "description": "Select a customer to view and review their order applications. Staff verify each order and choose the points awarded; each order can be credited only once.",
+    "decision": "Review decision",
+    "approve": "Approve and add points",
+    "reject": "Reject request",
+    "points": "Points to award",
+    "pointsRequired": "Enter a whole number from 1 to 2,147,483,647.",
+    "note": "Review note (optional, visible to customer)",
+    "confirmAward": "Add {points} points for order {order} to {email}? Verify order ownership and authenticity first. Confirmation credits the points immediately.",
+    "confirmReject": "Reject the points request for order {order} from {email}?",
+    "saving": "Saving…",
+    "confirm": "Confirm review",
+    "review": "Review and continue",
+    "back": "Back to edit",
+    "awarded": "Order {order} approved. {points} points added.",
+    "rejected": "Order {order} has been rejected.",
+    "empty": "No requests in this category.",
+    "customers": "Customer applications",
+    "customerSummary": "{count} customers, {pending} pending applications. Customers with pending applications appear first.",
+    "viewCustomer": "View applications ({count})",
+    "backToCustomers": "Back to customers",
+    "customerRequests": "Order applications for {name}",
+    "statusFilter": "Filter by review status",
+    "noCustomers": "No matching customers.",
+    "loadFailed": "Unable to load customers. Please refresh and try again."
+  },
+  "testAuth": {
+    "username": "Account",
+    "usernamePlaceholder": "Enter username or email",
+    "localMode": "Local test environment",
+    "signingIn": "Signing in…",
+    "admin": "Administrator",
+    "customer": "Customer",
+    "allRequests": "View gift requests from all customers and update their status.",
+    "ownRequests": "Only your own gift requests are shown here.",
+    "noRequests": "No gift requests yet.",
+    "requestStatus": "Status for request {code}",
+    "errors": {
+      "credentials": "Incorrect account or password.",
+      "signin": "Please sign in.",
+      "forbidden": "You do not have permission for this action.",
+      "unavailable": "Service is temporarily unavailable. Please try again later.",
+      "invalid": "Check the form. Points must be a positive whole number.",
+      "notFound": "The item or request does not exist, or the item is unpublished.",
+      "insufficient": "You do not have enough points. Submit an order number to request points first.",
+      "retryLater": "Too many login attempts. Try again in one minute.",
+      "failed": "The operation could not be confirmed. Refresh before retrying."
+    }
+  },
+  "catalogEditor": {
+    "edit": "Edit product",
+    "name": "Product name",
+    "points": "Points required",
+    "category": "Category",
+    "status": "Publish status",
+    "image": "Product images",
+    "imageHint": "Select multiple JPG, PNG or WebP images. Up to 8 images, 5 MB each. The first is the cover. Save the product after uploading.",
+    "description": "Description",
+    "save": "Save product",
+    "uploading": "Uploading images…",
+    "imageReady": "{count} images ready. Save the product to apply.",
+    "imageSize": "Each image must be non-empty and no larger than 5 MB.",
+    "imageType": "Choose a valid JPG, PNG or WebP image.",
+    "imageCount": "A product can have up to 8 images.",
+    "preview": "Product image {number}",
+    "cover": "Cover",
+    "setCover": "Set cover",
+    "remove": "Remove",
+    "removeImage": "Remove image {number}",
+    "saveChanges": "Save changes"
+  },
+  "productGallery": {
+    "label": "{name} image gallery",
+    "image": "{name}, image {number} of {count}",
+    "empty": "No product images",
+    "previous": "Previous image",
+    "next": "Next image",
+    "goTo": "View image {number}"
+  },
+  "categoryManager": {
+    "title": "Product Categories",
+    "pageTitle": "Product Categories | Bags Star",
+    "description": "Manage product categories. Renaming a category also updates its products.",
+    "add": "Add category",
+    "rename": "Rename",
+    "name": "Category name",
+    "save": "Save category",
+    "delete": "Delete",
+    "products": "{count} products",
+    "usedHint": "Move the products to another category before deleting.",
+    "empty": "No categories yet. Add one to get started.",
+    "choose": "Select a product category",
+    "saved": "Category saved.",
+    "deleted": "Category deleted.",
+    "categoryInvalid": "Select a valid category. Names must contain 1–80 characters.",
+    "categoryDuplicate": "This category name already exists.",
+    "categoryInUse": "This category still contains products and cannot be deleted."
+  },
+  "productVariants": {
+    "enable": "Multiple configurations with individual points",
+    "title": "Configurations and points",
+    "hint": "Enter one complete combination per row, such as Pro / 256GB or Pro Max / 512GB. Add color or other specifications as needed. Up to 30 configurations; points must be positive integers.",
+    "name": "Configuration {number} name",
+    "points": "Configuration {number} points",
+    "example": "e.g. Pro Max / 512GB / Black",
+    "add": "Add configuration",
+    "remove": "Remove combination {number}",
+    "choose": "Choose a configuration",
+    "chooseFirst": "Select a configuration first",
+    "total": "Points required for this redemption",
+    "fromPoints": "From {points} points",
+    "selected": "Selected configuration: {name}",
+    "reload": "Refresh configurations",
+    "variantInvalid": "Check specifications: names and values are required, fields and combinations must be unique, and points must be positive whole numbers.",
+    "variantUnavailable": "This configuration has changed or been removed. Refresh and select again.",
+    "priceChanged": "The required points have changed. No points were deducted. Refresh and confirm again.",
+    "fieldsHint": "Customize specification fields, then enter values and points for each combination. For example: Series + Storage, or Size + Color.",
+    "fieldLabel": "Specification field {number}",
+    "removeField": "Delete specification field {number}",
+    "addField": "Add specification field",
+    "combinationsHint": "Each row is one redeemable combination (up to 30). Complete every value, avoid duplicate combinations, and enter positive whole-number points.",
+    "addCombination": "Add combination",
+    "legacyField": "Specification",
+    "series": "Series",
+    "memory": "Storage",
+    "saveHint": "Save changes updates the product and keeps its current publication status. Use the publish or unpublish buttons to change status.",
+    "savePublished": "Save and publish",
+    "saveDraft": "Save as unpublished",
+    "requiredFields": "Complete all required fields: product name, category, specification names, values and points.",
+    "deleteField": "Delete",
+    "minimumField": "Keep at least one specification field. Uncheck multiple configurations if this product does not need specifications."
+  },
+  "productOptions": {
+    "title": "Independent options (no extra points)",
+    "hint": "For example, add Black and White under Color once. Every Series + Storage combination can use them without creating duplicate variants. Customize attribute names as needed. Customers select one value per attribute; points stay the same.",
+    "name": "Attribute name {number}",
+    "value": "Option {number}",
+    "remove": "Delete attribute",
+    "removeValue": "Delete {name} option {number}",
+    "addValue": "Add option",
+    "add": "Add independent attribute",
+    "color": "Color",
+    "choose": "Choose product attributes",
+    "noExtraPoints": "These choices do not change the required points.",
+    "optionInvalid": "Complete attribute names and values without duplicate names or values. Up to 5 attributes and 30 values per attribute.",
+    "optionUnavailable": "Choose all product attributes. Options may have changed; refresh configurations and select again."
+  },
+  "customerManager": {
+    "title": "Customers",
+    "pageTitle": "Customers | Bags Star",
+    "description": "View registered customers and balances. Add or deduct points with a permanent record. Deductions cannot exceed the balance.",
+    "search": "Search customer name or email",
+    "count": "{count} customers",
+    "empty": "No matching customers.",
+    "details": "Points management",
+    "balance": "Available points",
+    "total_credit": "Total added",
+    "total_debit": "Total deducted",
+    "registeredAt": "Registered",
+    "testAccount": "Built-in test account",
+    "manage": "View / adjust points",
+    "action": "Adjustment type",
+    "credit": "Add points",
+    "debit": "Deduct points",
+    "amount": "Points to adjust",
+    "note": "Note (optional)",
+    "preview": "Balance after adjustment: {points}",
+    "submit": "Confirm adjustment",
+    "history": "Points history",
+    "noHistory": "No points transactions yet.",
+    "manual": "Manual adjustment",
+    "operator": "Operator",
+    "after": "Balance after",
+    "saved": "Updated {name}. Balance after adjustment: {points}.",
+    "emailExists": "This email is registered. Please sign in.",
+    "adjustmentConflict": "This adjustment was already processed with different details. Refresh and try again.",
+    "acceptTerms": "Please read and agree to the registration terms.",
+    "registered": "Registration complete. Sign in with your email and password.",
+    "checkEmail": "Registration submitted. Check your email and complete any verification before signing in."
+  },
+  "pointsLedger": {
+    "title": "Points history",
+    "description": "All points credited and debited, including order approvals, administrator adjustments and gift redemptions.",
+    "balance": "Current balance",
+    "totalCredit": "Total credited",
+    "totalDebit": "Total debited",
+    "filter": "Filter points history",
+    "all": "All",
+    "credit": "Credits",
+    "debit": "Debits",
+    "empty": "No matching points transactions yet",
+    "order": "Order approval credit",
+    "redemption": "Gift redemption debit",
+    "balanceAfter": "Balance after adjustment: {points}"
+  },
+  "passwordChange": {
+    "current": "Current password",
+    "new": "New password",
+    "confirm": "Confirm new password",
+    "hint": "Enter your current password first. Use 8–128 characters for the new password, different from your current password.",
+    "save": "Save new password",
+    "saving": "Saving…",
+    "success": "Password changed. Use your new password next time you sign in.",
+    "mismatch": "The new passwords do not match.",
+    "currentPassword": "The current password is incorrect.",
+    "passwordLength": "Use 8–128 characters for the new password.",
+    "samePassword": "The new password must differ from the current password.",
+    "weakPassword": "Choose a stronger password that meets your account security requirements.",
+    "reauthenticate": "Sign out and sign in again before changing your password.",
+    "account": "Current account: {name}"
+  },
+  "productSpecifications": {
+    "series": "Series",
+    "storage": "Storage",
+    "color": "Color",
+    "model": "Model",
+    "size": "Size",
+    "material": "Material",
+    "capacity": "Capacity",
+    "style": "Style",
+    "version": "Version",
+    "configuration": "Configuration",
+    "burgundy": "Burgundy",
+    "glacierBlue": "Glacier Blue",
+    "silver": "Silver",
+    "black": "Black",
+    "white": "White",
+    "blue": "Blue",
+    "red": "Red",
+    "green": "Green",
+    "gold": "Gold",
+    "pink": "Pink",
+    "purple": "Purple",
+    "gray": "Gray",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "brown": "Brown",
+    "beige": "Beige",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "bilingualHint": "Common specification labels and colors follow the selected language. For custom names or values, enter “中文 | English”, for example “表面处理 | Finish”."
+  },
+  "portalFixes": {
+    "profile": "Account details",
+    "name": "Name / Contact person",
+    "email": "Login email",
+    "company": "Company",
+    "phone": "Phone",
+    "notSet": "Not provided",
+    "saved": "Profile saved",
+    "noMatches": "No matching products. Try a different search.",
+    "redemptionState": "The request has changed, or this action is unavailable for its current status. Refresh and try again.",
+    "resolutionRequired": "Enter a cancellation or rejection reason.",
+    "readFailed": "Could not save read status. Please try again.",
+    "rejectRefund": "Reject and refund points",
+    "cancelRefund": "Cancel and refund points",
+    "reason": "Reason (visible to customer)",
+    "refunded": "{points} points refunded",
+    "history": "Activity history",
+    "more": "Load more",
+    "confirmAction": "Confirm action",
+    "refundConfirm": "This will refund {points} points and close the request. It cannot be reopened.",
+    "refundTitle": "Redemption refund"
   }
 }

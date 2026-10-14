@@ -2,17 +2,19 @@ import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import Avatar from "@/components/ui/avatar/Avatar";
+import { useTranslation } from "react-i18next";
 
 export default function Avatars() {
+  const { t } = useTranslation();
   return (
     <>
       <PageMeta
-        title="React.js Avatars Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Avatars Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("avatars.pageTitle")}
+        description={t("avatars.pageDescription")}
       />
-      <PageBreadcrumb pageTitle="Avatars" />
+      <PageBreadcrumb pageTitle={t("avatars.title")} />
       <div className="space-y-5 sm:space-y-6">
-        <ComponentCard title="Default Avatar">
+        <ComponentCard title={t("avatars.defaultAvatar")}>
           {/* Default Avatar (No Status) */}
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Avatar src="/images/user/user-01.jpg" size="xsmall" />
@@ -24,7 +26,7 @@ export default function Avatars() {
           </div>
         </ComponentCard>
 
-        <ComponentCard title="Avatar Group">
+        <ComponentCard title={t("avatars.avatarGroup")}>
           <div className="flex items-center justify-center">
             <Avatar
               src="/images/user/user-01.jpg"
@@ -59,7 +61,7 @@ export default function Avatars() {
           </div>
         </ComponentCard>
 
-        <ComponentCard title="Avatar with online indicator">
+        <ComponentCard title={t("avatars.withOnlineIndicator")}>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Avatar
               src="/images/user/user-01.jpg"
@@ -94,7 +96,7 @@ export default function Avatars() {
           </div>
         </ComponentCard>
 
-        <ComponentCard title="Avatar with Offline indicator">
+        <ComponentCard title={t("avatars.withOfflineIndicator")}>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Avatar
               src="/images/user/user-01.jpg"
@@ -129,7 +131,7 @@ export default function Avatars() {
           </div>
         </ComponentCard>
 
-        <ComponentCard title="Avatar with busy indicator">
+        <ComponentCard title={t("avatars.withBusyIndicator")}>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Avatar
               src="/images/user/user-01.jpg"

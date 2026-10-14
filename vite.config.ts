@@ -1,15 +1,20 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
+import localTestBackend from "./server/test-backend.ts";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    fs: { deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "**/.local-test/**", "**/server/**"] },
+  },
   resolve: {
     alias: {
       "@": "/src",
     },
   },
   plugins: [
+    localTestBackend(),
     react(),
     svgr({
       svgrOptions: {

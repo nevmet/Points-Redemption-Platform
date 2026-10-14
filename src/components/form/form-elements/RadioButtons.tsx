@@ -2,15 +2,17 @@ import ComponentCard from "@/components/common/ComponentCard";
 import Radio from "@/components/form/input/Radio";
 import { cn } from "@/utils";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function RadioButtons() {
+  const { t } = useTranslation();
   const [selectedValue, setSelectedValue] = useState<string>("option2");
 
   const handleRadioChange = (value: string) => {
     setSelectedValue(value);
   };
   return (
-    <ComponentCard title="Radio Buttons">
+    <ComponentCard title={t("form.titles.radioButtons")}>
       <div className={cn("flex flex-wrap items-center gap-8")}>
         <Radio
           id="radio1"
@@ -18,7 +20,7 @@ export default function RadioButtons() {
           value="option1"
           checked={selectedValue === "option1"}
           onChange={handleRadioChange}
-          label="Default"
+          label={t("form.states.default")}
         />
         <Radio
           id="radio2"
@@ -26,7 +28,7 @@ export default function RadioButtons() {
           value="option2"
           checked={selectedValue === "option2"}
           onChange={handleRadioChange}
-          label="Selected"
+          label={t("form.states.selected")}
         />
         <Radio
           id="radio3"
@@ -34,7 +36,7 @@ export default function RadioButtons() {
           value="option3"
           checked={selectedValue === "option3"}
           onChange={handleRadioChange}
-          label="Disabled"
+          label={t("form.states.disabled")}
           disabled={true}
         />
       </div>

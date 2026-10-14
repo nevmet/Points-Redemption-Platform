@@ -1,18 +1,20 @@
 import Calendar from "@/components/calendar/Calendar";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
+import { useTranslation } from "react-i18next";
 import "@fullcalendar/react/skeleton.css";
 import "@fullcalendar/react/themes/classic/palette.css";
 import "@fullcalendar/react/themes/classic/theme.css";
 
 export default function CalendarPage() {
+  const { t } = useTranslation();
   return (
     <div>
       <PageMeta
-        title="React.js Calendar Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Calendar Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("calendar.pageTitle")}
+        description={t("calendar.pageDescription")}
       />
-      <PageBreadcrumb pageTitle="Calendar" />
+      <PageBreadcrumb pageTitle={t("calendar.title")} />
       <Calendar />
     </div>
   );

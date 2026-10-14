@@ -1,0 +1,1607 @@
+{
+  "brand": {
+    "name": "BAGS STAR",
+    "logoAlt": "Bags Star 公司标志",
+    "homeLabel": "Bags Star 积分商城首页"
+  },
+  "adminProducts": {
+    "pageTitle": "产品中心 | Bags Star",
+    "pageDescription": "管理 Bags Star 积分兑换商品。",
+    "eyebrow": "管理预览",
+    "title": "产品中心",
+    "description": "发布商品并设置兑换所需积分。",
+    "addReward": "添加商品",
+    "publishedRewards": "已上架商品",
+    "totalItems": "商品总数",
+    "requestsThisMonth": "本月申请数",
+    "allRewards": "全部商品",
+    "catalogHint": "点击上架状态可预览实时变化。",
+    "searchPlaceholder": "搜索商品",
+    "unpublish": "下架",
+    "publish": "上架",
+    "edit": "编辑 {name}",
+    "saved": "商品已保存。",
+    "reviewRequests": "查看兑换申请",
+    "statusPublished": "已上架",
+    "statusDraft": "已下架",
+    "statusFilter": "按上架状态筛选",
+    "noMatches": "没有符合条件的商品。",
+    "delete": "删除商品",
+    "deleteTitle": "删除下架商品",
+    "deleteConfirm": "确定删除「{name}」吗？商品将从产品中心移除，已有兑换记录、发放状态及积分流水均会保留，已上传的图片文件也会保留。商品资料删除后无法恢复。",
+    "confirmDelete": "确认删除",
+    "deleting": "正在删除…",
+    "deleted": "商品已删除。",
+    "productNotDraft": "商品已上架或已不存在，请刷新列表。只有已下架商品可以删除。"
+  },
+  "adminRedemptions": {
+    "pageTitle": "兑换申请 | Bags Star",
+    "pageDescription": "查看并更新客户积分兑换申请。",
+    "eyebrow": "管理预览",
+    "title": "兑换申请",
+    "description": "推进业务跟进流程，并让客户及时了解状态。",
+    "pendingReview": "待审核",
+    "inProgress": "处理中",
+    "completedThisMonth": "本月已完成",
+    "saved": "已保存",
+    "pending": "待处理",
+    "processing": "处理中",
+    "completed": "已完成",
+    "cancelled": "已取消（积分已退回）",
+    "rejected": "已拒绝（积分已退回）"
+  },
+  "aiDashboard": {
+    "stats": {
+      "users": "用户",
+      "projects": "项目",
+      "revenue": "收入",
+      "paidUsers": "付费用户",
+      "last30Days": "最近 30 天"
+    },
+    "userRevenue": {
+      "title": "用户与收入统计",
+      "subtitle": "可视化月度进展与用户参与情况。",
+      "users": "用户",
+      "revenue": "收入",
+      "monthly": "按月",
+      "quarterly": "按季",
+      "annually": "按年"
+    },
+    "apiToken": {
+      "title": "API Token 使用情况",
+      "totalApiTokenUsed": "API Token 总使用量",
+      "tokenUsed": "已使用的 Token",
+      "configuredKey": "{count, plural, one {已配置 # 个 API key} other {已配置 # 个 API keys}}",
+      "viewAllUsageDetails": "查看所有使用详情"
+    },
+    "userAnalytics": {
+      "title": "用户数据分析",
+      "subtitle": "平台用户洞察",
+      "totalUsers": "总用户数",
+      "freeUsers": "免费用户",
+      "paidUsers": "付费用户",
+      "ofTotalUser": "占用户总数",
+      "thisMonth": "本月",
+      "fromLastMonth": "较上月",
+      "thisYear": "今年",
+      "fromLastYear": "较去年"
+    },
+    "projectAnalytics": {
+      "title": "项目数据分析",
+      "subtitle": "查看详细的项目洞察",
+      "totalProjects": "项目总数",
+      "today": "今日",
+      "yesterday": "昨日",
+      "projectCreated": "已创建的项目",
+      "thisMonth": "本月",
+      "fromLastMonth": "较上月",
+      "thisYear": "今年",
+      "fromLastYear": "较去年"
+    },
+    "recentTransactions": {
+      "title": "最近交易记录",
+      "searchPlaceholder": "搜索...",
+      "filter": "筛选",
+      "table": {
+        "paidBy": "付款方",
+        "packageName": "套餐名称",
+        "price": "价格",
+        "paidDate": "付款日期",
+        "status": "状态",
+        "actions": "操作"
+      },
+      "packages": {
+        "starterMonthly": "入门版 - 按月",
+        "growthYearly": "成长版 - 按年",
+        "premiumMonthly": "高级版 - 按月"
+      },
+      "statuses": {
+        "active": "进行中",
+        "expired": "已过期"
+      },
+      "pagination": {
+        "previous": "上一页",
+        "next": "下一页",
+        "pageOf": "第 {current} 页，共 {total} 页"
+      },
+      "noResults": "未找到结果"
+    }
+  },
+  "alert": {
+    "learnMore": "了解更多"
+  },
+  "alerts": {
+    "pageTitle": "React.js 警告提示仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 警告提示仪表盘页面",
+    "title": "警告提示",
+    "successAlert": "成功提示框",
+    "warningAlert": "警告提示框",
+    "errorAlert": "错误提示框",
+    "infoAlert": "信息提示框",
+    "successMessage": "成功消息",
+    "warningMessage": "警告消息",
+    "errorMessage": "错误消息",
+    "infoMessage": "信息消息",
+    "cautionMessage": "执行此操作时请务必谨慎。",
+    "learnMore": "了解更多"
+  },
+  "analytics": {
+    "metrics": {
+      "uniqueVisitors": "独立访客",
+      "totalPageviews": "总浏览量",
+      "bounceRate": "跳出率",
+      "visitDuration": "访问时长",
+      "vsLastMonth": "对比上月"
+    },
+    "barChart": {
+      "title": "数据分析",
+      "subtitle": "最近30天的访客分析"
+    },
+    "topChannels": {
+      "title": "热门渠道",
+      "source": "来源",
+      "visitors": "访客",
+      "channelsReport": "渠道报告"
+    },
+    "topPages": {
+      "title": "热门页面",
+      "source": "来源",
+      "pageview": "浏览量",
+      "channelsReport": "渠道报告"
+    },
+    "activeUsers": {
+      "title": "活跃用户",
+      "liveVisitors": "实时访客",
+      "avgDaily": "日均",
+      "avgWeekly": "周均",
+      "avgMonthly": "月均"
+    },
+    "acquisitionChannels": {
+      "title": "获客渠道",
+      "direct": "直接访问",
+      "referral": "引荐",
+      "organicSearch": "自然搜索",
+      "social": "社交媒体"
+    },
+    "session": {
+      "title": "按设备划分的会话",
+      "desktop": "桌面端",
+      "mobile": "移动端",
+      "tablet": "平板"
+    },
+    "recentOrders": {
+      "title": "最近订单",
+      "products": "商品",
+      "category": "分类",
+      "country": "国家/地区",
+      "cr": "转化率",
+      "value": "金额",
+      "categories": {
+        "uiKits": "UI 套件",
+        "templates": "模板",
+        "saas": "SaaS"
+      },
+      "crDashboard": "仪表盘"
+    }
+  },
+  "auth": {
+    "logoAlt": "徽标",
+    "promoText": "Bags Star 客户礼品中心"
+  },
+  "avatar": {
+    "altText": "用户头像"
+  },
+  "avatars": {
+    "pageTitle": "React.js 头像仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 头像仪表盘页面",
+    "title": "头像",
+    "defaultAvatar": "默认头像",
+    "avatarGroup": "头像组",
+    "withOnlineIndicator": "带在线状态指示器的头像",
+    "withOfflineIndicator": "带离线状态指示器的头像",
+    "withBusyIndicator": "带忙碌状态指示器的头像"
+  },
+  "badges": {
+    "pageTitle": "React.js 徽章仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 徽章仪表盘页面",
+    "title": "徽章",
+    "withLightBackground": "浅色背景",
+    "withSolidBackground": "实色背景",
+    "lightWithLeadingIcon": "浅色背景带前置图标",
+    "solidWithTrailingIcon": "实色背景带后置图标",
+    "labels": {
+      "primary": "主要",
+      "success": "成功",
+      "error": "错误",
+      "warning": "警告",
+      "info": "信息",
+      "light": "浅色",
+      "dark": "深色"
+    }
+  },
+  "barChart": {
+    "title": "柱状图",
+    "chartOne": "柱状图 1"
+  },
+  "basicTables": {
+    "pageTitle": "React.js 基础表格仪表盘 | TailAdmin - Next.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 基础表格仪表盘页面",
+    "title": "基础表格",
+    "tableOne": "基础表格 1",
+    "columns": {
+      "user": "用户",
+      "projectName": "项目名称",
+      "team": "团队",
+      "status": "状态",
+      "budget": "预算"
+    },
+    "roles": {
+      "webDesigner": "网页设计师",
+      "projectManager": "项目经理",
+      "contentWriting": "内容创作",
+      "digitalMarketer": "数字营销",
+      "frontendDeveloper": "前端开发工程师"
+    },
+    "statuses": {
+      "active": "进行中",
+      "pending": "待处理",
+      "cancel": "已取消"
+    },
+    "teamMemberAlt": "团队成员 {index}"
+  },
+  "blank": {
+    "pageTitle": "React.js 空白页面 | TailAdmin - React.js 管理仪表盘模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理仪表盘模板的 React.js 空白页面",
+    "title": "空白页面",
+    "cardTitle": "此处为卡片标题",
+    "description": "开始将内容放入网格或面板，您还可以使用不同的网格组合。请查看仪表盘和其他页面"
+  },
+  "buttons": {
+    "pageTitle": "React.js 按钮仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 按钮仪表盘页面",
+    "title": "按钮",
+    "primaryButton": "主要按钮",
+    "primaryLeadingIcon": "带前置图标的主要按钮",
+    "primaryTrailingIcon": "带后置图标的主要按钮",
+    "secondaryButton": "次要按钮",
+    "outlineLeadingIcon": "带前置图标的描边按钮",
+    "outlineTrailingIcon": "带后置图标的描边按钮",
+    "buttonText": "按钮文本"
+  },
+  "calendar": {
+    "pageTitle": "React.js 日历仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 日历仪表盘页面。",
+    "title": "日历",
+    "addEventButton": "添加事件 +",
+    "addEvent": "添加事件",
+    "editEvent": "编辑事件",
+    "newEvent": "新事件",
+    "event": "事件",
+    "modalDescription": "规划您的下一个重要时刻：安排或编辑事件以保持进度",
+    "eventTitle": "事件标题",
+    "eventColor": "事件颜色",
+    "startDate": "输入开始日期",
+    "endDate": "输入结束日期",
+    "updateChanges": "更新修改",
+    "more": "+{count} 更多",
+    "views": {
+      "year": "年",
+      "month": "月",
+      "week": "周",
+      "day": "日"
+    },
+    "levels": {
+      "danger": "危险",
+      "success": "成功",
+      "primary": "主要",
+      "warning": "警告"
+    },
+    "events": {
+      "eventConference": "活动会议",
+      "meeting": "会议",
+      "workshop": "研讨会"
+    }
+  },
+  "common": {
+    "home": "首页",
+    "edit": "编辑",
+    "close": "关闭",
+    "saveChanges": "保存更改",
+    "viewMore": "查看更多",
+    "delete": "删除",
+    "filter": "筛选",
+    "seeAll": "查看全部"
+  },
+  "crm": {
+    "metrics": {
+      "activeDeal": "进行中交易",
+      "revenueTotal": "总收入",
+      "closedDeals": "已成交交易",
+      "lastMonth": "上月"
+    },
+    "statistics": {
+      "title": "统计",
+      "subtitle": "您为每个月设定的目标",
+      "avgYearlyProfit": "年均利润",
+      "sales": "销售额",
+      "revenue": "收入"
+    },
+    "estimatedRevenue": {
+      "title": "预估收入",
+      "subtitle": "您为每个月设定的目标",
+      "goals": "六月目标",
+      "marketing": "市场营销",
+      "sales": "销售额"
+    },
+    "salesCategory": {
+      "title": "销售类别",
+      "affiliate": "联盟",
+      "direct": "直接",
+      "adsense": "Adsense",
+      "affiliateProgram": "联盟计划",
+      "directBuy": "直接购买",
+      "products": "产品",
+      "total": "总计",
+      "usedOf": "已使用"
+    },
+    "upcomingSchedule": {
+      "title": "近期日程",
+      "schedules": {
+        "item1": {
+          "title": "商业分析发布",
+          "description": "探索数据驱动的未来 +6 更多"
+        },
+        "item2": {
+          "title": "商业冲刺",
+          "description": "来自商业冲刺的技巧 +2 更多"
+        },
+        "item3": {
+          "title": "客户评审会议",
+          "description": "来自客户评审会议的见解 +8 更多"
+        }
+      }
+    },
+    "recentOrders": {
+      "title": "近期订单",
+      "dealId": "交易编号",
+      "customer": "客户",
+      "productService": "产品/服务",
+      "dealValue": "交易金额",
+      "closeDate": "成交日期",
+      "status": "状态",
+      "action": "操作",
+      "products": {
+        "softwareLicense": "软件许可证",
+        "cloudHosting": "云托管",
+        "webDomain": "网络域名",
+        "sslCertificate": "SSL 证书",
+        "premiumSupport": "高级支持"
+      },
+      "statuses": {
+        "complete": "已完成",
+        "pending": "待处理",
+        "cancel": "取消"
+      }
+    }
+  },
+  "ecommerce": {
+    "title": "电商仪表盘",
+    "metrics": {
+      "customers": "客户",
+      "orders": "订单"
+    },
+    "months": {
+      "jan": "1月",
+      "feb": "2月",
+      "mar": "3月",
+      "apr": "4月",
+      "may": "5月",
+      "jun": "6月",
+      "jul": "7月",
+      "aug": "8月",
+      "sep": "9月",
+      "oct": "10月",
+      "nov": "11月",
+      "dec": "12月"
+    },
+    "monthlySales": {
+      "title": "按月销售额",
+      "series": "销售额"
+    },
+    "monthlyTarget": {
+      "title": "月度目标",
+      "subtitle": "您为每个月设定的目标",
+      "earned": "您今天收入 {amount}，高于上月。继续保持！",
+      "target": "目标",
+      "revenue": "收入",
+      "today": "今日"
+    },
+    "statistics": {
+      "title": "统计",
+      "subtitle": "您为每个月设定的目标",
+      "sales": "销售额",
+      "revenue": "收入",
+      "monthly": "按月",
+      "quarterly": "按季",
+      "annually": "按年",
+      "selectDateRange": "选择日期范围"
+    },
+    "recentOrders": {
+      "title": "最近订单",
+      "products": "商品",
+      "category": "分类",
+      "price": "价格",
+      "status": "状态",
+      "variants": "{count, plural, one {# Variant} other {# Variants}",
+      "categories": {
+        "laptop": "笔记本电脑",
+        "watch": "手表",
+        "smartphone": "智能手机",
+        "electronics": "电子产品",
+        "accessories": "配件"
+      },
+      "statuses": {
+        "delivered": "已交付",
+        "pending": "待处理",
+        "canceled": "已取消"
+      }
+    },
+    "demographic": {
+      "title": "客户分布",
+      "subtitle": "按国家/地区统计的客户数量",
+      "customers": "{count} 位客户",
+      "usa": "美国",
+      "france": "法国"
+    }
+  },
+  "finance": {
+    "totalBalanceOverview": {
+      "title": "总余额",
+      "overview": "您当前资金的概览",
+      "thanLastMonth": "比上月",
+      "primaryAccount": "主账户：",
+      "seeDetails": "查看详情",
+      "transfer": "转账",
+      "received": "已收款",
+      "balance": "余额"
+    },
+    "stats": {
+      "totalBalance": "总余额",
+      "monthlyIncome": "月度收入",
+      "totalSpent": "总支出",
+      "savingRate": "储蓄率",
+      "thanLastMonth": "比上月",
+      "goalProgress": "目标：30% - 还差 3.9%"
+    },
+    "cashflow": {
+      "title": "现金流概览",
+      "totalRevenue": "总收入",
+      "income": "收入",
+      "expense": "支出"
+    },
+    "spending": {
+      "title": "支出",
+      "yearly": "按年",
+      "monthly": "按月",
+      "total": "总计",
+      "categories": {
+        "activity": "动态",
+        "onlinePurchases": "线上购物",
+        "groceries": "食品杂货",
+        "digitalGoods": "数字商品",
+        "stationery": "文具",
+        "others": "其他"
+      }
+    },
+    "quickSend": {
+      "title": "快速转账",
+      "sendFrom": "转出账户",
+      "currency": "币种",
+      "amount": "金额",
+      "sendMoney": "转账"
+    },
+    "myCards": {
+      "title": "我的卡片",
+      "addCard": "添加卡片",
+      "virtualCard": "虚拟卡片",
+      "recentTransactions": "交易记录",
+      "seeAllTransactions": "查看全部交易记录",
+      "cardNumber": "卡号",
+      "exp": "有效期",
+      "cvc": "CVC",
+      "active": "进行中",
+      "inactive": "未激活",
+      "transactions": {
+        "paymentReceived": "已收款",
+        "cashbackDesc": "来自 Stellar Rewards 的返现",
+        "netflixSubscription": "Netflix 订阅",
+        "netflixDesc": "九月订阅费用",
+        "moneyReceived": "已收款",
+        "paypalDesc": "通过 PayPal 收到的付款",
+        "googleAds": "Google Ads",
+        "googleAdsDesc": "通过 Google Ads 收到的付款"
+      }
+    },
+    "transactionsTable": {
+      "title": "交易记录",
+      "searchPlaceholder": "搜索...",
+      "filter": "筛选",
+      "table": {
+        "orderId": "订单号",
+        "activity": "动态",
+        "price": "价格",
+        "date": "日期",
+        "status": "状态"
+      },
+      "activities": {
+        "hotelBooking": "酒店预订",
+        "onlineShopping": "线上购物",
+        "gamePurchase": "游戏购买",
+        "utilityBillPayment": "公用事业缴费",
+        "onlineCourseEnrollment": "在线课程报名"
+      },
+      "statuses": {
+        "completed": "已完成",
+        "inProgress": "进行中"
+      }
+    }
+  },
+  "form": {
+    "labels": {
+      "input": "输入框",
+      "inputWithPlaceholder": "带占位符的输入框",
+      "selectInput": "选择输入框",
+      "passwordInput": "密码输入框",
+      "datePickerInput": "日期选择器输入框",
+      "timePickerInput": "时间选择器输入框",
+      "inputWithPayment": "带支付的输入框",
+      "description": "描述",
+      "email": "邮箱",
+      "phone": "电话",
+      "uploadFile": "上传文件",
+      "multipleSelectOptions": "多选选项"
+    },
+    "placeholders": {
+      "selectAnOption": "选择一个选项",
+      "selectOption": "选择选项",
+      "selectOptions": "选择多个选项",
+      "enterYourPassword": "输入您的密码",
+      "selectDate": "选择一个日期",
+      "cardNumber": "卡号",
+      "enterYourEmail": "输入您的邮箱",
+      "disabledEmail": "已禁用的邮箱",
+      "enterYourMessage": "输入您的消息"
+    },
+    "titles": {
+      "defaultInputs": "默认输入框",
+      "selectInputs": "选择输入框",
+      "textarea": "多行文本输入框",
+      "inputStates": "输入状态",
+      "inputGroup": "输入组",
+      "fileInput": "文件输入框",
+      "checkbox": "复选框",
+      "radioButtons": "单选按钮",
+      "toggleSwitch": "开关切换输入框",
+      "dropzone": "文件拖放上传"
+    },
+    "inputStates": {
+      "description": "表单控件的错误、成功和禁用状态的验证样式。"
+    },
+    "states": {
+      "default": "默认",
+      "checked": "已选中",
+      "disabled": "已禁用",
+      "selected": "已选择"
+    },
+    "options": {
+      "marketing": "市场营销",
+      "template": "模板",
+      "development": "开发",
+      "optionNumber": "选项 {number}"
+    },
+    "selectedValues": "已选择的值：{values}",
+    "hints": {
+      "validMessage": "请输入有效的消息。",
+      "invalidEmail": "这是一个无效的邮箱地址。",
+      "successMessage": "这是一条成功消息。"
+    },
+    "password": {
+      "show": "显示密码",
+      "hide": "隐藏密码"
+    },
+    "removeItem": "移除 {name}",
+    "dropzone": {
+      "fileTypeNotSupported": "不支持的文件类型",
+      "dropImagesHere": "将图片拖放到此处",
+      "dropFilesHere": "将文件拖放到此处",
+      "dragDropFilesHere": "拖放文件到此处",
+      "onlyAllowedHint": "仅允许 PNG、JPG、WebP 和 SVG 图片，且大小不超过 5MB",
+      "dragOrBrowseHint": "将您的 PNG、JPG、WebP、SVG 图片拖放到此处或浏览文件",
+      "browseFile": "浏览文件",
+      "uploadedImages": "已上传图片 ({count})",
+      "clearAll": "全部清除",
+      "previewImage": "预览图片",
+      "previewItem": "预览 {name}",
+      "removeImage": "移除图片",
+      "imagePreviewTitle": "图片预览"
+    }
+  },
+  "formElements": {
+    "metaTitle": "React.js 表单元素仪表盘 | TailAdmin - React.js 管理仪表盘模板",
+    "metaDescription": "这是 TailAdmin 的 React.js 表单元素仪表盘页面 - React.js Tailwind CSS 管理仪表盘模板",
+    "pageTitle": "表单元素"
+  },
+  "header": {
+    "searchPlaceholder": "搜索或输入命令…",
+    "toggleSidebar": "切换侧边栏",
+    "notifications": {
+      "title": "通知",
+      "close": "关闭通知",
+      "ownOnly": "您的最近 50 条通知",
+      "markAllRead": "全部标为已读",
+      "unread": "{count} 条未读通知",
+      "loading": "正在加载通知…",
+      "empty": "暂无与您相关的通知",
+      "retry": "重试",
+      "points_credit": "积分到账 +{points}",
+      "points_debit": "积分扣减 −{points}",
+      "order_pending": "订单积分申请待审核",
+      "order_approved": "订单积分申请已通过",
+      "order_rejected": "订单积分申请未通过",
+      "gift_pending": "礼品兑换申请已提交",
+      "gift_processing": "礼品兑换正在处理",
+      "gift_completed": "礼品已发放",
+      "reviewNote": "审核备注：{note}",
+      "gift_cancelled": "兑换已取消，积分已退回",
+      "gift_rejected": "兑换已拒绝，积分已退回",
+      "points_refund": "兑换积分退回 +{points}"
+    }
+  },
+  "image": {
+    "cover": "封面图片",
+    "grid": "网格图片"
+  },
+  "images": {
+    "pageTitle": "React.js 图片仪表盘 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 图片页面",
+    "title": "图片",
+    "responsiveImage": "响应式图片",
+    "twoColumnGrid": "两列网格图片",
+    "threeColumnGrid": "三列网格图片"
+  },
+  "lineChart": {
+    "pageTitle": "React.js 图表仪表盘 | TailAdmin - React.js 管理仪表盘模板",
+    "pageDescription": "这是 TailAdmin 的 React.js 图表仪表盘页面 - React.js Tailwind CSS 管理仪表盘模板",
+    "title": "折线图",
+    "chartOne": "折线图 1"
+  },
+  "logistics": {
+    "title": "物流",
+    "metrics": {
+      "totalOrders": "订单总数",
+      "ordersInTransit": "运输中的订单"
+    },
+    "deliveryStatistics": {
+      "title": "配送统计",
+      "subtitle": "配送总数 70.5K",
+      "monthly": "月度",
+      "yearly": "年度",
+      "shipment": "发货",
+      "delivery": "配送"
+    },
+    "revenueEarned": {
+      "totalRevenue": "总收入",
+      "shippedQuantities": "已发货数量",
+      "newSales": "新增销售额"
+    },
+    "deliveryVehicle": {
+      "title": "配送车辆",
+      "subtitle": "在路上运营的车辆",
+      "thanLastWeek": "较上周",
+      "onRoute": "在途"
+    },
+    "trackingDelivery": {
+      "title": "配送跟踪",
+      "subtitle": "最近查看的配送记录"
+    },
+    "trackingProgress": {
+      "trackingId": "运单号",
+      "inTransit": "运输中",
+      "pickedUp": "已取件",
+      "delivered": "已送达"
+    },
+    "deliveryMan": {
+      "courier": "快递员"
+    },
+    "deliveriesActivity": {
+      "title": "配送动态",
+      "subtitle": "跟踪您最近的发货动态",
+      "tabs": {
+        "all": "全部",
+        "delivered": "已送达",
+        "inTransit": "运输中",
+        "pending": "待处理",
+        "processing": "处理中"
+      },
+      "filter": {
+        "button": "筛选",
+        "category": "类别",
+        "searchCategory": "搜索类别...",
+        "company": "公司",
+        "searchCompany": "搜索公司...",
+        "apply": "应用"
+      },
+      "table": {
+        "orderId": "订单号",
+        "category": "类别",
+        "company": "公司",
+        "arrivalTime": "到达时间",
+        "route": "路线",
+        "price": "价格",
+        "status": "状态"
+      },
+      "categories": {
+        "furniture": "家具",
+        "clothing": "服装",
+        "books": "图书",
+        "automotive": "汽车",
+        "electronics": "电子产品",
+        "health": "健康",
+        "toys": "玩具",
+        "kitchen": "厨房",
+        "beauty": "美妆",
+        "sports": "运动"
+      },
+      "statuses": {
+        "delivered": "已送达",
+        "inTransit": "运输中",
+        "canceled": "已取消"
+      },
+      "pagination": {
+        "showing": "显示",
+        "to": "至",
+        "of": "共",
+        "page": "页"
+      }
+    }
+  },
+  "marketing": {
+    "metrics": {
+      "avgClientRating": "客户平均评分",
+      "instagramFollowers": "Instagram 粉丝",
+      "totalRevenue": "总收入",
+      "vsLastMonth": "对比上月"
+    },
+    "impressionChart": {
+      "title": "展示量与数据流量",
+      "totalRevenue": "总收入",
+      "sales": "销售额",
+      "revenue": "收入"
+    },
+    "featuredCampaign": {
+      "title": "精选营销活动",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "products": "产品",
+      "campaign": "营销活动",
+      "status": "状态",
+      "adsCampaign": "广告活动",
+      "campaigns": {
+        "growBrand": "提升品牌知名度...",
+        "betterIdeas": "打造更好的创意...",
+        "increaseTraffic": "提升网站流量..."
+      },
+      "statuses": {
+        "success": "成功",
+        "pending": "待处理",
+        "failed": "失败"
+      }
+    },
+    "trafficStats": {
+      "title": "流量统计",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "newSubscribers": "新增订阅用户",
+      "conversionRate": "转化率",
+      "pageBounceRate": "页面跳出率",
+      "thenLastWeek": "较上周",
+      "newSales": "新增销售额"
+    },
+    "trafficSource": {
+      "title": "主要流量来源",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "viewAll": "查看全部"
+    }
+  },
+  "notFound": {
+    "error": "错误",
+    "message": "我们似乎找不到您要查找的页面！",
+    "backHome": "返回首页",
+    "pageTitle": "页面未找到 | Bags Star",
+    "pageDescription": "Bags Star 客户积分与礼品兑换平台。"
+  },
+  "redemptions": {
+    "pageTitle": "我的兑换申请 | Bags Star",
+    "pageDescription": "查看客户积分兑换申请进度。",
+    "eyebrow": "客户中心",
+    "title": "我的兑换申请",
+    "description": "业务员确认库存后会更新申请状态。",
+    "totalRequests": "申请总数",
+    "pointsRedeemed": "已兑换积分",
+    "activeRequest": "进行中申请",
+    "requestHistory": "申请记录",
+    "deliveryTitle": "发货由业务员跟进",
+    "deliveryDescription": "如需了解发货时间，请将申请编号发送至 {email}，或致电 {phone}。",
+    "contactSales": "联系业务员了解 {id}"
+  },
+  "rewards": {
+    "pageTitle": "礼品中心 | Bags Star",
+    "pageDescription": "浏览 Bags Star 积分礼品并兑换客户权益。",
+    "customerRewards": "礼品中心",
+    "heroTitle": "一份来自神秘东方的礼物",
+    "heroDescription": "使用已验证订单获得的积分，兑换实用产品和品牌服务。",
+    "browseRewards": "浏览商品",
+    "viewMyRequests": "查看我的申请",
+    "availablePoints": "可用积分",
+    "points": "积分",
+    "pointsShort": "积分",
+    "activeRequests": "进行中的申请",
+    "trackRequest": "跟踪申请",
+    "catalog": "积分商品目录",
+    "chooseUseful": "选择你需要的商品",
+    "searchLabel": "搜索积分商品",
+    "searchPlaceholder": "搜索商品",
+    "categories": {
+      "all": "全部",
+      "travel": "旅行用品",
+      "daily": "日常用品",
+      "branding": "品牌周边"
+    },
+    "featured": "精选",
+    "redeem": "兑换此商品",
+    "needHelp": "需要帮助？",
+    "deliveryHelp": "业务员会确认库存，并告知预计发货时间。",
+    "viewRequestStatus": "查看申请进度",
+    "recentActivity": "近期记录",
+    "seeAll": "查看全部",
+    "close": "关闭通知",
+    "requestTitle": "提交兑换申请",
+    "redeemQuestion": "确定兑换 {name} 吗？",
+    "representativeContact": "业务员会联系你确认库存和发货详情。",
+    "cancel": "取消",
+    "submitRequest": "提交申请",
+    "requestAdded": "{name} 已加入兑换申请。",
+    "products": {
+      "weekendExplorerBackpack": {
+        "name": "周末探索双肩包",
+        "category": "旅行用品",
+        "description": "轻便日用双肩包，适合短途出行和城市通勤。"
+      },
+      "arcticLunchCooler": {
+        "name": "保温午餐包",
+        "category": "日常用品",
+        "description": "紧凑型保温收纳包，适合午餐、样品和日常用品。"
+      },
+      "everydayCanvasTote": {
+        "name": "日用帆布托特包",
+        "category": "日常用品",
+        "description": "耐用帆布托特包，可收纳文件和小型配件。"
+      },
+      "customTravelDuffel": {
+        "name": "定制旅行袋",
+        "category": "旅行用品",
+        "description": "宽敞旅行袋，适合出差、展会和周末出行。"
+      },
+      "canvasUtilityPouch": {
+        "name": "帆布收纳袋",
+        "category": "品牌周边",
+        "description": "实用收纳袋，可放样品、数据线、文具或小礼品。"
+      }
+    },
+    "activity": {
+      "order1048": "订单 #BS-1048 已确认",
+      "backpackRedeemed": "已兑换周末探索双肩包",
+      "order1019": "订单 #BS-1019 已确认"
+    },
+    "noCategoryProducts": "该分类暂无上架商品。",
+    "pointsAutoSync": "每 5 秒自动同步积分",
+    "pointsSyncing": "同步中…",
+    "refreshPoints": "刷新积分",
+    "pointsSyncFailed": "积分同步失败，当前可能为上次余额，请重试。"
+  },
+  "saas": {
+    "title": "SaaS",
+    "metrics": {
+      "overview": "概览",
+      "totalRevenue": "总收入",
+      "activeUsers": "活跃用户",
+      "clv": "客户终身价值",
+      "cac": "客户获取成本"
+    },
+    "churnRate": {
+      "title": "流失率",
+      "subtitle": "降级到免费方案",
+      "thanLastWeek": "较上周",
+      "series": "流失率",
+      "viewMore": "查看更多",
+      "delete": "删除"
+    },
+    "userGrowth": {
+      "title": "用户增长",
+      "subtitle": "网站 + 移动端新增注册",
+      "thanLastWeek": "较上周",
+      "series": "收入",
+      "viewMore": "查看更多",
+      "delete": "删除"
+    },
+    "conversionFunnel": {
+      "title": "转化漏斗",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "series": {
+        "adImpressions": "广告展示",
+        "websiteSession": "网站会话",
+        "appDownload": "应用下载",
+        "newUsers": "新用户"
+      }
+    },
+    "recentInvoices": {
+      "title": "最近发票",
+      "table": {
+        "serialNo": "序号：",
+        "closeDate": "关闭日期",
+        "user": "用户",
+        "amount": "金额",
+        "status": "状态"
+      },
+      "statuses": {
+        "complete": "已完成",
+        "pending": "待处理",
+        "cancelled": "已取消"
+      }
+    },
+    "productPerformance": {
+      "title": "产品表现",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "tabs": {
+        "dailySales": "日销售额",
+        "onlineSales": "线上销售",
+        "newUsers": "新用户"
+      },
+      "digitalProduct": "数字产品",
+      "physicalProduct": "实体产品",
+      "avgDailySales": "平均日销售额",
+      "totalOnlineSales": "线上销售总额",
+      "addedLastMonth": "上个月新增",
+      "totalNewUsers": "新增用户总数",
+      "series": {
+        "sales": "销售额",
+        "revenue": "收入"
+      }
+    },
+    "activities": {
+      "title": "动态",
+      "viewMore": "查看更多",
+      "delete": "删除",
+      "newInvoice": "新发票",
+      "createdInvoice": "创建了发票",
+      "justNow": "刚刚",
+      "fifteenMinAgo": "15 分钟前",
+      "fiveMonthsAgo": "5 个月前",
+      "twoWeeksAgo": "2 周前"
+    }
+  },
+  "sales": {
+    "salesStats": {
+      "title": "销售仪表盘",
+      "subtitle": "实时跟踪收入、业绩与销售增长",
+      "selectDateRange": "选择日期范围",
+      "export": "导出",
+      "totalRevenue": "总收入",
+      "totalSales": "总销售额",
+      "conversionRate": "转化率",
+      "refundRate": "退款率",
+      "vsLastMonth": "较上月",
+      "newSales": "新增销售额"
+    },
+    "userRevenueStats": {
+      "title": "用户与收入统计",
+      "subtitle": "可视化逐月的进展与参与情况。",
+      "daily": "按日",
+      "weekly": "按周",
+      "monthly": "按月",
+      "onlineSales": "线上销售",
+      "offlineSales": "线下销售"
+    },
+    "userRetention": {
+      "title": "用户留存",
+      "subtitle": "随时间变化的用户参与情况",
+      "increasedVsLastWeek": "较上周增长"
+    },
+    "salesByChannel": {
+      "title": "按渠道销售",
+      "subtitle": "渠道业绩概览",
+      "increasedVsLastWeek": "较上周增长",
+      "channels": {
+        "website": "网站",
+        "email": "邮箱",
+        "socialMedia": "社交媒体"
+      },
+      "table": {
+        "channels": "渠道",
+        "metric": "指标",
+        "total": "总计"
+      }
+    },
+    "salesByCountry": {
+      "title": "按国家销售",
+      "subtitle": "各国销售概览",
+      "countries": {
+        "usa": "美国",
+        "france": "法国",
+        "japan": "日本",
+        "germany": "德国"
+      }
+    },
+    "topProducts": {
+      "title": "热销商品",
+      "table": {
+        "productName": "商品名称",
+        "category": "类别",
+        "sales": "销售额",
+        "earnings": "收入",
+        "stocks": "库存",
+        "status": "状态"
+      },
+      "products": {
+        "classicDenimJacket": "经典牛仔夹克",
+        "slimFitChinos": "修身斜纹裤",
+        "organicCottonTShirt": "有机棉 T 恤",
+        "leatherAnkleBoots": "皮革短靴"
+      },
+      "variants": {
+        "threeSizes": "3 种尺码",
+        "fourColors": "4 种颜色",
+        "fiveColors": "5 种颜色",
+        "sixSizes": "6 种尺码"
+      },
+      "categories": {
+        "jacket": "夹克",
+        "pants": "裤装",
+        "tShirt": "T 恤",
+        "footwear": "鞋类"
+      },
+      "statuses": {
+        "inStock": "有库存",
+        "lowStock": "库存不足",
+        "outOfStock": "缺货"
+      }
+    }
+  },
+  "pointsExchange": {
+    "pageTitle": "积分兑换 | Bags Star",
+    "title": "积分兑换",
+    "description": "提交购买商品后的订单号，由业务员核验并为您的账户添加积分。",
+    "browseGifts": "去礼品中心",
+    "stepsLabel": "订单兑换积分流程",
+    "steps": {
+      "enter": {
+        "title": "提交订单号",
+        "description": "填写订单号并提交申请"
+      },
+      "verify": {
+        "title": "业务员核验",
+        "description": "由业务员人工确认订单"
+      },
+      "claim": {
+        "title": "积分到账",
+        "description": "审核通过后由业务员添加积分"
+      }
+    },
+    "formTitle": "提交订单，领取积分",
+    "formDescription": "您只需填写订单号，其余交给业务员处理。",
+    "orderNumber": "订单号",
+    "orderPlaceholder": "请输入您的购物订单号",
+    "orderHint": "请从订单详情或订单确认信息中完整复制，最多 100 个字符。",
+    "orderRequired": "请先填写订单号。",
+    "confirmHint": "提交后请等待业务员审核，处理进度和到账积分可在下方查看。",
+    "guideTitle": "兑换小贴士",
+    "guide": {
+      "findOrder": {
+        "title": "在哪里找到订单号？",
+        "description": "请查看购买平台的订单详情或订单确认信息，也可以联系业务员获取。"
+      },
+      "review": {
+        "title": "提交后需要做什么？",
+        "description": "等待业务员核验即可。如需补充信息，业务员会与您联系，您也可以在下方查看处理进度。"
+      },
+      "gifts": {
+        "title": "积分到账后怎么使用？",
+        "description": "前往礼品中心浏览礼品，使用账户积分兑换心仪好礼。"
+      }
+    },
+    "historyTitle": "订单申请进度",
+    "historyDescription": "查看自己提交的订单号及审核进度；待审核时可以修改订单号。",
+    "historyHint": "提交订单号后，申请记录会显示在这里；积分以审核后的实际到账为准。",
+    "manualReview": "人工审核",
+    "submitOrder": "提交订单号",
+    "submitting": "正在提交…",
+    "submitFailed": "暂未提交成功",
+    "submitted": "订单 {order} 已提交，正在等待业务员审核。审核通过后，我们会为您的账户添加积分。",
+    "historyEmpty": "暂无积分申请",
+    "refresh": "刷新记录",
+    "loading": "正在加载…",
+    "requestedAt": "申请时间：{date}",
+    "reviewedAt": "处理时间：{date}",
+    "reviewNote": "审核说明：{note}",
+    "status": {
+      "pending": "待审核",
+      "approved": "已到账",
+      "rejected": "未通过",
+      "all": "全部"
+    },
+    "errors": {
+      "unavailable": "服务暂不可用，请稍后重试或联系业务员。",
+      "signin": "请先登录您的客户账号，再查看或提交申请。",
+      "forbidden": "仅授权业务员可查看和处理积分申请。",
+      "duplicate": "该订单已提交过申请或已发放积分，请刷新记录或联系业务员核实。",
+      "reviewed": "该申请已被处理，请刷新记录查看最新结果。",
+      "failed": "操作未完成，请刷新记录确认最新状态后重试。",
+      "changed": "客户已修改订单号，请刷新记录后重新核验。"
+    },
+    "edit": "修改订单号",
+    "editSave": "保存修改",
+    "editCancel": "取消",
+    "editSaving": "正在保存…",
+    "editSaved": "订单号已修改，等待业务员审核。",
+    "editLocked": "该申请已审核，订单号不可修改。"
+  },
+  "sidebar": {
+    "customerPortal": "客户中心",
+    "adminPreview": "管理中心",
+    "rewardsCenter": "礼品中心",
+    "pointsExchange": "积分兑换",
+    "myRedemptions": "我的兑换",
+    "myProfile": "我的资料",
+    "rewardCatalog": "产品中心",
+    "redemptionRequests": "兑换申请",
+    "rewardsHub": "积分兑换",
+    "needHand": "需要帮助？",
+    "contactSales": "联系业务员",
+    "businessHelp": "业务员可以帮助确认库存和发货安排。",
+    "orderPointsReview": "订单积分审核",
+    "productCategories": "商品分类"
+  },
+  "signIn": {
+    "pageTitle": "登录 | Bags Star",
+    "pageDescription": "Bags Star 客户积分与礼品兑换平台。",
+    "backToDashboard": "返回首页",
+    "title": "登录",
+    "subtitle": "登录您的账号，管理积分与礼品兑换。",
+    "signInWithGoogle": "使用 Google 登录",
+    "signInWithX": "使用 X 登录",
+    "or": "或",
+    "email": "邮箱",
+    "password": "密码",
+    "passwordPlaceholder": "输入您的密码",
+    "keepMeLoggedIn": "保持登录",
+    "forgotPassword": "忘记密码？",
+    "signInButton": "登录",
+    "noAccount": "还没有账号？",
+    "signUpLink": "注册"
+  },
+  "signUp": {
+    "pageTitle": "注册 | Bags Star",
+    "pageDescription": "Bags Star 客户积分与礼品兑换平台。",
+    "backToDashboard": "返回首页",
+    "title": "注册",
+    "subtitle": "输入您的邮箱和密码进行注册！",
+    "signUpWithGoogle": "使用 Google 注册",
+    "signUpWithX": "使用 X 注册",
+    "or": "或",
+    "firstName": "名",
+    "lastName": "姓",
+    "firstNamePlaceholder": "请输入您的名",
+    "lastNamePlaceholder": "请输入您的姓",
+    "email": "邮箱",
+    "emailPlaceholder": "请输入您的邮箱",
+    "password": "密码",
+    "passwordPlaceholder": "请输入您的密码",
+    "terms": "创建账户即表示您同意",
+    "termsAndConditions": "条款与条件，",
+    "andOur": "以及我们的",
+    "privacyPolicy": "隐私政策",
+    "signUpButton": "注册",
+    "alreadyHaveAccount": "已有账户？",
+    "signInLink": "登录"
+  },
+  "stocks": {
+    "title": "股票",
+    "dividend": {
+      "title": "股息",
+      "viewMore": "查看更多",
+      "delete": "删除"
+    },
+    "portfolioPerformance": {
+      "title": "投资组合表现",
+      "subtitle": "这是您每个月的表现统计",
+      "series": "投资组合表现"
+    },
+    "trendingStocks": {
+      "title": "热门股票",
+      "shortStock": "做空股票",
+      "buyStock": "买入股票"
+    },
+    "watchlist": {
+      "title": "我的自选列表",
+      "viewMore": "查看更多",
+      "delete": "删除"
+    },
+    "latestTransactions": {
+      "title": "最新交易记录",
+      "searchPlaceholder": "搜索...",
+      "table": {
+        "name": "名称",
+        "date": "日期",
+        "price": "价格",
+        "category": "类别",
+        "status": "状态"
+      },
+      "actions": {
+        "bought": "已买入 {symbol}",
+        "sell": "卖出 {symbol}"
+      },
+      "categories": {
+        "finance": "财务"
+      },
+      "statuses": {
+        "success": "成功",
+        "pending": "待处理",
+        "failed": "失败"
+      }
+    }
+  },
+  "userDropdown": {
+    "editProfile": "编辑资料",
+    "accountSettings": "账户设置",
+    "support": "客服支持",
+    "language": "语言",
+    "signOut": "退出登录"
+  },
+  "userProfile": {
+    "pageTitle": "我的资料 | Bags Star",
+    "pageDescription": "管理您的账户资料与密码。",
+    "title": "个人资料",
+    "firstName": "名",
+    "lastName": "姓",
+    "emailAddress": "邮箱地址",
+    "emailAddressLabel": "邮箱地址",
+    "phone": "电话",
+    "bio": "简介",
+    "socialLinks": "社交链接",
+    "edit": "编辑",
+    "editPersonalInfo": "编辑个人信息",
+    "updateDetails": "更新您的详细信息，以保持个人资料为最新。",
+    "changeProfilePicture": "更换头像",
+    "uploadHint": "上传一张正方形图片（200×200 像素），格式为 JPEG 或 PNG。",
+    "personalInformation": "个人信息",
+    "address": "地址",
+    "country": "国家",
+    "cityState": "城市/州",
+    "postalCode": "邮政编码",
+    "taxId": "税号",
+    "editAddress": "编辑地址",
+    "security": "安全",
+    "changePassword": "修改密码",
+    "securityPasswordDesc": "验证当前密码后，为您的账户设置新密码。",
+    "twoFactor": "双因素认证（2FA）",
+    "twoFactorDesc": "通过启用 2FA 来保护您的账户安全。",
+    "dangerZone": "危险区域",
+    "logoutAllDevices": "退出登录所有设备",
+    "logoutAllDevicesDesc": "退出登录所有活跃会话。",
+    "logout": "退出登录",
+    "deleteAccount": "删除账户",
+    "deleteAccountDesc": "删除账户后将无法恢复，请务必确认。"
+  },
+  "video": {
+    "youTubeTitle": "YouTube 视频"
+  },
+  "videos": {
+    "pageTitle": "React.js 视频选项卡 | TailAdmin - React.js 管理后台模板",
+    "pageDescription": "这是 TailAdmin - React.js Tailwind CSS 管理后台模板的 React.js 视频页面",
+    "title": "视频",
+    "ratio169": "视频比例 16:9",
+    "ratio43": "视频比例 4:3",
+    "ratio219": "视频比例 21:9",
+    "ratio11": "视频比例 1:1"
+  },
+  "adminOrderPoints": {
+    "pageTitle": "订单积分审核 | Bags Star",
+    "title": "订单积分审核",
+    "description": "先选择客户，再查看和审核他的订单申请。核验订单后由业务员手动决定发放积分，同一订单只能发放一次。",
+    "decision": "审核结果",
+    "approve": "通过并添加积分",
+    "reject": "不通过",
+    "points": "发放积分",
+    "pointsRequired": "请填写 1 至 2,147,483,647 之间的整数积分。",
+    "note": "审核说明（选填，客户可见）",
+    "confirmAward": "确认给 {email} 的订单 {order} 发放 {points} 积分？请先确认订单归属及真实性，提交后将立即入账。",
+    "confirmReject": "确认不通过 {email} 的订单 {order} 的积分申请？",
+    "saving": "正在保存…",
+    "confirm": "确认处理",
+    "review": "核对并继续",
+    "back": "返回修改",
+    "awarded": "订单 {order} 审核通过，已发放 {points} 积分。",
+    "rejected": "订单 {order} 已标记为未通过。",
+    "empty": "当前分类暂无申请。",
+    "customers": "客户申请列表",
+    "customerSummary": "共 {count} 位客户，{pending} 笔待审核申请；优先显示有待审核申请的客户。",
+    "viewCustomer": "查看申请（{count}）",
+    "backToCustomers": "返回客户列表",
+    "customerRequests": "{name} 的订单申请",
+    "statusFilter": "按审核状态筛选",
+    "noCustomers": "没有符合条件的客户。",
+    "loadFailed": "客户列表加载失败，请刷新重试。"
+  },
+  "testAuth": {
+    "username": "账号",
+    "usernamePlaceholder": "请输入账号或邮箱",
+    "localMode": "本机测试环境",
+    "signingIn": "正在登录…",
+    "admin": "管理员",
+    "customer": "客户",
+    "allRequests": "查看所有客户的礼品兑换申请，并更新处理状态。",
+    "ownRequests": "这里只显示您自己提交的礼品兑换申请。",
+    "noRequests": "暂无礼品兑换申请。",
+    "requestStatus": "申请 {code} 的处理状态",
+    "errors": {
+      "credentials": "账号或密码不正确。",
+      "signin": "请先登录。",
+      "forbidden": "您没有此操作的权限。",
+      "unavailable": "服务暂不可用，请稍后重试。",
+      "invalid": "请检查填写内容，积分必须为正整数。",
+      "notFound": "商品或申请不存在，或商品已下架。",
+      "insufficient": "可用积分不足，请先提交订单号申请积分。",
+      "retryLater": "登录尝试次数较多，请一分钟后重试。",
+      "failed": "操作未完成，请刷新确认后重试。"
+    }
+  },
+  "catalogEditor": {
+    "edit": "编辑商品",
+    "name": "商品名称",
+    "points": "兑换积分",
+    "category": "商品分类",
+    "status": "上架状态",
+    "image": "商品图片",
+    "imageHint": "可多选 JPG、PNG、WebP，最多 8 张，每张不超过 5 MB。第一张为封面，上传后请保存商品。",
+    "description": "商品描述",
+    "save": "保存商品",
+    "uploading": "图片上传中，请稍候…",
+    "imageReady": "已准备 {count} 张图片，保存商品后生效。",
+    "imageSize": "图片不能为空，且每张不能超过 5 MB。",
+    "imageType": "请选择有效的 JPG、PNG 或 WebP 图片。",
+    "imageCount": "每个商品最多上传 8 张图片。",
+    "preview": "商品图片 {number}",
+    "cover": "封面",
+    "setCover": "设为封面",
+    "remove": "移除",
+    "removeImage": "移除第 {number} 张图片",
+    "saveChanges": "保存修改"
+  },
+  "productGallery": {
+    "label": "{name} 图片展示",
+    "image": "{name}，第 {number} 张，共 {count} 张",
+    "empty": "暂无商品图片",
+    "previous": "上一张图片",
+    "next": "下一张图片",
+    "goTo": "查看第 {number} 张图片"
+  },
+  "categoryManager": {
+    "title": "商品分类",
+    "pageTitle": "商品分类 | Bags Star",
+    "description": "维护商品分类，改名会同步更新分类下的商品。",
+    "add": "新增分类",
+    "rename": "修改名称",
+    "name": "分类名称",
+    "save": "保存分类",
+    "delete": "删除",
+    "products": "{count} 件商品",
+    "usedHint": "分类下有商品，请先转移商品后再删除。",
+    "empty": "暂无分类，请先新增分类。",
+    "choose": "请选择商品分类",
+    "saved": "分类已保存。",
+    "deleted": "分类已删除。",
+    "categoryInvalid": "请选择有效分类，分类名称须为 1–80 个字符。",
+    "categoryDuplicate": "该分类名称已存在。",
+    "categoryInUse": "此分类仍有商品，不能删除。"
+  },
+  "productVariants": {
+    "enable": "多配置商品（每种配置单独设置积分）",
+    "title": "商品配置与积分",
+    "hint": "每行填写一种完整配置组合，例如 Pro / 256GB、Pro Max / 512GB，也可包含颜色等信息。最多 30 种配置，积分须为正整数。",
+    "name": "配置 {number} 名称",
+    "points": "配置 {number} 积分",
+    "example": "例如：Pro Max / 512GB / 黑色",
+    "add": "添加配置",
+    "remove": "移除组合 {number}",
+    "choose": "选择商品配置",
+    "chooseFirst": "请先选择配置",
+    "total": "本次兑换所需积分",
+    "fromPoints": "{points} 积分起",
+    "selected": "所选配置：{name}",
+    "reload": "刷新商品配置",
+    "variantInvalid": "请检查规格：字段名称和规格值不能为空，字段名称和组合不能重复，每个组合都需填写有效的正整数积分。",
+    "variantUnavailable": "此配置已调整或移除，请刷新商品配置后重新选择。",
+    "priceChanged": "该配置所需积分已变更，本次未扣分。请刷新配置并重新确认。",
+    "fieldsHint": "先设置规格字段名称（可修改、增删），再填写各组合的规格值和积分。例如：系列 + 内存，也可以是尺寸 + 颜色。",
+    "fieldLabel": "规格字段 {number}",
+    "removeField": "删除规格字段 {number}",
+    "addField": "添加规格字段",
+    "combinationsHint": "每行是一种可兑换的组合，最多 30 种。规格值须填完整，各组合不能重复，积分须为正整数。",
+    "addCombination": "添加规格组合",
+    "legacyField": "规格",
+    "series": "系列",
+    "memory": "内存",
+    "saveHint": "“保存修改”会更新商品内容并保留当前上架状态；需要改变状态时，使用“保存并上架”或“保存为下架”。",
+    "savePublished": "保存并上架",
+    "saveDraft": "保存为下架",
+    "requiredFields": "请填写所有必填项，检查商品名称、分类、规格名称、规格值和积分。",
+    "deleteField": "删除",
+    "minimumField": "多配置商品至少保留一个规格字段；不需要规格时，可取消勾选“多配置商品”。"
+  },
+  "productOptions": {
+    "title": "独立可选属性（不影响积分）",
+    "hint": "例如颜色：添加黑色、白色后，所有“系列＋内存”组合都可以选，不需要重复创建组合。属性名称也可自定义。每种属性需由客户选择一项，不额外增加积分。",
+    "name": "属性名称 {number}",
+    "value": "选项 {number}",
+    "remove": "删除属性",
+    "removeValue": "删除{name}选项 {number}",
+    "addValue": "添加选项",
+    "add": "添加独立属性",
+    "color": "颜色",
+    "choose": "选择商品属性",
+    "noExtraPoints": "属性选择不影响兑换积分。",
+    "optionInvalid": "请填写属性名称和全部选项，名称及同一属性的选项不能重复。最多 5 种属性，每种最多 30 个选项。",
+    "optionUnavailable": "请完整选择商品属性；选项可能已调整，请刷新商品配置后重新选择。"
+  },
+  "customerManager": {
+    "title": "客户管理",
+    "pageTitle": "客户管理 | Bags Star",
+    "description": "查看所有注册客户与积分余额。手动增加或扣减积分，每次调整都会记录；扣减不能超过余额。",
+    "search": "搜索客户姓名或邮箱",
+    "count": "共 {count} 位客户",
+    "empty": "暂无匹配的客户。",
+    "details": "积分管理",
+    "balance": "可用积分",
+    "total_credit": "累计增加",
+    "total_debit": "累计扣减",
+    "registeredAt": "注册时间",
+    "testAccount": "预设测试账号",
+    "manage": "查看积分 / 调整",
+    "action": "调整方式",
+    "credit": "增加积分",
+    "debit": "减少积分",
+    "amount": "调整积分数量",
+    "note": "调整备注（选填）",
+    "preview": "调整后可用积分：{points}",
+    "submit": "确认调整积分",
+    "history": "积分明细",
+    "noHistory": "暂无积分记录。",
+    "manual": "管理员手动调整",
+    "operator": "操作人",
+    "after": "调整后余额",
+    "saved": "已更新 {name} 的积分，调整后余额为 {points}。",
+    "emailExists": "此邮箱已注册，请直接登录。",
+    "adjustmentConflict": "此调整请求已处理且内容不同，请刷新后重新操作。",
+    "acceptTerms": "请先阅读并同意注册条款。",
+    "registered": "注册成功，请使用邮箱和密码登录。",
+    "checkEmail": "注册请求已提交，请检查邮箱并按提示完成验证后登录。"
+  },
+  "pointsLedger": {
+    "title": "积分流水",
+    "description": "记录所有实际到账和扣除的积分，包含订单审核、管理员调整和商品兑换。",
+    "balance": "当前积分",
+    "totalCredit": "累计增加",
+    "totalDebit": "累计减少",
+    "filter": "按积分增减筛选",
+    "all": "全部",
+    "credit": "积分增加",
+    "debit": "积分减少",
+    "empty": "暂无符合条件的积分流水",
+    "order": "订单审核加分",
+    "redemption": "商品兑换扣分",
+    "balanceAfter": "调整后余额：{points}"
+  },
+  "passwordChange": {
+    "current": "当前密码",
+    "new": "新密码",
+    "confirm": "确认新密码",
+    "hint": "请先输入当前密码。新密码须为 8–128 个字符，且不能与当前密码相同。",
+    "save": "保存新密码",
+    "saving": "正在保存…",
+    "success": "密码已修改成功，下次登录请使用新密码。",
+    "mismatch": "两次输入的新密码不一致。",
+    "currentPassword": "当前密码不正确，请重新输入。",
+    "passwordLength": "新密码须为 8–128 个字符。",
+    "samePassword": "新密码不能与当前密码相同。",
+    "weakPassword": "新密码未满足账户安全要求，请使用更复杂的密码。",
+    "reauthenticate": "请退出并重新登录后，再修改密码。",
+    "account": "当前账户：{name}"
+  },
+  "productSpecifications": {
+    "series": "系列",
+    "storage": "内存",
+    "color": "颜色",
+    "model": "型号",
+    "size": "尺寸",
+    "material": "材质",
+    "capacity": "容量",
+    "style": "款式",
+    "version": "版本",
+    "configuration": "规格",
+    "burgundy": "勃艮第酒红色",
+    "glacierBlue": "冰川蓝色",
+    "silver": "银色",
+    "black": "黑色",
+    "white": "白色",
+    "blue": "蓝色",
+    "red": "红色",
+    "green": "绿色",
+    "gold": "金色",
+    "pink": "粉色",
+    "purple": "紫色",
+    "gray": "灰色",
+    "orange": "橙色",
+    "yellow": "黄色",
+    "brown": "棕色",
+    "beige": "米色",
+    "small": "小号",
+    "medium": "中号",
+    "large": "大号",
+    "bilingualHint": "常用规格名和颜色会随语言自动切换。其他自定义名称或选项可填写“中文 | English”，例如“表面处理 | Finish”。"
+  },
+  "portalFixes": {
+    "profile": "账户资料",
+    "name": "姓名 / 联系人",
+    "email": "登录邮箱",
+    "company": "公司名称",
+    "phone": "联系电话",
+    "notSet": "未填写",
+    "saved": "资料已保存",
+    "noMatches": "没有找到匹配的商品，请换个关键词试试。",
+    "redemptionState": "申请状态已改变，或此操作不适用于当前状态。请刷新后重试。",
+    "resolutionRequired": "请填写取消或拒绝原因。",
+    "readFailed": "已读状态保存失败，请重试。",
+    "rejectRefund": "拒绝并退积分",
+    "cancelRefund": "取消并退积分",
+    "reason": "原因（客户可见）",
+    "refunded": "已退回 {points} 积分",
+    "history": "处理记录",
+    "more": "加载更多",
+    "confirmAction": "确认操作",
+    "refundConfirm": "确认后将退回 {points} 积分。此申请将关闭，不能恢复。",
+    "refundTitle": "兑换退还积分"
+  }
+}

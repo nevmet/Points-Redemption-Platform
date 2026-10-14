@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 
 interface ButtonProps {
+  type?: "button" | "submit" | "reset";
+  value?: string;
   children: ReactNode; // Button text or content
   size?: "sm" | "md"; // Button size
   variant?: "primary" | "outline"; // Button variant
@@ -12,6 +14,8 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  type,
+  value,
   children,
   size = "md",
   variant = "primary",
@@ -37,6 +41,8 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
+      value={value}
       className={`inline-flex items-center justify-center gap-2 rounded-lg font-medium transition ${className} ${
         sizeClasses[size]
       } ${variantClasses[variant]} ${

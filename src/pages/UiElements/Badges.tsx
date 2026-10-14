@@ -2,21 +2,23 @@ import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import Badge from "@/components/ui/badge/Badge";
 import { PlusIcon } from "@/icons";
+import { useTranslation } from "react-i18next";
 
 export default function Badges() {
+  const { t } = useTranslation();
   return (
     <div>
       <PageMeta
-        title="React.js Badges Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Badges Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("badges.pageTitle")}
+        description={t("badges.pageDescription")}
       />
-      <PageBreadcrumb pageTitle="Badges" />
+      <PageBreadcrumb pageTitle={t("badges.title")} />
 
       <div className="space-y-5 sm:space-y-6">
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              With Light Background
+              {t("badges.withLightBackground")}
             </h3>
           </div>
 
@@ -24,25 +26,25 @@ export default function Badges() {
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               {/* Light Variant */}
               <Badge variant="light" color="primary">
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="light" color="success">
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="light" color="error">
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="light" color="warning">
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="light" color="info">
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="light" color="light">
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="light" color="dark">
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>
@@ -51,32 +53,32 @@ export default function Badges() {
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              With Solid Background
+              {t("badges.withSolidBackground")}
             </h3>
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               {/* Light Variant */}
               <Badge variant="solid" color="primary">
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="solid" color="success">
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="solid" color="error">
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="solid" color="warning">
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="solid" color="info">
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="solid" color="light">
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="solid" color="dark">
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>
@@ -85,31 +87,31 @@ export default function Badges() {
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              Light Background with Leading Icon
+              {t("badges.lightWithLeadingIcon")}
             </h3>
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               <Badge variant="light" color="primary" startIcon={<PlusIcon />}>
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="light" color="success" startIcon={<PlusIcon />}>
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="light" color="error" startIcon={<PlusIcon />}>
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="light" color="warning" startIcon={<PlusIcon />}>
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="light" color="info" startIcon={<PlusIcon />}>
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="light" color="light" startIcon={<PlusIcon />}>
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="light" color="dark" startIcon={<PlusIcon />}>
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>
@@ -118,31 +120,31 @@ export default function Badges() {
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              Solid Background with Trailing Icon
+              {t("badges.solidWithTrailingIcon")}
             </h3>
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               <Badge variant="solid" color="primary" startIcon={<PlusIcon />}>
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="solid" color="success" startIcon={<PlusIcon />}>
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="solid" color="error" startIcon={<PlusIcon />}>
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="solid" color="warning" startIcon={<PlusIcon />}>
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="solid" color="info" startIcon={<PlusIcon />}>
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="solid" color="light" startIcon={<PlusIcon />}>
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="solid" color="dark" startIcon={<PlusIcon />}>
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>
@@ -151,31 +153,31 @@ export default function Badges() {
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              Light Background with Leading Icon
+              {t("badges.lightWithLeadingIcon")}
             </h3>
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               <Badge variant="light" color="primary" endIcon={<PlusIcon />}>
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="light" color="success" endIcon={<PlusIcon />}>
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="light" color="error" endIcon={<PlusIcon />}>
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="light" color="warning" endIcon={<PlusIcon />}>
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="light" color="info" endIcon={<PlusIcon />}>
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="light" color="light" endIcon={<PlusIcon />}>
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="light" color="dark" endIcon={<PlusIcon />}>
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>
@@ -184,31 +186,31 @@ export default function Badges() {
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
           <div className="px-6 py-5">
             <h3 className="text-base font-medium text-gray-800 dark:text-white/90">
-              Solid Background with Trailing Icon
+              {t("badges.solidWithTrailingIcon")}
             </h3>
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
               <Badge variant="solid" color="primary" endIcon={<PlusIcon />}>
-                Primary
+                {t("badges.labels.primary")}
               </Badge>
               <Badge variant="solid" color="success" endIcon={<PlusIcon />}>
-                Success
+                {t("badges.labels.success")}
               </Badge>{" "}
               <Badge variant="solid" color="error" endIcon={<PlusIcon />}>
-                Error
+                {t("badges.labels.error")}
               </Badge>{" "}
               <Badge variant="solid" color="warning" endIcon={<PlusIcon />}>
-                Warning
+                {t("badges.labels.warning")}
               </Badge>{" "}
               <Badge variant="solid" color="info" endIcon={<PlusIcon />}>
-                Info
+                {t("badges.labels.info")}
               </Badge>
               <Badge variant="solid" color="light" endIcon={<PlusIcon />}>
-                Light
+                {t("badges.labels.light")}
               </Badge>
               <Badge variant="solid" color="dark" endIcon={<PlusIcon />}>
-                Dark
+                {t("badges.labels.dark")}
               </Badge>
             </div>
           </div>

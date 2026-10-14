@@ -1,7 +1,24 @@
 import type { ApexOptions } from "apexcharts";
 import Chart from "react-apexcharts";
+import { useTranslation } from "react-i18next";
+
+const monthKeys = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+] as const;
 
 export default function BarChartOne() {
+  const { t } = useTranslation();
   const options: ApexOptions = {
     colors: ["#465fff"],
     chart: {
@@ -29,20 +46,7 @@ export default function BarChartOne() {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: monthKeys.map((key) => t(`ecommerce.months.${key}`)),
       axisBorder: {
         show: false,
       },
@@ -83,7 +87,7 @@ export default function BarChartOne() {
   };
   const series = [
     {
-      name: "Sales",
+      name: t("ecommerce.monthlySales.series"),
       data: [168, 385, 201, 298, 187, 195, 291, 110, 215, 390, 280, 112],
     },
   ];

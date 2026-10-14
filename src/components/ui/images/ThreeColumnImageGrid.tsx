@@ -1,10 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 export default function ThreeColumnImageGrid() {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
       <div>
         <img
           src="/images/grid-image/image-04.png"
-          alt=" grid"
+          alt={t("image.grid")}
           className="border border-gray-200 rounded-xl dark:border-gray-800"
         />
       </div>
@@ -12,7 +15,7 @@ export default function ThreeColumnImageGrid() {
       <div>
         <img
           src="/images/grid-image/image-05.png"
-          alt=" grid"
+          alt={t("image.grid")}
           className="border border-gray-200 rounded-xl dark:border-gray-800"
         />
       </div>
@@ -20,7 +23,7 @@ export default function ThreeColumnImageGrid() {
       <div>
         <img
           src="/images/grid-image/image-06.png"
-          alt=" grid"
+          alt={t("image.grid")}
           className="border border-gray-200 rounded-xl dark:border-gray-800"
         />
       </div>

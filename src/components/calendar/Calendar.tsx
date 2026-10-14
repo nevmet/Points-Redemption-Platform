@@ -7,6 +7,7 @@ import type {
   DayCellInfo,
   DayHeaderInfo,
   DayLaneInfo,
+  DatesSetInfo,
   EventClickInfo,
   EventDisplayInfo,
   MoreLinkInfo,
@@ -22,6 +23,7 @@ import "@fullcalendar/react/themes/classic/palette.css";
 import "@fullcalendar/react/themes/classic/theme.css";
 import timeGridPlugin from "@fullcalendar/react/timegrid";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import CalendarEventItem from "./CalendarEventItem";
 import CalendarEventModal from "./CalendarEventModal";
 import CalendarViewSelect from "./CalendarViewSelect";
@@ -38,20 +40,20 @@ const INITIAL_EVENTS: CalendarEvent[] = [
     id: "1",
     title: "Event Conf.",
     start: new Date().toISOString().split("T")[0],
-    extendedProps: { calendar: "Danger" },
+    extendedProps: { calendar: "Danger", titleKey: "eventConference" },
   },
   {
     id: "2",
     title: "Meeting",
     start: new Date(Date.now() + 86400000).toISOString().split("T")[0],
-    extendedProps: { calendar: "Success" },
+    extendedProps: { calendar: "Success", titleKey: "meeting" },
   },
   {
     id: "3",
     title: "Workshop",
     start: new Date(Date.now() + 172800000).toISOString().split("T")[0],
     end: new Date(Date.now() + 259200000).toISOString().split("T")[0],
-    extendedProps: { calendar: "Primary" },
+    extendedProps: { calendar: "Primary", titleKey: "workshop" },
   },
 ];
 
@@ -59,6 +61,7 @@ const Calendar: React.FC = () => {
   const { language: locale, dir } = useLanguage();
   const isRtlLayout = dir === "rtl";
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   const [events, setEvents] = useState<CalendarEvent[]>(INITIAL_EVENTS);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
@@ -117,12 +120,20 @@ const Calendar: React.FC = () => {
     const startStr = event.startStr ? event.startStr.split("T")[0] : "";
     const endStr = event.endStr ? event.endStr.split("T")[0] : startStr;
 
+    const titleKey = event.extendedProps?.titleKey;
+    const title = titleKey
+      ? t(`calendar.events.${titleKey}`)
+      : event.title || "";
+
     setSelectedEvent({
       id: event.id,
-      title: event.title,
+      title,
       start: event.startStr,
       end: event.endStr,
-      extendedProps: { calendar: event.extendedProps?.calendar || "Primary" },
+      extendedProps: {
+        calendar: event.extendedProps?.calendar || "Primary",
+        titleKey,
+      },
     });
     setSelectedStartDate(startStr);
     setSelectedEndDate(endStr);
@@ -131,7 +142,8 @@ const Calendar: React.FC = () => {
 
   const handleSaveEvent = (formData: EventFormData) => {
     const titleVal =
-      formData.title.trim() || (selectedEvent ? "Event" : "New Event");
+      formData.title.trim() ||
+      (selectedEvent ? t("calendar.event") : t("calendar.newEvent"));
     const startDateVal = formData.start;
     const endDateVal = formData.end || startDateVal;
     const levelVal = formData.level || "Primary";
@@ -245,7 +257,7 @@ const Calendar: React.FC = () => {
                 "flex size-9! sm:size-10! p-0! items-center justify-center! rounded-lg! border! bg-transparent! border-gray-200! text-gray-700 hover:border-gray-200 hover:bg-gray-50! focus:shadow-none active:border-gray-200! active:bg-transparent! active:shadow-none! dark:border-gray-800! dark:text-gray-400 dark:hover:border-gray-800 dark:hover:bg-gray-900! dark:active:border-gray-800!",
             },
             addEventButton: {
-              text: "Add Event +",
+              text: t("calendar.addEventButton"),
               click: () => handleOpenAddModal(),
               className:
                 "rounded-lg! border-0! bg-brand-500! px-3! sm:px-4! py-2! sm:py-2.5! text-xs! sm:text-sm! font-medium! text-white hover:bg-brand-600! focus:shadow-none! w-auto!",
@@ -347,7 +359,7 @@ const Calendar: React.FC = () => {
                 }
                 return (
                   <span className="fc-more-link-badge inline-flex items-center rounded-sm bg-brand-50 px-1 py-0.5 text-[10px] font-medium text-brand-600 transition-colors hover:bg-brand-100 sm:px-1.5 sm:text-xs dark:bg-brand-500/15 dark:text-brand-400 dark:hover:bg-brand-500/25">
-                    +{args.num} more
+                    {t("calendar.more", { count: args.num })}
                   </span>
                 );
               },
@@ -484,7 +496,7 @@ const Calendar: React.FC = () => {
           popoverClass="z-99999! w-72 max-w-[calc(100vw-32px)] overflow-hidden rounded-2xl border! border-gray-200! bg-white! shadow-theme-lg dark:border-gray-800! dark:bg-gray-900!"
           popoverCloseClass="absolute end-3 top-2.5 flex size-7 cursor-pointer items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus:outline-none dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white"
           popoverCloseContent={() => <CloseIcon className="size-4" />}
-          datesSet={(arg) => {
+          datesSet={(arg: DatesSetInfo) => {
             setCurrentView(arg.view.type);
             requestAnimationFrame(() => {
               const chunk = calendarContainerRef.current?.querySelector(

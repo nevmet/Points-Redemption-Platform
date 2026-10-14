@@ -1,7 +1,24 @@
 import type { ApexOptions } from "apexcharts";
 import Chart from "react-apexcharts";
+import { useTranslation } from "react-i18next";
+
+const monthKeys = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+] as const;
 
 export default function LineChartOne() {
+  const { t } = useTranslation();
   const options: ApexOptions = {
     legend: {
       show: false, // Hide legend
@@ -60,20 +77,7 @@ export default function LineChartOne() {
     },
     xaxis: {
       type: "category", // Category-based x-axis
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: monthKeys.map((key) => t(`ecommerce.months.${key}`)),
       axisBorder: {
         show: false, // Hide x-axis border
       },
@@ -102,11 +106,11 @@ export default function LineChartOne() {
 
   const series = [
     {
-      name: "Sales",
+      name: t("ecommerce.monthlySales.series"),
       data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
     },
     {
-      name: "Revenue",
+      name: t("ecommerce.monthlyTarget.revenue"),
       data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
     },
   ];

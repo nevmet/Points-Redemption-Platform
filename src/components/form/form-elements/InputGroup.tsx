@@ -4,8 +4,10 @@ import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import { EnvelopeIcon } from "@/icons";
 import { cn } from "@/utils";
+import { useTranslation } from "react-i18next";
 
 export default function InputGroup() {
+  const { t } = useTranslation();
   const countries = [
     { code: "US", label: "+1" },
     { code: "GB", label: "+44" },
@@ -16,10 +18,10 @@ export default function InputGroup() {
     console.log("Updated phone number:", phoneNumber);
   };
   return (
-    <ComponentCard title="Input Group">
+    <ComponentCard title={t("form.titles.inputGroup")}>
       <div className={cn("space-y-6")}>
         <div>
-          <Label htmlFor="email-group">Email</Label>
+          <Label htmlFor="email-group">{t("form.labels.email")}</Label>
           <div className={cn("relative")}>
             <Input
               id="email-group"
@@ -33,7 +35,7 @@ export default function InputGroup() {
           </div>
         </div>
         <div>
-          <Label>Phone</Label>
+          <Label>{t("form.labels.phone")}</Label>
           <PhoneInput
             selectPosition="start"
             countries={countries}
@@ -42,7 +44,7 @@ export default function InputGroup() {
           />
         </div>
         <div>
-          <Label>Phone</Label>
+          <Label>{t("form.labels.phone")}</Label>
           <PhoneInput
             selectPosition="end"
             countries={countries}

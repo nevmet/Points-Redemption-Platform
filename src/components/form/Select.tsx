@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface Option {
   value: string;
@@ -15,11 +16,14 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({
   options,
-  placeholder = "Select an option",
+  placeholder,
   onChange,
   className = "",
   defaultValue = "",
 }) => {
+  const { t } = useTranslation();
+  const resolvedPlaceholder = placeholder ?? t("form.placeholders.selectAnOption");
+
   // Manage the selected value
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
@@ -46,7 +50,7 @@ const Select: React.FC<SelectProps> = ({
           disabled
           className="text-gray-700 dark:bg-gray-900 dark:text-gray-400"
         >
-          {placeholder}
+          {resolvedPlaceholder}
         </option>
         {/* Map over options */}
         {options.map((option) => (

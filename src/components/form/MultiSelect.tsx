@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 interface Option {
   value: string;
@@ -23,8 +24,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   value,
   onChange,
   disabled = false,
-  placeholder = "Select options",
+  placeholder,
 }) => {
+  const { t } = useTranslation();
+  const resolvedPlaceholder = placeholder ?? t("form.placeholders.selectOptions");
   const isControlled = value !== undefined;
   const [internalSelected, setInternalSelected] =
     useState<string[]>(defaultSelected);
@@ -151,7 +154,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                           }}
                           disabled={disabled}
                           className="pl-2 text-gray-500 cursor-pointer group-hover:text-gray-400 dark:text-gray-400 disabled:cursor-not-allowed"
-                          aria-label={`Remove ${text}`}
+                          aria-label={t("form.removeItem", { name: text })}
                         >
                           <svg
                             className="fill-current"
@@ -172,7 +175,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                   })
                 ) : (
                   <div className="w-full h-full p-1 pr-2 text-sm text-gray-400 dark:text-gray-500 pointer-events-none">
-                    {placeholder}
+                    {resolvedPlaceholder}
                   </div>
                 )}
               </div>

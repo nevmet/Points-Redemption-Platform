@@ -1,4 +1,5 @@
 import { cn } from "@/utils";
+import { useTranslation } from "react-i18next";
 
 interface AvatarProps {
   src: string; // URL of the avatar image
@@ -34,11 +35,12 @@ const statusColorClasses = {
 
 const Avatar: React.FC<AvatarProps> = ({
   src,
-  alt = "User Avatar",
+  alt,
   size = "medium",
   status = "none",
   className = "",
 }) => {
+  const { t } = useTranslation();
   return (
     <div className={cn("relative rounded-full", sizeClasses[size], className)}>
       {/* Avatar Image */}
@@ -47,7 +49,7 @@ const Avatar: React.FC<AvatarProps> = ({
         height="0"
         sizes="100vw"
         src={src}
-        alt={alt}
+        alt={alt ?? t("avatar.altText")}
         className="w-full rounded-full object-cover"
       />
 

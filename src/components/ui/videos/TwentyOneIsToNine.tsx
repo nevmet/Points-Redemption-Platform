@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 export default function TwentyOneIsToNine() {
+  const { t } = useTranslation();
   return (
     <div className="aspect-21/9 overflow-hidden rounded-lg">
       <iframe
         src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        title="YouTube video"
+        title={t("video.youTubeTitle")}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen

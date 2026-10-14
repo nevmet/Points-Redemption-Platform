@@ -6,50 +6,54 @@ import Select from "@/components/form/Select";
 import { EyeCloseIcon, EyeIcon, TimeIcon } from "@/icons";
 import { cn } from "@/utils";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function DefaultInputs() {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const options = [
-    { value: "marketing", label: "Marketing" },
-    { value: "template", label: "Template" },
-    { value: "development", label: "Development" },
+    { value: "marketing", label: t("form.options.marketing") },
+    { value: "template", label: t("form.options.template") },
+    { value: "development", label: t("form.options.development") },
   ];
   const handleSelectChange = (value: string) => {
     console.log("Selected value:", value);
   };
 
   return (
-    <ComponentCard title="Default Inputs">
+    <ComponentCard title={t("form.titles.defaultInputs")}>
       <div className={cn("space-y-6")}>
         <div>
-          <Label htmlFor="input">Input</Label>
+          <Label htmlFor="input">{t("form.labels.input")}</Label>
           <Input type="text" id="input" />
         </div>
         <div>
-          <Label htmlFor="inputTwo">Input with Placeholder</Label>
+          <Label htmlFor="inputTwo">{t("form.labels.inputWithPlaceholder")}</Label>
           <Input type="text" id="inputTwo" placeholder="info@gmail.com" />
         </div>
         <div>
-          <Label>Select Input</Label>
+          <Label>{t("form.labels.selectInput")}</Label>
           <Select
             options={options}
-            placeholder="Select an option"
+            placeholder={t("form.placeholders.selectAnOption")}
             onChange={handleSelectChange}
             className="dark:bg-dark-900"
           />
         </div>
         <div>
-          <Label>Password Input</Label>
+          <Label>{t("form.labels.passwordInput")}</Label>
           <div className={cn("relative")}>
             <Input
               type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
+              placeholder={t("form.placeholders.enterYourPassword")}
             />
             <button
               onClick={() => setShowPassword(!showPassword)}
               className={cn("absolute end-4 top-1/2 z-30 -translate-y-1/2 cursor-pointer")}
               type="button"
-              aria-label={showPassword ? "Hide password" : "Show password"}
+              aria-label={
+                showPassword ? t("form.password.hide") : t("form.password.show")
+              }
             >
               {showPassword ? (
                 <EyeIcon className={cn("size-5 fill-gray-500 dark:fill-gray-400")} />
@@ -63,8 +67,8 @@ export default function DefaultInputs() {
         <div>
           <DatePicker
             id="date-picker"
-            label="Date Picker Input"
-            placeholder="Select a date"
+            label={t("form.labels.datePickerInput")}
+            placeholder={t("form.placeholders.selectDate")}
             onChange={(dates, currentDateString) => {
               // Handle your logic
               console.log({ dates, currentDateString });
@@ -73,7 +77,7 @@ export default function DefaultInputs() {
         </div>
 
         <div>
-          <Label htmlFor="tm">Time Picker Input</Label>
+          <Label htmlFor="tm">{t("form.labels.timePickerInput")}</Label>
           <div className={cn("relative")}>
             <Input
               type="time"
@@ -87,12 +91,12 @@ export default function DefaultInputs() {
           </div>
         </div>
         <div>
-          <Label htmlFor="card-payment">Input with Payment</Label>
+          <Label htmlFor="card-payment">{t("form.labels.inputWithPayment")}</Label>
           <div className={cn("relative")}>
             <Input
               id="card-payment"
               type="text"
-              placeholder="Card number"
+              placeholder={t("form.placeholders.cardNumber")}
               className="ps-[62px]"
             />
             <span className={cn("absolute start-0 top-1/2 flex h-11 w-[46px] -translate-y-1/2 items-center justify-center border-e border-gray-200 dark:border-gray-800")}>

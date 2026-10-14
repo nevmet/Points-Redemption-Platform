@@ -1,0 +1,7 @@
+Tool: built-in image_gen (transparent_background: true)
+Source: star-logo-source.jpg (provided by the user)
+Output: ../../public/images/logo/star-mark.png
+Purpose: website brand mark for the sidebar, mobile header, and favicon.
+The STAR text is replaced in the header layout by the existing BAGS STAR wordmark.
+
+Use case: background-extraction. Asset type: transparent company emblem for a small website header and sidebar. Input image 1 is the EDIT TARGET, the existing official company logo. Extract ONLY the upper dark forest-green emblem (the star, its upper-right leaf, and the sweeping S-shaped ribbon); remove the white background, all white negative spaces, and the separate bottom word STAR. Preserve the emblem's exact silhouette, proportions, curves, tips, leaf vein and original dark forest-green color faithfully. Do not redesign or invent a different star. Center the isolated emblem on a square transparent canvas with modest even padding of about 5% around its bounding box. Clean crisp antialiased edges, flat single-color ink. No text, no shadows, no glow, no outlines, no solid backdrop, no checkerboard pixels. Output a PNG with actual transparent alpha.

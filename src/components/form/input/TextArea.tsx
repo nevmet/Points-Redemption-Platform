@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface TextareaProps {
   placeholder?: string; // Placeholder text
@@ -12,7 +13,7 @@ interface TextareaProps {
 }
 
 const TextArea: React.FC<TextareaProps> = ({
-  placeholder = "Enter your message", // Default placeholder
+  placeholder, // Custom placeholder or translated default
   rows = 3, // Default number of rows
   value = "", // Default value
   onChange, // Callback for changes
@@ -21,6 +22,9 @@ const TextArea: React.FC<TextareaProps> = ({
   error = false, // Error state
   hint = "", // Default hint text
 }) => {
+  const { t } = useTranslation();
+  const resolvedPlaceholder = placeholder ?? t("form.placeholders.enterYourMessage");
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
       onChange(e.target.value);
@@ -40,7 +44,7 @@ const TextArea: React.FC<TextareaProps> = ({
   return (
     <div className="relative">
       <textarea
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         rows={rows}
         value={value}
         onChange={handleChange}

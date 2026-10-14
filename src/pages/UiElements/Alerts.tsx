@@ -2,77 +2,79 @@ import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import Alert from "@/components/ui/alert/Alert";
+import { useTranslation } from "react-i18next";
 
 export default function Alerts() {
+  const { t } = useTranslation();
   return (
     <>
       <PageMeta
-        title="React.js Alerts Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Alerts Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title={t("alerts.pageTitle")}
+        description={t("alerts.pageDescription")}
       />
-      <PageBreadcrumb pageTitle="Alerts" />
+      <PageBreadcrumb pageTitle={t("alerts.title")} />
       <div className="space-y-5 sm:space-y-6">
-        <ComponentCard title="Success Alert">
+        <ComponentCard title={t("alerts.successAlert")}>
           <Alert
             variant="success"
-            title="Success Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.successMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={true}
             linkHref="/"
-            linkText="Learn more"
+            linkText={t("alerts.learnMore")}
           />
           <Alert
             variant="success"
-            title="Success Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.successMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={false}
           />
         </ComponentCard>
-        <ComponentCard title="Warning Alert">
+        <ComponentCard title={t("alerts.warningAlert")}>
           <Alert
             variant="warning"
-            title="Warning Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.warningMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={true}
             linkHref="/"
-            linkText="Learn more"
+            linkText={t("alerts.learnMore")}
           />
           <Alert
             variant="warning"
-            title="Warning Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.warningMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={false}
           />
         </ComponentCard>{" "}
-        <ComponentCard title="Error Alert">
+        <ComponentCard title={t("alerts.errorAlert")}>
           <Alert
             variant="error"
-            title="Error Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.errorMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={true}
             linkHref="/"
-            linkText="Learn more"
+            linkText={t("alerts.learnMore")}
           />
           <Alert
             variant="error"
-            title="Error Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.errorMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={false}
           />
         </ComponentCard>{" "}
-        <ComponentCard title="Info Alert">
+        <ComponentCard title={t("alerts.infoAlert")}>
           <Alert
             variant="info"
-            title="Info Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.infoMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={true}
             linkHref="/"
-            linkText="Learn more"
+            linkText={t("alerts.learnMore")}
           />
           <Alert
             variant="info"
-            title="Info Message"
-            message="Be cautious when performing this action."
+            title={t("alerts.infoMessage")}
+            message={t("alerts.cautionMessage")}
             showLink={false}
           />
         </ComponentCard>

@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/table";
 
 import Badge from "@/components/ui/badge/Badge";
+import { useTranslation } from "react-i18next";
 
 interface Order {
   id: number;
@@ -30,7 +31,7 @@ const tableData: Order[] = [
     user: {
       image: "/images/user/user-17.jpg",
       name: "Lindsey Curtis",
-      role: "Web Designer",
+      role: "webDesigner",
     },
     projectName: "Agency Website",
     team: {
@@ -41,28 +42,28 @@ const tableData: Order[] = [
       ],
     },
     budget: "3.9K",
-    status: "Active",
+    status: "active",
   },
   {
     id: 2,
     user: {
       image: "/images/user/user-18.jpg",
       name: "Kaiya George",
-      role: "Project Manager",
+      role: "projectManager",
     },
     projectName: "Technology",
     team: {
       images: ["/images/user/user-25.jpg", "/images/user/user-26.jpg"],
     },
     budget: "24.9K",
-    status: "Pending",
+    status: "pending",
   },
   {
     id: 3,
     user: {
       image: "/images/user/user-17.jpg",
       name: "Zain Geidt",
-      role: "Content Writing",
+      role: "contentWriting",
     },
     projectName: "Blog Writing",
     team: {
@@ -76,7 +77,7 @@ const tableData: Order[] = [
     user: {
       image: "/images/user/user-20.jpg",
       name: "Abram Schleifer",
-      role: "Digital Marketer",
+      role: "digitalMarketer",
     },
     projectName: "Social Media",
     team: {
@@ -87,14 +88,14 @@ const tableData: Order[] = [
       ],
     },
     budget: "2.8K",
-    status: "Cancel",
+    status: "cancel",
   },
   {
     id: 5,
     user: {
       image: "/images/user/user-21.jpg",
       name: "Carla George",
-      role: "Front-end Developer",
+      role: "frontendDeveloper",
     },
     projectName: "Website",
     team: {
@@ -110,6 +111,7 @@ const tableData: Order[] = [
 ];
 
 export default function BasicTableOne() {
+  const { t } = useTranslation();
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/5 dark:bg-white/3">
       <div className="max-w-full overflow-x-auto">
@@ -121,31 +123,31 @@ export default function BasicTableOne() {
                 isHeader
                 className="px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
               >
-                User
+                {t("basicTables.columns.user")}
               </TableCell>
               <TableCell
                 isHeader
                 className="px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
               >
-                Project Name
+                {t("basicTables.columns.projectName")}
               </TableCell>
               <TableCell
                 isHeader
                 className="px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
               >
-                Team
+                {t("basicTables.columns.team")}
               </TableCell>
               <TableCell
                 isHeader
                 className="px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
               >
-                Status
+                {t("basicTables.columns.status")}
               </TableCell>
               <TableCell
                 isHeader
                 className="px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400"
               >
-                Budget
+                {t("basicTables.columns.budget")}
               </TableCell>
             </TableRow>
           </TableHeader>
@@ -169,7 +171,7 @@ export default function BasicTableOne() {
                         {order.user.name}
                       </span>
                       <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
-                        {order.user.role}
+                        {t(`basicTables.roles.${order.user.role}`)}
                       </span>
                     </div>
                   </div>
@@ -190,7 +192,7 @@ export default function BasicTableOne() {
                           width={24}
                           height={24}
                           src={teamImage}
-                          alt={`Team member ${index + 1}`}
+                          alt={t("basicTables.teamMemberAlt", { index: index + 1 })}
                           className="size-6 w-full"
                         />
                       </div>
@@ -202,14 +204,14 @@ export default function BasicTableOne() {
                   <Badge
                     size="sm"
                     color={
-                      order.status === "Active"
+                      order.status === "active"
                         ? "success"
-                        : order.status === "Pending"
+                        : order.status === "pending"
                           ? "warning"
                           : "error"
                     }
                   >
-                    {order.status}
+                    {t(`basicTables.statuses.${order.status}`)}
                   </Badge>
                 </TableCell>
 

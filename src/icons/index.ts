@@ -68,6 +68,7 @@ import { ReactComponent as InboxAltIcon } from "./inbox-alt.svg?react";
 import { ReactComponent as HeadphoneAltIcon } from "./headphone-alt.svg?react";
 import { ReactComponent as SettingsAltIcon } from "./settings-alt.svg?react";
 import { ReactComponent as IntegrationAltIcon } from "./integration-alt.svg?react";
+import { ReactComponent as CnFlagIcon } from "./flag-cn.svg?react";
 import { ReactComponent as BellAltIcon } from "./bell-alt.svg?react";
 import { ReactComponent as UserMoneyIcon } from "./user-money.svg?react";
 import { ReactComponent as MultiUserIcon } from "./multi-user.svg?react";
@@ -121,6 +122,7 @@ import { ReactComponent as SaFlagIcon } from "./flag-sa.svg?react";
 import { ReactComponent as UsFlagIcon } from "./flag-us.svg?react";
 
 export {
+  CnFlagIcon,
   DeFlagIcon,
   EsFlagIcon,
   SaFlagIcon,
