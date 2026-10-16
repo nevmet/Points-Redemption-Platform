@@ -1,3 +1,4 @@
+import { createUuid } from "@/lib/uuid";
 import { useTranslation } from "react-i18next";
 import Label from "@/components/form/Label";
 import Input from "@/components/form/input/InputField";
@@ -27,6 +28,6 @@ export default function ProductVariantEditor({ fields, onFieldsChange, value, on
       <div><Label htmlFor={`variant-points-${row.id}`}>{t("catalogEditor.points")}</Label><Input id={`variant-points-${row.id}`} required inputMode="numeric" maxLength={10} value={row.points} onChange={(event) => update(row.id, { points: event.target.value })} /></div>
       <button type="button" onClick={() => onChange(value.filter((entry) => entry.id !== row.id))} className="justify-self-start text-sm text-error-600 dark:text-error-400">{t("productVariants.remove", { number: index + 1 })}</button>
     </div>)}
-    <Button type="button" variant="outline" disabled={disabled || value.length >= MAX_PRODUCT_VARIANTS} onClick={() => onChange([...value, { id: crypto.randomUUID(), values: fields.map(() => ""), points: "" }])}>{t("productVariants.addCombination")}</Button>
+    <Button type="button" variant="outline" disabled={disabled || value.length >= MAX_PRODUCT_VARIANTS} onClick={() => onChange([...value, { id: createUuid(), values: fields.map(() => ""), points: "" }])}>{t("productVariants.addCombination")}</Button>
   </fieldset>;
 }

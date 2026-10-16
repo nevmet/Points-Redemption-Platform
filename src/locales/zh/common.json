@@ -2,7 +2,8 @@
   "brand": {
     "name": "BAGS STAR",
     "logoAlt": "Bags Star 公司标志",
-    "homeLabel": "Bags Star 积分商城首页"
+    "homeLabel": "Bags Star 积分商城首页",
+    "officialWebsite": "Bags Star 公司官网"
   },
   "adminProducts": {
     "pageTitle": "产品中心 | Bags Star",
@@ -48,7 +49,8 @@
     "processing": "处理中",
     "completed": "已完成",
     "cancelled": "已取消（积分已退回）",
-    "rejected": "已拒绝（积分已退回）"
+    "rejected": "已拒绝（积分已退回）",
+    "cancel_requested": "取消待核实"
   },
   "aiDashboard": {
     "stats": {
@@ -674,7 +676,8 @@
       "reviewNote": "审核备注：{note}",
       "gift_cancelled": "兑换已取消，积分已退回",
       "gift_rejected": "兑换已拒绝，积分已退回",
-      "points_refund": "兑换积分退回 +{points}"
+      "points_refund": "兑换积分退回 +{points}",
+      "gift_cancel_requested": "礼品取消申请待核实"
     }
   },
   "image": {
@@ -925,7 +928,6 @@
       "order1019": "订单 #BS-1019 已确认"
     },
     "noCategoryProducts": "该分类暂无上架商品。",
-    "pointsAutoSync": "每 5 秒自动同步积分",
     "pointsSyncing": "同步中…",
     "refreshPoints": "刷新积分",
     "pointsSyncFailed": "积分同步失败，当前可能为上次余额，请重试。"
@@ -1378,6 +1380,8 @@
     "requestStatus": "申请 {code} 的处理状态",
     "errors": {
       "credentials": "账号或密码不正确。",
+      "emailNotConfirmed": "请先确认邮箱，再登录。",
+      "accountBlocked": "此账号暂时无法登录，请联系管理员。",
       "signin": "请先登录。",
       "forbidden": "您没有此操作的权限。",
       "unavailable": "服务暂不可用，请稍后重试。",
@@ -1489,17 +1493,17 @@
   "customerManager": {
     "title": "客户管理",
     "pageTitle": "客户管理 | Bags Star",
-    "description": "查看所有注册客户与积分余额。手动增加或扣减积分，每次调整都会记录；扣减不能超过余额。",
+    "description": "查看已注册客户、收货地址和积分。手动增加或扣减积分，每次调整都有记录，扣减不能超过余额。",
     "search": "搜索客户姓名或邮箱",
     "count": "共 {count} 位客户",
     "empty": "暂无匹配的客户。",
-    "details": "积分管理",
+    "details": "客户详情",
     "balance": "可用积分",
     "total_credit": "累计增加",
     "total_debit": "累计扣减",
     "registeredAt": "注册时间",
     "testAccount": "预设测试账号",
-    "manage": "查看积分 / 调整",
+    "manage": "查看客户 / 积分管理",
     "action": "调整方式",
     "credit": "增加积分",
     "debit": "减少积分",
@@ -1517,7 +1521,7 @@
     "adjustmentConflict": "此调整请求已处理且内容不同，请刷新后重新操作。",
     "acceptTerms": "请先阅读并同意注册条款。",
     "registered": "注册成功，请使用邮箱和密码登录。",
-    "checkEmail": "注册请求已提交，请检查邮箱并按提示完成验证后登录。"
+    "checkEmail": "请检查邮箱中的注册确认链接（包括垃圾邮件）。如果该邮箱已有账号，请直接登录；未收到邮件请联系管理员。"
   },
   "pointsLedger": {
     "title": "积分流水",
@@ -1595,7 +1599,7 @@
     "resolutionRequired": "请填写取消或拒绝原因。",
     "readFailed": "已读状态保存失败，请重试。",
     "rejectRefund": "拒绝并退积分",
-    "cancelRefund": "取消并退积分",
+    "cancelRefund": "申请取消礼品",
     "reason": "原因（客户可见）",
     "refunded": "已退回 {points} 积分",
     "history": "处理记录",
@@ -1603,5 +1607,98 @@
     "confirmAction": "确认操作",
     "refundConfirm": "确认后将退回 {points} 积分。此申请将关闭，不能恢复。",
     "refundTitle": "兑换退还积分"
+  },
+  "shippingAddress": {
+    "title": "收货地址",
+    "description": "保存收件人信息及详细收货地址。",
+    "empty": "尚未添加收货地址。",
+    "add": "添加收货地址",
+    "edit": "编辑收货地址",
+    "saved": "收货地址已保存",
+    "requiredHint": "标有 * 的项目为必填项。",
+    "recipient": "收件人姓名",
+    "phone": "联系电话（含国家区号）",
+    "country": "国家 / 地区",
+    "region": "州 / 省",
+    "city": "城市",
+    "postalCode": "邮政编码",
+    "line1": "街道及详细地址",
+    "line2": "公寓、房间号或补充信息（选填）",
+    "adminHint": "显示客户最新保存的收货地址，发货前请核对。",
+    "customerEmpty": "该客户尚未添加收货地址。"
+  },
+  "profileAvatar": {
+    "avatarStorageUnavailable": "头像服务尚未启用，请联系管理员。头像和资料未保存，原头像不会改变。",
+    "avatarUploadFailed": "头像上传失败，本次修改尚未保存。请检查网络后重试，原头像不会改变。",
+    "label": "头像",
+    "change": "上传 / 更换头像",
+    "hint": "支持 JPG、PNG、WebP，最大 5 MB。点击保存修改后生效。"
+  },
+  "emailVerification": {
+    "demoNotice": "演示模式：账号只保存在本机，不发送验证码。测试真实注册请使用云端模式。",
+    "stepOne": "第 1 步 / 共 2 步：填写注册资料",
+    "stepTwo": "第 2 步 / 共 2 步：核验邮箱验证码",
+    "completed": "验证码核验通过，注册完成。现在可以进入网站。",
+    "send": "发送邮箱验证码",
+    "title": "验证邮箱",
+    "sentTo": "注册邮箱：{email}",
+    "instructions": "发送邮件不代表注册完成。请输入邮件中的验证码并点击下方按钮核验，也请检查垃圾邮件。如果该邮箱已有账户，请直接登录。",
+    "code": "邮箱验证码",
+    "verify": "验证并完成注册",
+    "working": "正在验证…",
+    "resend": "重新发送验证码",
+    "resendAfter": "{seconds} 秒后重新发送",
+    "resent": "已请求重新发送验证邮件，请检查邮箱并使用最新验证码。",
+    "changeEmail": "修改邮箱 / 重新填写",
+    "verified": "邮箱验证成功",
+    "continue": "进入 Bags Star",
+    "otpFormat": "请按邮件内容输入 6–10 位数字验证码。",
+    "otpInvalid": "验证码不正确或已过期，请使用最新验证码或重新发送。",
+    "emailDelivery": "验证邮件发送失败，请稍后重试或联系我们。",
+    "verificationDisabled": "邮箱验证暂不可用，请联系我们后再继续。"
+  },
+  "authExperience": {
+    "welcome": "欢迎加入我们",
+    "join": "加入 Bags Star",
+    "headline": "一份来自神秘东方的礼物",
+    "description": "让每一笔订单，带来更多值得期待的礼遇。",
+    "company": "滁州星礼物贸易有限公司",
+    "footer": "Bags Star · 礼品中心",
+    "showPassword": "显示密码",
+    "hidePassword": "隐藏密码",
+    "toggleTheme": "切换外观"
+  },
+  "contact": {
+    "title": "联系我们",
+    "adminTitle": "客户留言",
+    "description": "有任何问题，可以在这里给我们留言。留言及回复仅您和管理员可见。",
+    "adminHint": "查看客户留言，并在对应留言下回复或删除。",
+    "message": "留言内容",
+    "placeholder": "请输入您的问题或需求（最多 2000 字）",
+    "send": "提交留言",
+    "sent": "留言已提交，我们会尽快回复。",
+    "reply": "管理员回复",
+    "replyAction": "回复留言",
+    "editReply": "修改回复",
+    "saveReply": "保存回复",
+    "delete": "删除留言",
+    "deleteConfirm": "确认删除这条留言及其回复？删除后无法恢复。",
+    "deleted": "留言已删除。",
+    "empty": "暂无留言。",
+    "previous": "上一页",
+    "next": "下一页"
+  },
+  "giftMessages": {
+    "customerNote": "下单留言（选填）",
+    "notePlaceholder": "可以填写您对本次兑换的要求或其他说明",
+    "shippingRequired": "请先完善收货地址，再提交礼品兑换。",
+    "completeAddress": "去完善收货地址",
+    "orderAddress": "下单时的收货地址",
+    "cancelConfirm": "您取消礼品后，经过我们的核实后积分将退回",
+    "cancellationPending": "取消申请待核实，积分尚未退回。",
+    "cancellationReason": "取消原因",
+    "approveCancellation": "确认取消并退积分",
+    "declineCancellation": "拒绝取消",
+    "declineConfirm": "拒绝取消后，订单将恢复原处理状态，积分不会退回。"
   }
 }

@@ -24,6 +24,8 @@ test("local accounts enforce roles and persist the complete rewards workflow", a
     const admin = await request("/signin", "POST", { username: "admin", password: "admin@123" });
     assert.equal(customer.data.user.role, "customer"); assert.equal(admin.data.user.role, "admin");
     const c = customer.cookie, a = admin.cookie;
+    const shipping = { recipient: "Fixture", phone: "+1 202 555 0100", country: "US", city: "Boston", region: "MA", postalCode: "02108", line1: "1 Example St", line2: "" };
+    assert.equal((await request("/shipping-address", "PATCH", shipping, c)).status, 200);
     await t.test("customer cannot view all requests or mutate products", async () => {
       assert.equal((await request("/orders?review=1", "GET", undefined, c)).status, 403);
       assert.equal((await request("/redemptions?review=1", "GET", undefined, c)).status, 403);

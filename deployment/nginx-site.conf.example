@@ -1,0 +1,34 @@
+# The IP virtual host shares port 80 with the existing domain-based company site.
+# Create a SEPARATE site in the panel; do not replace the existing company site.
+# HTTP IP access is a preview. Configure a domain and trusted TLS for public use.
+server {
+    listen 80;
+    server_name 47.239.234.35;
+    root /www/wwwroot/bags-star-rewards/current;
+    index index.html;
+    access_log /www/wwwlogs/bags-star-rewards.access.log;
+    error_log /www/wwwlogs/bags-star-rewards.error.log;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "no-cache";
+    }
+    location /assets/ {
+        try_files $uri =404;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    location /images/ {
+        try_files $uri =404;
+        expires 1d;
+    }
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+    location ~ /\. {
+        deny all;
+    }
+}

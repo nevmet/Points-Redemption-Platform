@@ -4,8 +4,9 @@
   "version": "2.4.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "vite --mode cloud",
+    "dev:demo": "vite --mode demo --port 5175 --strictPort",
+    "build": "tsc -b && vite build --mode cloud",
     "lint": "eslint .",
     "preview": "vite preview"
   },

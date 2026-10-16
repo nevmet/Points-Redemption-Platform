@@ -1,0 +1,72 @@
+# Old IP bookmarks and cached links use the canonical HTTPS domain.
+server {
+    listen 80;
+    server_name 47.239.234.35;
+    return 301 https://www.bag-star.com$request_uri;
+}
+
+
+# The IP virtual host shares port 80 with the existing domain-based company site.
+# Create a SEPARATE site in the panel; do not replace the existing company site.
+# HTTP IP access is a preview. Configure a domain and trusted TLS for public use.
+server {
+    listen 443 ssl http2;
+    server_name www.bag-star.com;
+    ssl_certificate /www/server/panel/vhost/cert/bags-star-rewards/current/fullchain.pem;
+    ssl_certificate_key /www/server/panel/vhost/cert/bags-star-rewards/current/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_session_cache shared:RewardsTLS:10m;
+    ssl_session_timeout 1d;
+    root /www/wwwroot/bags-star-rewards/current;
+    index index.html;
+    access_log /www/wwwlogs/bags-star-rewards.access.log;
+    error_log /www/wwwlogs/bags-star-rewards.error.log;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /www/wwwroot/bags-star-rewards/acme;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+    location / {
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "no-cache";
+    }
+    location /assets/ {
+        try_files $uri =404;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    location /images/ {
+        try_files $uri =404;
+        expires 1d;
+    }
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+    location ~ /\. {
+        deny all;
+    }
+}
+
+
+server {
+    listen 80;
+    server_name bag-star.com www.bag-star.com;
+    location ^~ /.well-known/acme-challenge/ {
+        root /www/wwwroot/bags-star-rewards/acme;
+        default_type text/plain;
+        try_files $uri =404;
+    }
+    location / { return 301 https://www.bag-star.com$request_uri; }
+}
+server {
+    listen 443 ssl http2;
+    server_name bag-star.com;
+    ssl_certificate /www/server/panel/vhost/cert/bags-star-rewards/current/fullchain.pem;
+    ssl_certificate_key /www/server/panel/vhost/cert/bags-star-rewards/current/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    return 301 https://www.bag-star.com$request_uri;
+}

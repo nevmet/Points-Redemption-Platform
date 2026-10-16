@@ -1,0 +1,10 @@
+[Unit]
+Description=Renew Bags Star rewards HTTPS certificate
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/www/server/panel/pyenv/bin/python /root/bags-star-rewards-deploy/rewards_certificate.py
+UMask=0077
+TimeoutStartSec=600

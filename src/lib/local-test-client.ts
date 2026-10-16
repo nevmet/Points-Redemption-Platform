@@ -1,5 +1,6 @@
 import { isSupabaseConfigured } from "./supabase";
-export const isLocalTestMode = import.meta.env.DEV && !isSupabaseConfigured && ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
+// Missing cloud configuration must never silently switch real registration to a mock account.
+export const isLocalTestMode = import.meta.env.DEV && import.meta.env.MODE === "demo" && !isSupabaseConfigured && ["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
 export class ApiError extends Error {
   code: string;
   constructor(code: string) { super(code); this.code = code; }

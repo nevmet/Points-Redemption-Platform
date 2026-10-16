@@ -1,3 +1,4 @@
+import { createUuid } from "@/lib/uuid";
 import { useTranslation } from "react-i18next";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
@@ -22,6 +23,6 @@ export default function ProductOptionEditor({ value, onChange, disabled }: { val
       </div>)}</div>
       <Button variant="outline" type="button" disabled={disabled || option.values.length >= MAX_OPTION_VALUES} onClick={() => update(option.id, { values: [...option.values, ""] })}>{t("productOptions.addValue")}</Button>
     </div>)}
-    <Button variant="outline" type="button" disabled={disabled || value.length >= MAX_PRODUCT_OPTIONS} onClick={() => onChange([...value, { id: crypto.randomUUID(), name: value.length ? "" : t("productOptions.color"), values: [""] }])}>{t("productOptions.add")}</Button>
+    <Button variant="outline" type="button" disabled={disabled || value.length >= MAX_PRODUCT_OPTIONS} onClick={() => onChange([...value, { id: createUuid(), name: value.length ? "" : t("productOptions.color"), values: [""] }])}>{t("productOptions.add")}</Button>
   </fieldset>;
 }

@@ -28,11 +28,13 @@ test("specifications, colors, custom bilingual terms and historical snapshots fo
 });
 
 const code = ts.transpileModule(readFileSync(new URL("../src/components/rewards/ProductRedemptionDialog.tsx", import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText;
-function render(language, selected = "", color) {
+function render(language, selected = "", color, address = { address: {} }, addressError = "") {
   let index = 0, submit;
   const calls = [];
   const modules = {
     "react/jsx-runtime": jsx,
+    "react-router": { Link: ({ children, to, ...props }) => createElement("a", { href: to, ...props }, children) },
+    "@/hooks/useRemoteData": { default: () => ({ data: address, error: addressError, refresh() {} }) },
     react: { useState: (initial) => { const current = index++; return [current === 1 ? selected : current === 2 && color ? { color } : typeof initial === "function" ? initial() : initial, () => {}]; } },
     "react-i18next": { useTranslation: () => ({ t: t(language), i18n: { language } }) },
     "@/components/ui/modal": { Modal: ({ children }) => createElement("div", {}, children) },
@@ -62,6 +64,16 @@ test("English selection submits original option values and unchanged variant ID 
   assert.match(html, /<option value="黑色" selected="">Black<\/option>/);
   assert.equal(submit.disabled, false);
   await submit.onClick();
-  assert.equal(JSON.stringify(calls), JSON.stringify([["phone", "pro", 9999, [{ optionId: "color", value: "黑色" }]]]));
+  assert.equal(JSON.stringify(calls), JSON.stringify([["phone", "pro", 9999, [{ optionId: "color", value: "黑色" }], ""]]));
   assert.equal(product.options[0].name, "颜色");
+});
+
+
+test("checkout blocks missing, loading or failed addresses and offers the profile link", () => {
+  const missing = render("en", "pro", "黑色", { address: null });
+  assert.equal(missing.submit.disabled, true);
+  assert.match(missing.html, /href="\/profile#shipping-address"/);
+  assert.match(missing.html, /Please complete your shipping address/);
+  assert.equal(render("en", "pro", "黑色", null).submit.disabled, true);
+  assert.equal(render("en", "pro", "黑色", { address: {} }, "testAuth.errors.failed").submit.disabled, true);
 });

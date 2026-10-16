@@ -13,6 +13,7 @@ import AdminCategories from "./pages/Rewards/AdminCategories";
 import AdminRedemptions from "./pages/Rewards/AdminRedemptions";
 import PointsExchange from "./pages/Rewards/PointsExchange";
 import AdminOrderPoints from "./pages/Rewards/AdminOrderPoints";
+import ContactUs from "./pages/Rewards/ContactUs";
 import RequireAuth from "./components/auth/RequireAuth";
 
 export default function App() {
@@ -28,7 +29,9 @@ export default function App() {
             <Route path="/rewards" element={<RewardsHub />} />
             <Route path="/points-exchange" element={<PointsExchange />} />
             <Route path="/redemptions" element={<Redemptions />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route element={<RequireAuth admin />}>
+            <Route path="/admin/messages" element={<ContactUs forReview />} />
             <Route path="/admin/customers" element={<AdminCustomers />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/categories" element={<AdminCategories />} />

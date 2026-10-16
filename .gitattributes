@@ -1,0 +1,2 @@
+# Keep Linux deployment files usable after a Windows checkout.
+deployment/** text eol=lf

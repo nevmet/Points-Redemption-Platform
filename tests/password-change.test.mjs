@@ -1,3 +1,5 @@
+import * as shippingAddress from "../src/lib/shipping-address.ts";
+import * as uuid from "../src/lib/uuid.ts";
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { mkdirSync, mkdtempSync, readFileSync, unlinkSync, rmdirSync } from "node:fs";
@@ -68,6 +70,8 @@ function setup({ signedIn = true, verificationError = null, changedIdentity = fa
   } };
   const exports = {};
   runInNewContext(compiled, { exports, require: (name) => {
+    if (name === "./shipping-address") return shippingAddress;
+    if (name === "./uuid") return uuid;
     if (name === "./product-image") return productImage;
     if (name === "./local-test-client") return { isLocalTestMode: false, ApiError };
     assert.equal(name, "./supabase"); return { isSupabaseConfigured: true, requireSupabase: () => client };

@@ -34,6 +34,8 @@ test("editing preserves variants/status, colors work with every variant and hist
   try {
     const admin = (await request("/signin", "POST", { username: "admin", password: "admin@123" })).cookie;
     const customer = (await request("/signin", "POST", { username: "user01", password: "admin@123" })).cookie;
+    const shipping = { recipient: "Fixture", phone: "+1 202 555 0100", country: "US", city: "Boston", region: "MA", postalCode: "02108", line1: "1 Example St", line2: "" };
+    assert.equal((await request("/shipping-address", "PATCH", shipping, customer)).status, 200);
     const variants = [{ id: "256", name: "Pro / 256GB", points: 100 }, { id: "512", name: "Pro / 512GB", points: 200 }];
     const options = [{ id: "color", name: "颜色", values: ["黑色", "白色"] }];
     const created = await request("/products", "POST", { name: "Options test", category: "Apple", points: 1, variants, options, status: "published" }, admin);

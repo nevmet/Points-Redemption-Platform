@@ -20,13 +20,8 @@ const savedLng =
   typeof window !== "undefined"
     ? localStorage.getItem("i18nextLng") || localStorage.getItem("language")
     : null;
-const browserLng =
-  typeof window !== "undefined"
-    ? navigator.language.split("-")[0]
-    : fallbackLng;
-const initialLng =
-  savedLng ||
-  (resources[browserLng as keyof typeof resources] ? browserLng : fallbackLng);
+// First visits use English; keep the visitor's saved language preference.
+const initialLng = savedLng || fallbackLng;
 
 i18n.use(initReactI18next).init({
   resources,

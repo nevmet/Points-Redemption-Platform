@@ -90,12 +90,12 @@ export default function RewardsHub() {
             <span className="rounded-lg bg-brand-50 p-2 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400"><StarFill className="h-5 w-5" /></span>
           </div>
           <div aria-live="polite" className="mt-4 flex items-end gap-2"><span className="text-3xl font-semibold text-gray-900 dark:text-white">{balance === undefined ? "—" : balance.toLocaleString()}</span><span className="mb-1 text-sm text-gray-500">{t("rewards.pointsShort")}</span></div>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-2"><span className="text-xs text-gray-500 dark:text-gray-400">{t("rewards.pointsAutoSync")}</span><button type="button" disabled={pointsRefreshing} onClick={refreshPoints} className="text-sm font-medium text-brand-600 disabled:opacity-50 dark:text-brand-400">{t(pointsRefreshing ? "rewards.pointsSyncing" : "rewards.refreshPoints")}</button></div>
+          <div className="mt-3 flex justify-end"><button type="button" disabled={pointsRefreshing} onClick={refreshPoints} className="text-sm font-medium text-brand-600 disabled:opacity-50 dark:text-brand-400">{t(pointsRefreshing ? "rewards.pointsSyncing" : "rewards.refreshPoints")}</button></div>
           {pointsError && <p role="alert" className="mt-2 text-sm text-error-600 dark:text-error-400">{t("rewards.pointsSyncFailed")}</p>}
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
           <div className="flex items-center justify-between"><span className="text-sm text-gray-500 dark:text-gray-400">{t("rewards.activeRequests")}</span><span className="rounded-lg bg-blue-light-50 p-2 text-blue-light-600 dark:bg-blue-light-500/15 dark:text-blue-light-400"><ClockIcon className="h-5 w-5" /></span></div>
-          <div className="mt-4 text-3xl font-semibold text-gray-900 dark:text-white">{data ? data.requests.filter((r) => ["pending", "processing"].includes(r.status)).length : "—"}</div>
+          <div className="mt-4 text-3xl font-semibold text-gray-900 dark:text-white">{data ? data.requests.filter((r) => ["pending", "processing", "cancel_requested"].includes(r.status)).length : "—"}</div>
           <Link to="/redemptions" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">{t("rewards.trackRequest")} <ArrowRightIcon className="h-3.5 w-3.5" /></Link>
         </div>
       </section>

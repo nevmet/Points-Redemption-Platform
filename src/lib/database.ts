@@ -1,5 +1,5 @@
 export type ProductStatus = "published" | "draft";
-export type RedemptionStatus = "pending" | "processing" | "completed" | "cancelled" | "rejected";
+export type RedemptionStatus = "pending" | "processing" | "completed" | "cancelled" | "rejected" | "cancel_requested";
 export type PointTransactionType = "credit" | "debit";
 export type ProductCategoryRow = { id: string; name: string; created_at: string };
 export type ProductVariant = { id: string; name: string; points: number; attributes?: { name: string; value: string }[] };
@@ -42,7 +42,16 @@ export type ProductInsert = {
 
 export type ProductUpdate = Partial<ProductInsert>;
 
+export type ContactMessageRow = { id: string; customer_id: string; customer_name: string; customer_email: string; body: string; reply: string; replied_at: string | null; created_at: string; updated_at: string; operation_id: string };
+
 export type RedemptionRequestRow = {
+  customer_note?: string;
+  admin_reply?: string;
+  replied_at?: string | null;
+  shipping_address?: import("./shipping-address.ts").ShippingAddress | null;
+  cancel_from_status?: "pending" | "processing" | null;
+  cancellation_note?: string;
+  customer_id?: string;
   operation_id?: string;
   operation_fingerprint?: string;
   resolution_note?: string;
@@ -126,6 +135,13 @@ export type OrderPointRequestRow = {
 export type Database = {
   public: {
     Tables: {
+      contact_messages: { Row: ContactMessageRow; Insert: never; Update: never; Relationships: [] };
+      notification_reads: {
+        Row: { customer_id: string; notification_id: string; read_at: string };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
       product_categories: {
         Row: ProductCategoryRow;
         Insert: { id?: string; name: string; created_at?: string };
@@ -159,9 +175,17 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      submit_contact_message: { Args: { p_body: string; p_operation_id: string }; Returns: ContactMessageRow[] };
+      reply_contact_message: { Args: { p_id: string; p_reply: string }; Returns: ContactMessageRow[] };
+      delete_contact_message: { Args: { p_id: string }; Returns: undefined };
+      reply_gift_request: { Args: { p_id: string; p_reply: string }; Returns: RedemptionRequestRow[] };
+      redeem_gift: { Args: { p_product_id: string; p_variant_id: string | null; p_expected_points: number; p_selected_options: { optionId: string; value: string }[]; p_operation_id: string; p_customer_note?: string }; Returns: RedemptionRequestRow[] };
+      set_gift_request_status: { Args: { p_request_id: string; p_status: string; p_note: string }; Returns: RedemptionRequestRow[] };
+      mark_notifications_read: { Args: { p_ids: string[] }; Returns: string[] };
         update_order_point_request: { Args: { p_request_id: string; p_order_number: string }; Returns: OrderPointRequestRow[] };
         review_current_order_point_request: { Args: { p_request_id: string; p_approve: boolean; p_points: number | null; p_note: string; p_expected_order_number: string }; Returns: OrderPointRequestRow[] };
       list_admin_customers: { Args: Record<string, never>; Returns: CustomerSummary[] };
+      get_admin_customer_shipping_address: { Args: { p_customer_id: string }; Returns: import("./shipping-address.ts").ShippingAddress | null };
       list_admin_customer_transactions: { Args: { p_customer_id: string }; Returns: PointTransactionRow[] };
       adjust_customer_points: { Args: { p_customer_id: string; p_type: string; p_points: number; p_note: string; p_operation_id: string }; Returns: PointTransactionRow };
       submit_order_point_request: {

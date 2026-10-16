@@ -1,3 +1,5 @@
+import MessageReply from "./MessageReply";
+import ShippingAddressDetails from "./ShippingAddressDetails";
 import { specificationTerm, specificationText } from "@/lib/product-specification-display";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -7,7 +9,7 @@ import Button from "@/components/ui/button/Button";
 import { Modal } from "@/components/ui/modal";
 import { useAuth } from "@/context/AuthContext";
 import useRemoteData from "@/hooks/useRemoteData";
-import { apiErrorKey, listGiftRequests, setRedemptionRequestStatus } from "@/lib/api";
+import { apiErrorKey, listGiftRequests, setRedemptionRequestStatus, replyGiftRequest } from "@/lib/api";
 import type { RedemptionStatus, RedemptionRequestRow } from "@/lib/database";
 
 export default function GiftRequestList({ forReview = false }: { forReview?: boolean }) {
@@ -30,6 +32,7 @@ export default function GiftRequestList({ forReview = false }: { forReview?: boo
     finally { setBusy(false); }
   };
   const refund = action?.status === "cancelled" || action?.status === "rejected";
+  const needsReason = refund || action?.status === "cancel_requested" || action?.request.status === "cancel_requested";
   const openAction = (request: RedemptionRequestRow, status: RedemptionStatus) => { setAction({ request, status }); setNote(""); setActionError(""); };
   return <div className="space-y-6">
     <PageMeta title={t(prefix + ".pageTitle")} description={t(prefix + ".description")} />
@@ -41,14 +44,20 @@ export default function GiftRequestList({ forReview = false }: { forReview?: boo
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4 dark:border-gray-800"><span className="text-sm text-brand-600 dark:text-brand-400">{t("adminRedemptions." + request.status)}</span><div className="flex flex-wrap gap-2">
         {forReview && request.status === "pending" && <Button size="sm" variant="outline" onClick={() => openAction(request,"processing")}>{t("adminRedemptions.processing")}</Button>}
         {forReview && ["pending","processing"].includes(request.status) && <><Button size="sm" onClick={() => openAction(request,"completed")}>{t("adminRedemptions.completed")}</Button><Button size="sm" variant="outline" onClick={() => openAction(request,"rejected")}>{t("portalFixes.rejectRefund")}</Button></>}
-        {!forReview && request.status === "pending" && <Button size="sm" variant="outline" onClick={() => openAction(request,"cancelled")}>{t("portalFixes.cancelRefund")}</Button>}
+        {!forReview && ["pending", "processing"].includes(request.status) && <Button size="sm" variant="outline" onClick={() => openAction(request,"cancel_requested")}>{t("portalFixes.cancelRefund")}</Button>}
+        {forReview && request.status === "cancel_requested" && <><Button size="sm" onClick={() => openAction(request, "cancelled")}>{t("giftMessages.approveCancellation")}</Button><Button size="sm" variant="outline" onClick={() => openAction(request, request.cancel_from_status || "pending")}>{t("giftMessages.declineCancellation")}</Button></>}
       </div></div>
+      {request.status === "cancel_requested" && <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">{t("giftMessages.cancellationPending")}</p>}
+      {request.cancellation_note && <p className="mt-3 whitespace-pre-wrap break-words text-sm text-gray-600 dark:text-gray-300">{t("giftMessages.cancellationReason")}: {request.cancellation_note}</p>}
+      {request.customer_note && <div className="mt-4 rounded-xl bg-gray-50 p-4 dark:bg-gray-800"><p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{t("giftMessages.customerNote")}</p><p className="mt-2 whitespace-pre-wrap break-words text-sm text-gray-900 dark:text-white">{request.customer_note}</p></div>}
+      <MessageReply reply={request.admin_reply} repliedAt={request.replied_at} canReply={forReview} onSave={async reply => { await replyGiftRequest(request.id, reply); refresh(); }} />
+      {request.shipping_address && <details className="mt-4"><summary className="cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300">{t("giftMessages.orderAddress")}</summary><ShippingAddressDetails address={request.shipping_address} /></details>}
       {request.resolution_note && <p className="mt-3 break-words text-sm text-gray-600 dark:text-gray-300">{t("portalFixes.reason")}: {request.resolution_note}</p>}
       {request.refunded_at && <p className="mt-2 text-sm text-success-600 dark:text-success-400">{t("portalFixes.refunded", { points: request.points.toLocaleString() })}</p>}
       {!!request.status_history?.length && <details className="mt-3 text-xs text-gray-500 dark:text-gray-400"><summary className="cursor-pointer">{t("portalFixes.history")}</summary><ul className="mt-2 space-y-2">{request.status_history.map((entry,index) => <li key={index}>{t("adminRedemptions." + entry.status)} · {new Date(entry.at).toLocaleString(i18n.language)}{entry.note && " · " + entry.note}</li>)}</ul></details>}
     </article>)}</div>}
     {data && data.length > limit && <Button variant="outline" onClick={() => setLimit(limit + 20)}>{t("portalFixes.more")}</Button>}
     {!forReview && <Link to="/" className="inline-block text-sm font-medium text-brand-600 dark:text-brand-400">{t("pointsExchange.browseGifts")}</Link>}
-    {action && <Modal isOpen onClose={() => { if (!busy) setAction(null); }} className="mx-4 max-w-lg p-6"><h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t("portalFixes.confirmAction")}</h2><p className="mt-3 text-sm text-gray-600 dark:text-gray-300">{action.request.request_code} · {t("adminRedemptions." + action.status)}</p>{refund && <><p className="mt-3 text-sm text-gray-600 dark:text-gray-300">{t("portalFixes.refundConfirm", { points: action.request.points.toLocaleString() })}</p><label className="mt-4 block text-sm text-gray-600 dark:text-gray-300" htmlFor="resolution-note">{t("portalFixes.reason")}</label><textarea id="resolution-note" value={note} onChange={event=>setNote(event.target.value)} maxLength={1000} disabled={busy} className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 dark:border-gray-700 dark:text-white" /></>}{actionError && <p role="alert" className="mt-3 text-error-600 dark:text-error-400">{t(actionError)}</p>}<div className="mt-5 flex gap-3"><Button disabled={busy || (refund && !note.trim())} onClick={() => void update()}>{t(busy ? "adminOrderPoints.saving" : "adminOrderPoints.confirm")}</Button><Button variant="outline" disabled={busy} onClick={()=>setAction(null)}>{t("rewards.cancel")}</Button></div></Modal>}
+    {action && <Modal isOpen onClose={() => { if (!busy) setAction(null); }} className="mx-4 max-w-lg p-6"><h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t("portalFixes.confirmAction")}</h2><p className="mt-3 text-sm text-gray-600 dark:text-gray-300">{action.request.request_code} · {t("adminRedemptions." + action.status)}</p>{needsReason && <><p className="mt-3 text-sm text-gray-600 dark:text-gray-300">{t(action.status === "cancel_requested" ? "giftMessages.cancelConfirm" : refund ? "portalFixes.refundConfirm" : "giftMessages.declineConfirm", { points: action.request.points.toLocaleString() })}</p><label className="mt-4 block text-sm text-gray-600 dark:text-gray-300" htmlFor="resolution-note">{t(forReview ? "portalFixes.reason" : "giftMessages.cancellationReason")}</label><textarea id="resolution-note" value={note} onChange={event=>setNote(event.target.value)} maxLength={1000} disabled={busy} className="mt-2 w-full rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 dark:border-gray-700 dark:text-white" /></>}{actionError && <p role="alert" className="mt-3 text-error-600 dark:text-error-400">{t(actionError)}</p>}<div className="mt-5 flex gap-3"><Button disabled={busy || (needsReason && !note.trim())} onClick={() => void update()}>{t(busy ? "adminOrderPoints.saving" : "adminOrderPoints.confirm")}</Button><Button variant="outline" disabled={busy} onClick={()=>setAction(null)}>{t("rewards.cancel")}</Button></div></Modal>}
   </div>;
 }

@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/context/AuthContext";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
+import ProfileAvatar from "../UserProfile/ProfileAvatar";
 
 export default function UserDropdown() {
   const { user, logout } = useAuth();
@@ -52,7 +53,7 @@ export default function UserDropdown() {
         className="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400"
       >
         <span className="me-3 h-11 w-11 overflow-hidden rounded-full">
-          <span aria-hidden="true" className="flex h-full w-full items-center justify-center rounded-full bg-brand-50 font-semibold text-brand-600 dark:bg-brand-500/15 dark:text-brand-400">{user?.username.slice(0, 1).toUpperCase()}</span>
+          <ProfileAvatar url={user?.avatarUrl} name={user?.username || ""} />
         </span>
 
         <span className="me-1 block text-theme-sm font-medium">{user?.username}</span>

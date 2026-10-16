@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 import {
   BoxIconLine,
+  ChatIcon,
   DashboardAltIcon,
   HorizontaLDots,
   SettingsAltIcon,
@@ -19,9 +20,11 @@ const customerItems = [
   { labelKey: "sidebar.pointsExchange", path: "/points-exchange", icon: <ShootingStarIcon fontSize={24} /> },
   { labelKey: "sidebar.myRedemptions", path: "/redemptions", icon: <TruckDelivery fontSize={24} /> },
   { labelKey: "sidebar.myProfile", path: "/profile", icon: <UserCircleIcon fontSize={24} /> },
+  { labelKey: "contact.title", path: "/contact", icon: <ChatIcon fontSize={24} /> },
 ];
 
 const adminItems = [
+  { labelKey: "contact.adminTitle", path: "/admin/messages", icon: <ChatIcon fontSize={24} /> },
   { labelKey: "customerManager.title", path: "/admin/customers", icon: <UserCircleIcon fontSize={24} /> },
   { labelKey: "sidebar.orderPointsReview", path: "/admin/order-points", icon: <ShootingStarIcon fontSize={24} /> },
   { labelKey: "sidebar.rewardCatalog", path: "/admin/products", icon: <BoxIconLine fontSize={24} /> },
@@ -73,9 +76,9 @@ const AppSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={cn("hidden py-8 xl:flex", !isExpanded && !isHovered ? "xl:justify-center" : "justify-start")}>
-        <Link to="/" aria-label={t("brand.homeLabel")} onClick={() => setIsMobileOpen(false)}>
+        <a href="https://www.bags-star.com" aria-label={t("brand.officialWebsite")} onClick={() => setIsMobileOpen(false)}>
           <BrandLogo compact={!isOpen} />
-        </Link>
+        </a>
       </div>
 
       <div className="no-scrollbar flex flex-1 flex-col overflow-y-auto duration-300 ease-linear">

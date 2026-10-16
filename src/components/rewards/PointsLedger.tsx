@@ -60,7 +60,6 @@ export default function PointsLedger() {
             </li>
           ))}
         </ul>}
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">{t("rewards.pointsAutoSync")}</p>
       </div>
     </section>
   );

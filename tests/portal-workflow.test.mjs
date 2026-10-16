@@ -18,6 +18,19 @@ test("profile isolation, shared read state, redemption retries and refunds survi
     let customer=await login("user01"), admin=await login("admin");
     assert.equal((await call("/profile")).status,401);
     const beforeAdmin=(await call("/profile","GET",undefined,admin)).data;
+    const address = {recipient:"Example Customer",phone:"+1 202 555 0100",country:"United States",region:"DC",city:"Washington",postalCode:"20001",line1:"100 Example Street",line2:"Unit 2"};
+    assert.equal((await call("/shipping-address")).status,401);
+    assert.equal((await call("/shipping-address","GET",undefined,customer)).data,null);
+    assert.equal((await call("/shipping-address","PATCH",{...address,recipient:"   "},customer)).status,400);
+    assert.equal((await call("/shipping-address","PATCH",{...address,line1:"x".repeat(201)},customer)).status,400);
+    assert.equal((await call("/shipping-address","PATCH",{...address,customerId:"test-admin",role:"admin"},customer)).status,200);
+    assert.deepEqual((await call("/shipping-address","GET",undefined,customer)).data,address);
+    assert.equal((await call("/shipping-address","GET",undefined,admin)).data,null);
+    assert.equal((await call("/customers/test-customer-01/shipping-address","GET",undefined,customer)).status,403);
+    assert.equal((await call("/customers/test-customer-01/shipping-address")).status,401);
+    assert.deepEqual((await call("/customers/test-customer-01/shipping-address","GET",undefined,admin)).data,address);
+    assert.equal((await call("/customers/not-a-customer/shipping-address","GET",undefined,admin)).status,404);
+
     assert.equal((await call("/profile","PATCH",{name:"",phone:"",company:""},customer)).status,400);
     const profile=await call("/profile","PATCH",{name:"Test customer",company:"Example Co",phone:"+123456",email:"admin@example.test",role:"admin",id:"test-admin"},customer);
     assert.equal(profile.status,200); assert.equal(profile.data.email,"user01@example.test");
@@ -41,13 +54,18 @@ test("profile isolation, shared read state, redemption retries and refunds survi
     assert.equal((await call("/redemptions/"+id,"PATCH",{status:"cancelled",note:""},customer)).status,400);
     const cancelled=await Promise.all([1,2].map(()=>call("/redemptions/"+id,"PATCH",{status:"cancelled",note:"Changed my mind"},customer)));
     assert.ok(cancelled.every(r=>r.status===200));
+    assert.equal(cancelled[0].data.status,"cancel_requested");
+    assert.equal((await call("/transactions","GET",undefined,customer)).data.length,2);
+    const approval=await Promise.all([1,2].map(()=>call("/redemptions/"+id,"PATCH",{status:"cancelled",note:"Approved after review"},admin)));
+    assert.ok(approval.every(r=>r.status===200));
     const ledger=(await call("/transactions","GET",undefined,customer)).data;
     assert.equal(ledger.length,3);assert.equal(ledger.reduce((sum,r)=>sum+(r.type==="credit"?r.points:-r.points),0),1000);
     assert.equal((await call("/redemptions/"+id,"PATCH",{status:"processing"},admin)).status,409);
     assert.equal((await call("/redemptions","POST",payload,customer)).data.id,id);
     const next=(await call("/redemptions","POST",{...payload,operationId:randomUUID()},customer)).data;
     await call("/redemptions/"+next.id,"PATCH",{status:"processing"},admin);
-    assert.equal((await call("/redemptions/"+next.id,"PATCH",{status:"cancelled",note:"Cancel"},customer)).status,409);
+    assert.equal((await call("/redemptions/"+next.id,"PATCH",{status:"cancelled",note:"Cancel"},customer)).data.status,"cancel_requested");
+    assert.equal((await call("/redemptions/"+next.id,"PATCH",{status:"processing",note:"Already preparing"},admin)).status,200);
     assert.equal((await call("/redemptions/"+next.id,"PATCH",{status:"rejected",note:"Unavailable"},customer)).status,403);
     assert.equal((await call("/redemptions/"+next.id,"PATCH",{status:"rejected",note:"Unavailable"},admin)).status,200);
     const done=(await call("/redemptions","POST",{...payload,operationId:randomUUID()},customer)).data;
@@ -58,9 +76,17 @@ test("profile isolation, shared read state, redemption retries and refunds survi
     await new Promise(done=>server.close(done));await start();
     customer=await login("user01");
     assert.equal((await call("/profile","GET",undefined,customer)).data.company,"Example Co");
+    assert.deepEqual((await call("/shipping-address","GET",undefined,customer)).data,address);
+    admin=await login("admin");
+    assert.deepEqual((await call("/customers/test-customer-01/shipping-address","GET",undefined,admin)).data,address);
+    const updatedAddress={...address,city:"Boston",region:"MA"};
+    await call("/shipping-address","PATCH",updatedAddress,customer);
+    assert.deepEqual((await call("/customers/test-customer-01/shipping-address","GET",undefined,admin)).data,updatedAddress);
+    assert.equal((await call("/profile","GET",undefined,customer)).data.company,"Example Co");
+
     assert.deepEqual((await call("/notification-reads","GET",undefined,customer)).data,["a","b"]);
     const saved=JSON.parse(readFileSync(file,"utf8"));
-    assert.equal(saved.redemptions.find(r=>r.id===id).status_history.length,2);
+    assert.equal(saved.redemptions.find(r=>r.id===id).status_history.length,3);
     assert.equal(saved.transactions.reduce((sum,r)=>sum+(r.type==="credit"?r.points:-r.points),0),900);
   } finally {await new Promise(done=>server.close(done));unlinkSync(file);rmdirSync(dir);}
 });

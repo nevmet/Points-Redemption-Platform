@@ -1,5 +1,37 @@
 # TailAdmin React - Free React Tailwind Admin Dashboard Template
 
+## Bags Star 本地运行
+
+- `npm run dev`：默认连接 Supabase，读取 `.env.cloud.local` 中的公开项目 URL / publishable key，可测试真实注册验证码。默认端口 5173，本地操作会写入真实云数据库。
+- `npm run build`：构建云端版本；`npm run preview -- --port 5174` 可预览。
+- `npm run dev:demo`：显式启动离线演示（5175），使用 `.local-test/data.json`，不发邮件。仅用于模拟业务测试，不能用于验收邮箱注册。
+- 云端配置缺失会报配置错误，不会自动注册演示账户。服务端密钥不得放入 `VITE_` 变量。
+
+## Bags Star 线上部署配置（2026-10-16 同步）
+
+- 积分平台：**https://www.bag-star.com**；阿里云服务器 `47.239.234.35`。HTTP IP、HTTP 域名和 HTTPS 裸域名跳转到正式入口，并保留路径和查询参数。
+- 公司官网：https://www.bags-star.com（注意域名多一个 `s`）。两个网站通过 Nginx 域名区分，共用 80 / 443 端口。官网电脑、手机导航的 `Gift Center` 均链接 `https://www.bag-star.com/`，在新标签打开。
+- 前端目录：`/www/wwwroot/bags-star-rewards/current`，当前指向 `releases/bags-star-20261016T062619Z`。React 静态构建由 Nginx 提供，后端使用 Supabase。
+- 生产配置已从服务器同步，文件对应关系如下；这些配置包含服务器绝对路径，不能作为本机开发配置直接运行。
+
+| 本地文件 | 服务器位置 / 用途 |
+| --- | --- |
+| `deployment/nginx-domain.conf.example` | `/www/server/panel/vhost/nginx/bags-star-rewards.conf`；当前生效的域名、HTTPS、重定向与 SPA 配置 |
+| `deployment/upgrade_release.py` | `/root/bags-star-rewards-deploy/upgrade_release.py`；验证发布包、保留旧资源、原子切换和失败回退 |
+| `deployment/rewards_certificate.py` | `/root/bags-star-rewards-deploy/rewards_certificate.py`；复用宝塔现有 ACME 运行环境及账户，只续签积分平台证书 |
+| `deployment/bags-star-rewards-cert.service` | `/etc/systemd/system/bags-star-rewards-cert.service`；证书检查服务 |
+| `deployment/bags-star-rewards-cert.timer` | `/etc/systemd/system/bags-star-rewards-cert.timer`；每日定时检查，剩余不足 30 天时续期 |
+| `supabase/*.sql` | 16 份迁移由 `scripts/supabase_db.py` 管理；已与云端历史校验和核对一致 |
+| `supabase/templates/confirm-signup.html` | 注册验证码邮件模板；发信设置见 `supabase/EMAIL_SETUP.md` |
+
+`deployment/install_release.py` 和 `nginx-site.conf.example` 仅用于最初 HTTP 安装，不能覆盖当前线上 HTTPS 配置。现有站点升级应使用 `upgrade_release.py`。
+
+日常发布：先执行 `npm run build`，再用 `scripts/package_frontend.py` 生成仅含静态文件的包和哈希清单，上传到服务器部署目录，运行升级脚本并验证正式域名。打包工具读取本机忽略配置进行凭据扫描；不要上传 `.env`、源码私钥或 `.local-test`。普通 Git 提交不会自动更新服务器。
+
+证书位于 `/www/server/panel/vhost/cert/bags-star-rewards/current/`，ACME 账户在 root 私有目录。证书私钥、SSH 私钥、SMTP 授权码、Supabase 服务端密钥和客户数据都不进入仓库；新机器需单独配置这些凭据。`.env.example` 只提供公开前端变量占位符。
+
+**尚未完成的云设置**：2026-10-16 只读复核，Supabase 默认邮件回跳 `Site URL` 仍为 `http://localhost:3000`。控制台应保存为 `https://www.bag-star.com` 后再次核验；不能把此处目标值当作已经生效。页面输入验证码及密码登录不依赖该默认回跳。此次同步不修改云端设置或客户数据。
+
 TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers
 with everything they need to create a comprehensive, data-driven back-end,
 dashboard, or admin panel solution for upcoming web projects.

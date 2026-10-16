@@ -8,7 +8,6 @@ import { useSidebar } from "@/context/SidebarContext";
 import { cn } from "@/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 
 const AppHeader: React.FC = () => {
   const { t } = useTranslation();
@@ -75,9 +74,9 @@ const AppHeader: React.FC = () => {
             {/* Cross Icon */}
           </button>
 
-          <Link to="/" className="xl:hidden" aria-label={t("brand.homeLabel")}>
+          <a href="https://www.bags-star.com" className="xl:hidden" aria-label={t("brand.officialWebsite")}>
             <BrandLogo size="sm" />
-          </Link>
+          </a>
 
           <button
             onClick={toggleApplicationMenu}

@@ -1,3 +1,5 @@
+import * as shippingAddress from "../src/lib/shipping-address.ts";
+import * as uuid from "../src/lib/uuid.ts";
 import * as specificationDisplay from "../src/lib/product-specification-display.ts";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -23,16 +25,18 @@ test("ledger fetches beyond 1,000 records, scopes every page and never returns p
   } };
   const exports = {};
   runInNewContext(apiCode, { exports, require: (name) => {
+    if (name === "./shipping-address") return shippingAddress;
+    if (name === "./uuid") return uuid;
     if (name === "./product-image") return productImage;
     if (name === "./local-test-client") return { isLocalTestMode: false, ApiError: class extends Error {} };
     assert.equal(name, "./supabase"); return { requireSupabase: () => client };
   } });
-  const result = await exports.listPointTransactions("customer@example.test");
+  const result = await exports.listPointTransactions("customer-1");
   assert.equal(result.length, 1203);
-  assert.deepEqual(calls, Array(3).fill(["customer_email", "customer@example.test"]));
+  assert.deepEqual(calls, Array(3).fill(["customer_id", "customer-1"]));
   assert.equal(result.filter((row) => row.type === "credit").length, 601);
   fail = true;
-  await assert.rejects(exports.listPointTransactions("customer@example.test"), /offline/);
+  await assert.rejects(exports.listPointTransactions("customer-1"), /offline/);
 });
 
 const rows = [

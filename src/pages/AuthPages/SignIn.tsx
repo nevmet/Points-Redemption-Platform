@@ -11,8 +11,8 @@ export default function SignIn() {
         title={t("signIn.pageTitle")}
         description={t("signIn.pageDescription")}
       />
-      <AuthLayout>
-        <SignInForm />
+      <AuthLayout showBackLink={false}>
+        {onInteraction => <SignInForm onInteraction={onInteraction} />}
       </AuthLayout>
     </>
   );

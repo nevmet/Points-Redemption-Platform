@@ -1,42 +1,39 @@
-import BrandLogo from "@/components/common/BrandLogo";
-import LanguageSelect from "@/components/common/LanguageSelect";
-import GridShape from "@/components/common/GridShape";
-import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
-import React from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
+import BrandLogo from "@/components/common/BrandLogo";
+import LanguageSelect from "@/components/common/LanguageSelect";
+import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
+import AnimatedAuthScene, { type AuthInteraction, type AuthInteractionHandler } from "@/components/auth/AnimatedAuthScene";
+import { ChevronLeftIcon } from "@/icons";
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children, showBackLink = true }: { children: (onInteraction: AuthInteractionHandler) => ReactNode; showBackLink?: boolean }) {
   const { t } = useTranslation();
-  return (
-    <div className="relative z-1 bg-white p-6 sm:p-0 dark:bg-gray-900">
-      <div className="absolute end-6 top-6 z-50"><LanguageSelect /></div>
-      <div className="relative flex h-screen w-full flex-col justify-center sm:p-0 lg:flex-row dark:bg-gray-900">
-        {children}
-        <div className="hidden h-full w-full items-center bg-brand-950 lg:grid lg:w-1/2 dark:bg-white/5">
-          <div className="relative z-1 flex items-center justify-center">
-            <GridShape />
-
-            <div className="flex max-w-xs flex-col items-center">
-              <Link to="/" className="mb-4 block">
-                <span className="dark"><BrandLogo /></span>
-              </Link>
-
-              <p className="text-center text-gray-400 dark:text-white/60">
-                {t("auth.promoText")}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="fixed inset-e-6 bottom-6 z-50 hidden sm:block">
-          <ThemeTogglerTwo />
+  const [interaction, setInteraction] = useState<AuthInteraction>({ focus: "none", revealed: false, status: "idle" });
+  const onInteraction = useCallback<AuthInteractionHandler>(change => setInteraction(previous => ({ ...previous, ...change })), []);
+  return <div className="auth-page">
+    <aside className="auth-art-panel">
+      <a href="https://www.bags-star.com" className="relative z-10 self-start rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"><BrandLogo /></a>
+      <div className="auth-art-content">
+        <AnimatedAuthScene interaction={interaction} />
+        <div className="auth-art-caption">
+          <h2>{t("authExperience.headline")}</h2>
         </div>
       </div>
-    </div>
-  );
+      <p className="auth-company-name">{t("authExperience.company")}</p>
+    </aside>
+    <main className="auth-form-panel">
+      <header className="auth-toolbar">
+        {showBackLink && <Link to="/" className="inline-flex items-center gap-1 rounded-md text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+          <ChevronLeftIcon className="size-4 rtl:rotate-180" />{t("signIn.backToDashboard")}
+        </Link>}
+        <div className="ms-auto"><LanguageSelect /></div>
+      </header>
+      <div className="auth-form-content">
+        <a href="https://www.bags-star.com" className="auth-form-brand" aria-label={t("brand.name")}><BrandLogo size="sm" /></a>
+        {children(onInteraction)}
+      </div>
+      <footer className="auth-form-footer"><span>{t("authExperience.footer")}</span><ThemeTogglerTwo /></footer>
+    </main>
+  </div>;
 }

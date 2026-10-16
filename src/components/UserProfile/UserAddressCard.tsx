@@ -1,123 +1,67 @@
+import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { useModal } from "../../hooks/useModal";
-import { PencilIcon } from "../../icons";
-import Input from "../form/input/InputField";
-import Label from "../form/Label";
-import Button from "../ui/button/Button";
-import { Modal } from "../ui/modal";
+import { useAuth } from "@/context/AuthContext";
+import useRemoteData from "@/hooks/useRemoteData";
+import { apiErrorKey, getMyShippingAddress, saveMyShippingAddress } from "@/lib/api";
+import { addressLimits, emptyShippingAddress, requiredAddressFields, type ShippingAddress } from "@/lib/shipping-address";
+import Button from "@/components/ui/button/Button";
+import Input from "@/components/form/input/InputField";
+import Label from "@/components/form/Label";
+
+const autocomplete: Record<keyof ShippingAddress, string> = {
+  recipient: "shipping name", phone: "shipping tel", country: "shipping country-name",
+  region: "shipping address-level1", city: "shipping address-level2", postalCode: "shipping postal-code",
+  line1: "shipping address-line1", line2: "shipping address-line2",
+};
+const loadAddress = async () => ({ address: await getMyShippingAddress() });
 
 export default function UserAddressCard() {
+  const { user } = useAuth();
+  return <AddressEditor key={user?.id} />;
+}
+
+function AddressEditor() {
   const { t } = useTranslation();
-  const { isOpen, openModal, closeModal } = useModal();
-  const handleSave = () => {
-    // Handle save logic here
-    console.log("Saving changes...");
-    closeModal();
-  };
-  return (
-    <>
-      <div className="rounded-2xl border border-gray-200 p-5 lg:p-6 dark:border-gray-800">
-        <div className="flex flex-col gap-6 sm:flex-row lg:items-start lg:justify-between">
-          <div className="flex-1">
-            <h4 className="text-lg font-semibold text-gray-800 lg:mb-6 dark:text-white/90">
-              {t("userProfile.address")}
-            </h4>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-7 2xl:gap-x-32">
-              <div>
-                <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                  {t("userProfile.country")}
-                </p>
-                <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  United States.
-                </p>
-              </div>
-
-              <div>
-                <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                  {t("userProfile.cityState")}
-                </p>
-                <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  Phoenix, Arizona, United States.
-                </p>
-              </div>
-
-              <div>
-                <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                  {t("userProfile.postalCode")}
-                </p>
-                <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  ERT 2489
-                </p>
-              </div>
-
-              <div>
-                <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                  {t("userProfile.taxId")}
-                </p>
-                <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                  AS4568384
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <button
-              onClick={openModal}
-              className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 lg:inline-flex lg:w-auto dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200"
-            >
-              <PencilIcon className="size-4.5" />
-              {t("userProfile.edit")}
-            </button>
-          </div>
-        </div>
+  const { data, error, refresh } = useRemoteData(loadAddress);
+  const [saved, setSaved] = useState<ShippingAddress | null>(null);
+  const [draft, setDraft] = useState<ShippingAddress | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [failure, setFailure] = useState("");
+  const [success, setSuccess] = useState(false);
+  const address = saved || data?.address;
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    if (!draft || busy) return;
+    setBusy(true); setFailure(""); setSuccess(false);
+    try {
+      setSaved(await saveMyShippingAddress(draft));
+      setDraft(null); setSuccess(true);
+    } catch (cause) { setFailure(apiErrorKey(cause)); }
+    finally { setBusy(false); }
+  }
+  return <section id="shipping-address" aria-labelledby="shipping-address-title" className="scroll-mt-24 rounded-2xl border border-gray-200 p-5 dark:border-gray-800">
+    <h2 id="shipping-address-title" className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{t("shippingAddress.title")}</h2>
+    <p className="mb-5 text-sm text-gray-500 dark:text-gray-400">{t("shippingAddress.description")}</p>
+    {error && <p role="alert" className="mb-4 text-sm text-error-600 dark:text-error-400">{t(error)} <button type="button" onClick={refresh} className="underline">{t("pointsExchange.refresh")}</button></p>}
+    {failure && <p role="alert" className="mb-4 text-sm text-error-600 dark:text-error-400">{t(failure)}</p>}
+    {success && <p role="status" className="mb-4 text-sm text-success-600 dark:text-success-400">{t("shippingAddress.saved")}</p>}
+    {!data && !error && <p role="status" className="text-sm text-gray-500">{t("pointsExchange.loading")}</p>}
+    {data && (draft ? <form onSubmit={submit} className="space-y-5">
+      <p className="text-xs text-gray-500 dark:text-gray-400">{t("shippingAddress.requiredHint")}</p>
+      <div className="grid gap-5 sm:grid-cols-2">{(Object.keys(addressLimits) as (keyof ShippingAddress)[]).map(field => <div key={field} className={field === "line1" || field === "line2" ? "sm:col-span-2" : ""}>
+        <Label htmlFor={`shipping-${field}`}>{t(`shippingAddress.${field}`)}{requiredAddressFields.includes(field) && <span aria-hidden="true"> *</span>}</Label>
+        <Input id={`shipping-${field}`} name={field} type={field === "phone" ? "tel" : "text"} autoComplete={autocomplete[field]} required={requiredAddressFields.includes(field)} maxLength={addressLimits[field]} value={draft[field]} disabled={busy} onChange={event => setDraft({ ...draft, [field]: event.target.value })} />
+      </div>)}</div>
+      <div className="flex flex-wrap gap-3">
+        <Button type="submit" disabled={busy}>{t(busy ? "adminOrderPoints.saving" : "catalogEditor.saveChanges")}</Button>
+        <Button type="button" variant="outline" disabled={busy} onClick={() => { setDraft(null); setFailure(""); }}>{t("rewards.cancel")}</Button>
       </div>
-      <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px]">
-        <div className="relative no-scrollbar w-full overflow-y-auto rounded-3xl bg-white p-4 lg:p-11 dark:bg-gray-900">
-          <div className="px-2 pr-14">
-            <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              {t("userProfile.editAddress")}
-            </h4>
-            <p className="mb-6 text-sm text-gray-500 lg:mb-7 dark:text-gray-400">
-              {t("userProfile.updateDetails")}
-            </p>
-          </div>
-          <form className="flex flex-col">
-            <div className="custom-scrollbar overflow-y-auto px-2">
-              <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-                <div>
-                  <Label>{t("userProfile.country")}</Label>
-                  <Input type="text" value="United States" />
-                </div>
-
-                <div>
-                  <Label>{t("userProfile.cityState")}</Label>
-                  <Input type="text" value="Arizona, United States." />
-                </div>
-
-                <div>
-                  <Label>{t("userProfile.postalCode")}</Label>
-                  <Input type="text" value="ERT 2489" />
-                </div>
-
-                <div>
-                  <Label>{t("userProfile.taxId")}</Label>
-                  <Input type="text" value="AS4568384" />
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 flex items-center gap-3 px-2 lg:justify-end">
-              <Button size="sm" variant="outline" onClick={closeModal}>
-                {t("common.close")}
-              </Button>
-              <Button size="sm" onClick={handleSave}>
-                {t("common.saveChanges")}
-              </Button>
-            </div>
-          </form>
-        </div>
-      </Modal>
-    </>
-  );
+    </form> : <>
+      {address ? <dl className="mb-5 grid gap-5 sm:grid-cols-2">{(Object.keys(addressLimits) as (keyof ShippingAddress)[]).filter(field => address[field]).map(field => <div key={field} className={field === "line1" || field === "line2" ? "sm:col-span-2" : ""}>
+        <dt className="mb-1 text-sm text-gray-500 dark:text-gray-400">{t(`shippingAddress.${field}`)}</dt>
+        <dd className="break-words text-sm text-gray-900 dark:text-white">{address[field]}</dd>
+      </div>)}</dl> : <p className="mb-5 text-sm text-gray-500 dark:text-gray-400">{t("shippingAddress.empty")}</p>}
+      <Button type="button" variant="outline" onClick={() => { setDraft({ ...(address || emptyShippingAddress) }); setFailure(""); setSuccess(false); }}>{t(address ? "shippingAddress.edit" : "shippingAddress.add")}</Button>
+    </>)}
+  </section>;
 }

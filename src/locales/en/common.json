@@ -2,7 +2,8 @@
   "brand": {
     "name": "BAGS STAR",
     "logoAlt": "Bags Star company logo",
-    "homeLabel": "Bags Star rewards home"
+    "homeLabel": "Bags Star rewards home",
+    "officialWebsite": "Bags Star company website"
   },
   "adminProducts": {
     "pageTitle": "Product Center | Bags Star",
@@ -48,7 +49,8 @@
     "processing": "Processing",
     "completed": "Completed",
     "cancelled": "Cancelled (points refunded)",
-    "rejected": "Rejected (points refunded)"
+    "rejected": "Rejected (points refunded)",
+    "cancel_requested": "Cancellation awaiting review"
   },
   "aiDashboard": {
     "stats": {
@@ -674,7 +676,8 @@
       "reviewNote": "Review note: {note}",
       "gift_cancelled": "Redemption cancelled, points refunded",
       "gift_rejected": "Redemption declined, points refunded",
-      "points_refund": "Redemption refund +{points}"
+      "points_refund": "Redemption refund +{points}",
+      "gift_cancel_requested": "Gift cancellation awaiting review"
     }
   },
   "image": {
@@ -925,7 +928,6 @@
       "order1019": "Order #BS-1019 confirmed"
     },
     "noCategoryProducts": "No published products in this category yet.",
-    "pointsAutoSync": "Points sync every 5 seconds",
     "pointsSyncing": "Syncing…",
     "refreshPoints": "Refresh points",
     "pointsSyncFailed": "Points could not sync. The displayed balance may be out of date. Please retry."
@@ -1378,6 +1380,8 @@
     "requestStatus": "Status for request {code}",
     "errors": {
       "credentials": "Incorrect account or password.",
+      "emailNotConfirmed": "Confirm your email before signing in.",
+      "accountBlocked": "This account cannot sign in right now. Please contact an administrator.",
       "signin": "Please sign in.",
       "forbidden": "You do not have permission for this action.",
       "unavailable": "Service is temporarily unavailable. Please try again later.",
@@ -1489,17 +1493,17 @@
   "customerManager": {
     "title": "Customers",
     "pageTitle": "Customers | Bags Star",
-    "description": "View registered customers and balances. Add or deduct points with a permanent record. Deductions cannot exceed the balance.",
+    "description": "View registered customers, shipping addresses and points. Add or deduct points with a permanent record. Deductions cannot exceed the balance.",
     "search": "Search customer name or email",
     "count": "{count} customers",
     "empty": "No matching customers.",
-    "details": "Points management",
+    "details": "Customer details",
     "balance": "Available points",
     "total_credit": "Total added",
     "total_debit": "Total deducted",
     "registeredAt": "Registered",
     "testAccount": "Built-in test account",
-    "manage": "View / adjust points",
+    "manage": "View customer / manage points",
     "action": "Adjustment type",
     "credit": "Add points",
     "debit": "Deduct points",
@@ -1517,7 +1521,7 @@
     "adjustmentConflict": "This adjustment was already processed with different details. Refresh and try again.",
     "acceptTerms": "Please read and agree to the registration terms.",
     "registered": "Registration complete. Sign in with your email and password.",
-    "checkEmail": "Registration submitted. Check your email and complete any verification before signing in."
+    "checkEmail": "Check your inbox and spam folder for a signup confirmation link. If you already have an account, sign in instead. Contact an administrator if no email arrives."
   },
   "pointsLedger": {
     "title": "Points history",
@@ -1595,7 +1599,7 @@
     "resolutionRequired": "Enter a cancellation or rejection reason.",
     "readFailed": "Could not save read status. Please try again.",
     "rejectRefund": "Reject and refund points",
-    "cancelRefund": "Cancel and refund points",
+    "cancelRefund": "Request cancellation",
     "reason": "Reason (visible to customer)",
     "refunded": "{points} points refunded",
     "history": "Activity history",
@@ -1603,5 +1607,98 @@
     "confirmAction": "Confirm action",
     "refundConfirm": "This will refund {points} points and close the request. It cannot be reopened.",
     "refundTitle": "Redemption refund"
+  },
+  "shippingAddress": {
+    "title": "Shipping address",
+    "description": "Save your recipient and delivery details.",
+    "empty": "No shipping address added yet.",
+    "add": "Add shipping address",
+    "edit": "Edit shipping address",
+    "saved": "Shipping address saved",
+    "requiredHint": "Fields marked * are required.",
+    "recipient": "Recipient name",
+    "phone": "Phone number (including country code)",
+    "country": "Country / region",
+    "region": "State / province",
+    "city": "City",
+    "postalCode": "Postal / ZIP code",
+    "line1": "Street address",
+    "line2": "Apartment, suite or other details (optional)",
+    "adminHint": "Latest address saved by this customer. Confirm it before shipping.",
+    "customerEmpty": "This customer has not added a shipping address."
+  },
+  "profileAvatar": {
+    "avatarStorageUnavailable": "Photo uploads are not enabled yet. Please contact the administrator. Your changes were not saved and your previous photo is unchanged.",
+    "avatarUploadFailed": "Photo upload failed. Your changes were not saved. Check your connection and try again; your previous photo is unchanged.",
+    "label": "Profile photo",
+    "change": "Upload / change photo",
+    "hint": "JPG, PNG or WebP, up to 5 MB. Save changes to apply your photo."
+  },
+  "emailVerification": {
+    "demoNotice": "Demo mode: accounts stay on this computer. No verification emails are sent. Use the cloud mode to test real registration.",
+    "stepOne": "Step 1 of 2: Your account details",
+    "stepTwo": "Step 2 of 2: Verify your email code",
+    "completed": "Code verified. Registration is complete. You can now enter the website.",
+    "send": "Send verification code",
+    "title": "Verify your email",
+    "sentTo": "Registration email: {email}",
+    "instructions": "Sending the email does not complete registration. Enter the code from your email and verify it below. Check your spam folder too. If this email already has an account, sign in instead.",
+    "code": "Email verification code",
+    "verify": "Verify and finish registration",
+    "working": "Verifying…",
+    "resend": "Resend code",
+    "resendAfter": "Resend in {seconds}s",
+    "resent": "Verification email requested. Please check your inbox and use the latest code.",
+    "changeEmail": "Change email / start again",
+    "verified": "Email verified",
+    "continue": "Continue to Bags Star",
+    "otpFormat": "Enter the 6–10 digit code exactly as shown in your email.",
+    "otpInvalid": "This code is invalid or has expired. Try the latest code or request a new one.",
+    "emailDelivery": "We could not send the verification email. Please try again later or contact us.",
+    "verificationDisabled": "Email verification is temporarily unavailable. Please contact us before continuing."
+  },
+  "authExperience": {
+    "welcome": "Welcome to Bags Star!",
+    "join": "Join Bags Star",
+    "headline": "A gift from the mysterious East.",
+    "description": "Your orders. Your points. A little more to look forward to.",
+    "company": "CHUZHOU STAR GIFTS TRADING CO., LTD.",
+    "footer": "Bags Star · Gift Center",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "toggleTheme": "Switch appearance"
+  },
+  "contact": {
+    "title": "Contact us",
+    "adminTitle": "Customer messages",
+    "description": "Leave us a message with your questions. Only you and our administrators can see your messages and replies.",
+    "adminHint": "Review customer messages, reply or delete each message.",
+    "message": "Your message",
+    "placeholder": "Tell us how we can help (up to 2,000 characters)",
+    "send": "Send message",
+    "sent": "Your message has been sent. We will reply as soon as possible.",
+    "reply": "Administrator reply",
+    "replyAction": "Reply",
+    "editReply": "Edit reply",
+    "saveReply": "Save reply",
+    "delete": "Delete message",
+    "deleteConfirm": "Delete this message and its reply? This cannot be undone.",
+    "deleted": "Message deleted.",
+    "empty": "No messages yet.",
+    "previous": "Previous page",
+    "next": "Next page"
+  },
+  "giftMessages": {
+    "customerNote": "Order message (optional)",
+    "notePlaceholder": "Add any requests or notes about this redemption",
+    "shippingRequired": "Please complete your shipping address before submitting a gift redemption.",
+    "completeAddress": "Complete shipping address",
+    "orderAddress": "Shipping address at checkout",
+    "cancelConfirm": "After you request to cancel your gift, your points will be returned once we have reviewed and approved the cancellation.",
+    "cancellationPending": "Cancellation is awaiting review. Points have not yet been returned.",
+    "cancellationReason": "Cancellation reason",
+    "approveCancellation": "Approve cancellation and refund points",
+    "declineCancellation": "Decline cancellation",
+    "declineConfirm": "Declining cancellation will restore the previous order status. Points will not be refunded."
   }
 }

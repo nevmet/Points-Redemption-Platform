@@ -2,6 +2,7 @@ import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import PageMeta from "@/components/common/PageMeta";
 import Security from "@/components/UserProfile/Security";
 import UserMetaCard from "@/components/UserProfile/UserMetaCard";
+import UserAddressCard from "@/components/UserProfile/UserAddressCard";
 import { useTranslation } from "react-i18next";
 
 export default function UserProfiles() {
@@ -19,6 +20,7 @@ export default function UserProfiles() {
         </h3>
         <div className="space-y-6">
           <UserMetaCard />
+          <UserAddressCard />
           <Security />
         </div>
       </div>

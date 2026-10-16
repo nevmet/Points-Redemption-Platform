@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 .local-test/
+__pycache__/
+*.pyc
 *.local
 
 # Editor directories and files

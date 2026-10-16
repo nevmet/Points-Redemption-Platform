@@ -1,3 +1,4 @@
+import { createUuid } from "@/lib/uuid";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import Input from "@/components/form/input/InputField";
@@ -78,7 +79,7 @@ export default function ProductEditor({ product, onSaved, onCancel }: { product:
       <div><Label htmlFor="product-category">{t("catalogEditor.category")}</Label><select id="product-category" required disabled={!categories} value={category} onChange={(e) => setCategory(e.target.value)} className="h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white"><option value="">{t("categoryManager.choose")}</option>{categories?.map((entry) => <option key={entry.id} value={entry.name}>{entry.name}</option>)}</select>{categoryError && <p role="alert" className="mt-2 text-sm text-error-600 dark:text-error-400">{t(categoryError)}</p>}</div>
       <div><Label>{t("catalogEditor.status")}</Label><p className="py-2 text-sm text-gray-700 dark:text-gray-300">{t(status === "published" ? "adminProducts.statusPublished" : "adminProducts.statusDraft")}</p></div>
       <div className="space-y-3 sm:col-span-2">
-        <label className="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-300"><input type="checkbox" checked={multipleVariants} disabled={busy || uploading} onChange={(event) => { setMultipleVariants(event.target.checked); if (event.target.checked && !variantDrafts.length) setVariantDrafts([{ id: crypto.randomUUID(), values: fields.map(() => ""), points }]); }} className="size-4 accent-brand-500" />{t("productVariants.enable")}</label>
+        <label className="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-300"><input type="checkbox" checked={multipleVariants} disabled={busy || uploading} onChange={(event) => { setMultipleVariants(event.target.checked); if (event.target.checked && !variantDrafts.length) setVariantDrafts([{ id: createUuid(), values: fields.map(() => ""), points }]); }} className="size-4 accent-brand-500" />{t("productVariants.enable")}</label>
         {multipleVariants && <ProductVariantEditor fields={fields} onFieldsChange={setFields} value={variantDrafts} onChange={setVariantDrafts} disabled={busy || uploading} />}
       </div>
       <div className="sm:col-span-2"><ProductOptionEditor value={options} onChange={setOptions} disabled={busy || uploading} /></div>

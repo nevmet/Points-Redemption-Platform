@@ -19,6 +19,8 @@ test("variant redemption charges the selected server price and preserves histori
   try {
     const admin = (await request("/signin", "POST", { username: "admin", password: "admin@123" })).cookie;
     const customer = (await request("/signin", "POST", { username: "user01", password: "admin@123" })).cookie;
+    const shipping = { recipient: "Fixture", phone: "+1 202 555 0100", country: "US", city: "Boston", region: "MA", postalCode: "02108", line1: "1 Example St", line2: "" };
+    assert.equal((await request("/shipping-address", "PATCH", shipping, customer)).status, 200);
     const variants = [{ id: "pro-256", name: "Pro / 256GB", points: 600 }, { id: "max-512", name: "Pro Max / 512GB", points: 1400 }];
     const newProduct = await request("/products", "POST", { name: "New variant product", category: "Apple", points: 600, variants, image_url: null, image_urls: [], status: "draft" }, admin);
     assert.equal(newProduct.status, 200); assert.equal(newProduct.data.variants.length, 2);

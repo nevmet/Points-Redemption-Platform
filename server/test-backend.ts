@@ -1,11 +1,12 @@
 // Local development fixtures only. This middleware is never served by a production build.
 import { randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
+import { normalizeShippingAddress, type ShippingAddress } from "../src/lib/shipping-address.ts";
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Plugin } from "vite";
 import type { AppUser } from "../src/lib/auth-types.ts";
-import type { OrderPointRequestRow, PointTransactionRow, ProductRow, RedemptionRequestRow, ProductCategoryRow } from "../src/lib/database.ts";
+import type { ContactMessageRow, OrderPointRequestRow, PointTransactionRow, ProductRow, RedemptionRequestRow, ProductCategoryRow } from "../src/lib/database.ts";
 import { rewardProducts } from "../src/data/rewards.ts";
 import { validateProductOptions, resolveProductOptions } from "../src/lib/product-options.ts";
 import { validateProductVariants } from "../src/lib/product-variants.ts";
@@ -17,7 +18,7 @@ const accounts: AppUser[] = [
 ];
 const passwordDigest = Buffer.from("d8bd8288cd075a805f818123e3d98c1315af8ef680c3af254243a61880b4d10d2825e5ac368fd623a11b295b00c8d74c45cab2907d489de8739d7ff88c3fbebf", "hex");
 type RegisteredCustomer = AppUser & { salt: string; digest: string; created_at: string };
-type State = { profiles?: Record<string, { name: string; company: string; phone: string }>; notificationReads?: Record<string, string[]>; credentials?: Record<string, { salt: string; digest: string }>; customers?: RegisteredCustomer[]; version: 1; categories: ProductCategoryRow[]; products: ProductRow[]; orders: OrderPointRequestRow[]; redemptions: RedemptionRequestRow[]; transactions: PointTransactionRow[] };
+type State = { contactMessages?: ContactMessageRow[]; shippingAddresses?: Record<string, ShippingAddress>; profiles?: Record<string, { name: string; company: string; phone: string; avatarUrl?: string }>; notificationReads?: Record<string, string[]>; credentials?: Record<string, { salt: string; digest: string }>; customers?: RegisteredCustomer[]; version: 1; categories: ProductCategoryRow[]; products: ProductRow[]; orders: OrderPointRequestRow[]; redemptions: RedemptionRequestRow[]; transactions: PointTransactionRow[] };
 class HttpError extends Error {
   status: number;
   constructor(status: number, code: string) { super(code); this.status = status; }
@@ -85,9 +86,9 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
       const user = session && session.expires > Date.now() ? session.user : null;
       if (session && !user) sessions.delete(token);
       const method = req.method || "GET";
-      if (path === "/product-images" && method === "POST") {
+      if ((path === "/product-images" || path === "/avatar") && method === "POST") {
         if (!user) return fail("signin", 401);
-        adminOnly(user);
+        if (path !== "/avatar") adminOnly(user);
         if (Number(req.headers["content-length"]) > MAX_PRODUCT_IMAGE_BYTES) fail("imageSize", 413);
         const chunks: Buffer[] = [];
         let size = 0;
@@ -102,9 +103,10 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         const extension = productImageExtension(bytes);
         if (!extension || req.headers["content-type"] !== PRODUCT_IMAGE_TYPES[extension]) return fail("imageType");
         const name = `${randomUUID()}.${extension}`;
-        mkdirSync(imageDirectory, { recursive: true });
-        writeFileSync(resolve(imageDirectory, name), bytes, { flag: "wx" });
-        return send({ url: `/images/products/uploads/${name}` }, 201);
+        const directory = path === "/avatar" ? resolve(imageDirectory, "avatars", user.id) : imageDirectory;
+        mkdirSync(directory, { recursive: true });
+        writeFileSync(resolve(directory, name), bytes, { flag: "wx" });
+        return send({ url: `/images/products/uploads/${path === "/avatar" ? `avatars/${user.id}/` : ""}${name}` }, 201);
       }
       const body = method === "POST" || method === "PATCH" ? await readBody(req) : {};
 
@@ -131,7 +133,7 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         const password = typeof body.password === "string" && body.password.length <= 256 ? body.password : fail("invalid");
         const registered = state.customers?.find((a) => a.email.toLowerCase() === username.toLowerCase());
         const identity = registered || accounts.find((a) => a.username === username || a.email === username);
-        const account = identity ? { ...identity, username: state.profiles?.[identity.id]?.name || identity.username } : undefined;
+        const account = identity ? { ...identity, username: state.profiles?.[identity.id]?.name || identity.username, avatarUrl: state.profiles?.[identity.id]?.avatarUrl } : undefined;
         const matches = passwordMatches(account?.id, password);
         if (!account || !matches) {
           attempts.set(key, { count: attempt && attempt.until > Date.now() ? attempt.count + 1 : 1, until: Date.now() + 60000 });
@@ -141,7 +143,7 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         sessions.delete(token);
         const sessionToken = randomBytes(32).toString("hex");
         const seconds = body.remember === true ? 7 * 86400 : 8 * 3600;
-        const publicAccount: AppUser = { id: account.id, username: account.username, email: account.email, role: account.role };
+        const publicAccount: AppUser = { id: account.id, username: account.username, email: account.email, role: account.role, avatarUrl: account.avatarUrl };
         sessions.set(sessionToken, { user: publicAccount, expires: Date.now() + seconds * 1000 });
         res.setHeader("Set-Cookie", `bags_test_session=${sessionToken}; HttpOnly; SameSite=Strict; Path=/${body.remember === true ? `; Max-Age=${seconds}` : ""}`);
         return send({ user: publicAccount });
@@ -182,6 +184,7 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         const [, , customerId, action] = path.split("/");
         const customer = allAccounts().find((account) => account.id === customerId && account.role === "customer");
         if (!customer) return fail("notFound", 404);
+        if (action === "shipping-address" && method === "GET") return send(state.shippingAddresses?.[customer.id] || null);
         if (action === "transactions" && method === "GET") return send(state.transactions.filter((row) => row.customer_id === customer.id));
         if (action === "points" && method === "POST") {
           const points = amount(body.points); const note = text(body.note ?? "", 1000);
@@ -273,12 +276,25 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         commit({ ...state, products: previous ? state.products.map((p) => p.id === id ? product : p) : [...state.products, product] });
         return send(product);
       }
+      if (path === "/shipping-address" && method === "GET") return send(state.shippingAddresses?.[user.id] || null);
+      if (path === "/shipping-address" && method === "PATCH") {
+        const address = normalizeShippingAddress(body);
+        if (!address) return fail("invalid");
+        commit({ ...state, shippingAddresses: { ...state.shippingAddresses, [user.id]: address } });
+        return send(address);
+      }
       if (path === "/profile" && method === "GET") return send({ name: user.username, company: "", phone: "", ...state.profiles?.[user.id], email: user.email });
       if (path === "/profile" && method === "PATCH") {
-        const profile = { name: text(body.name, 120), company: text(body.company, 160), phone: text(body.phone, 50) };
+        const avatarUrl = body.avatarUrl === undefined ? state.profiles?.[user.id]?.avatarUrl : text(body.avatarUrl, 250);
+        if (avatarUrl) {
+          const prefix = `/images/products/uploads/avatars/${user.id}/`;
+          const filename = avatarUrl.slice(prefix.length);
+          if (!avatarUrl.startsWith(prefix) || !/^[a-f0-9-]+\.(jpg|png|webp)$/.test(filename) || !existsSync(resolve(imageDirectory, "avatars", user.id, filename))) fail("invalid");
+        }
+        const profile = { name: text(body.name, 120), company: text(body.company, 160), phone: text(body.phone, 50), ...(avatarUrl ? { avatarUrl } : {}) };
         if (!profile.name) fail("invalid");
         commit({ ...state, profiles: { ...state.profiles, [user.id]: profile } });
-        for (const session of sessions.values()) if (session.user.id === user.id) session.user = { ...session.user, username: profile.name };
+        for (const session of sessions.values()) if (session.user.id === user.id) session.user = { ...session.user, username: profile.name, avatarUrl: profile.avatarUrl };
         return send({ ...profile, email: user.email });
       }
       if (path === "/notification-reads" && method === "GET") return send(state.notificationReads?.[user.id] || []);
@@ -330,6 +346,49 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         return send(updated);
       }
       if (path === "/transactions" && method === "GET") return send(state.transactions.filter((r) => r.customer_id === user.id));
+      if (path === "/contact-messages" && method === "GET") {
+        const review = url.searchParams.get("review") === "1";
+        if (review) adminOnly(user);
+        const page = Number(url.searchParams.get("page") || 0);
+        if (!Number.isInteger(page) || page < 0) fail("invalid");
+        return send((state.contactMessages || []).filter(row => review || row.customer_id === user.id).sort((a,b) => b.created_at.localeCompare(a.created_at) || b.id.localeCompare(a.id)).slice(page * 20, page * 20 + 20));
+      }
+      if (path === "/contact-messages" && method === "POST") {
+        const message = text(body.body, 2000), operationId = text(body.operationId, 36);
+        if (!message || !/^[a-f0-9-]{36}$/i.test(operationId)) fail("invalid");
+        const previous = state.contactMessages?.find(row => row.operation_id === operationId);
+        if (previous) {
+          if (previous.customer_id !== user.id || previous.body !== message) fail("adjustmentConflict", 409);
+          return send(previous);
+        }
+        const row: ContactMessageRow = { id: randomUUID(), operation_id: operationId, customer_id: user.id, customer_name: user.username, customer_email: user.email, body: message, reply: "", replied_at: null, created_at: now(), updated_at: now() };
+        commit({ ...state, contactMessages: [row, ...(state.contactMessages || [])] });
+        return send(row, 201);
+      }
+      if (path.startsWith("/contact-messages/") && ["PATCH", "DELETE"].includes(method)) {
+        adminOnly(user);
+        const message = state.contactMessages?.find(row => row.id === path.split("/")[2]);
+        if (!message) return fail("notFound", 404);
+        if (method === "DELETE") {
+          commit({ ...state, contactMessages: state.contactMessages!.filter(row => row.id !== message.id) });
+          return send({ deleted: true });
+        }
+        const reply = text(body.reply, 2000);
+        if (!reply) fail("invalid");
+        const updated = { ...message, reply, replied_at: now(), updated_at: now() };
+        commit({ ...state, contactMessages: state.contactMessages!.map(row => row.id === message.id ? updated : row) });
+        return send(updated);
+      }
+      if (/^\/redemptions\/[^/]+\/reply$/.test(path) && method === "PATCH") {
+        adminOnly(user);
+        const request = state.redemptions.find(row => row.id === path.split("/")[2]);
+        if (!request) return fail("notFound", 404);
+        const reply = text(body.reply, 2000);
+        if (!reply) fail("invalid");
+        const updated = { ...request, admin_reply: reply, replied_at: now(), updated_at: now() };
+        commit({ ...state, redemptions: state.redemptions.map(row => row.id === request.id ? updated : row) });
+        return send(updated);
+      }
       if (path === "/redemptions" && method === "GET") {
         const all = url.searchParams.get("review") === "1";
         if (all) adminOnly(user);
@@ -338,7 +397,8 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
       if (path === "/redemptions" && method === "POST") {
         const operationId = body.operationId === undefined ? undefined : text(body.operationId, 36);
         if (operationId && !/^[a-f0-9-]{36}$/i.test(operationId)) fail("invalid");
-        const fingerprint = JSON.stringify([body.productId, body.variantId || null, body.expectedPoints ?? null, body.selectedOptions || []]);
+        const customerNote = text(body.customerNote ?? "", 2000);
+        const fingerprint = JSON.stringify([body.productId, body.variantId || null, body.expectedPoints ?? null, body.selectedOptions || [], customerNote]);
         const previous = operationId && state.redemptions.find(r => r.operation_id === operationId);
         if (previous) {
           if (previous.customer_email !== user.email || previous.operation_fingerprint !== fingerprint) fail("adjustmentConflict", 409);
@@ -354,8 +414,10 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
         let selectedOptions;
         try { selectedOptions = resolveProductOptions(product.options || [], body.selectedOptions); }
         catch { return fail("optionUnavailable", 409); }
+        const address = normalizeShippingAddress(state.shippingAddresses?.[user.id]);
+        if (!address) return fail("shippingRequired", 409);
         if (balance(user) < points) fail("insufficient", 409);
-        const request: RedemptionRequestRow = { operation_id: operationId, operation_fingerprint: fingerprint, status_history: [{ status: "pending", at: now(), by: user.id, note: "" }], id: randomUUID(), request_code: `REW-${randomBytes(4).toString("hex").toUpperCase()}`, customer_name: user.username, customer_email: user.email, company: null, product_id: product.id, product_name: product.name, variant_id: variant?.id || null, variant_name: variant?.name || null, selected_options: selectedOptions, points, status: "pending", created_at: now(), updated_at: now() };
+        const request: RedemptionRequestRow = { customer_id: user.id, customer_note: customerNote, admin_reply: "", shipping_address: address, operation_id: operationId, operation_fingerprint: fingerprint, status_history: [{ status: "pending", at: now(), by: user.id, note: "" }], id: randomUUID(), request_code: `REW-${randomBytes(4).toString("hex").toUpperCase()}`, customer_name: user.username, customer_email: user.email, company: null, product_id: product.id, product_name: product.name, variant_id: variant?.id || null, variant_name: variant?.name || null, selected_options: selectedOptions, points, status: "pending", created_at: now(), updated_at: now() };
         const transaction: PointTransactionRow = { id: randomUUID(), customer_id: user.id, customer_email: user.email, description: variant ? `${product.name} · ${variant.name}` : product.name, points, type: "debit", order_point_request_id: null, created_at: now() };
         commit({ ...state, redemptions: [request, ...state.redemptions], transactions: [transaction, ...state.transactions] });
         return send(request, 201);
@@ -363,18 +425,19 @@ export function createTestBackend(file: string, imageDirectory = resolve(dirname
       if (path.startsWith("/redemptions/") && method === "PATCH") {
         const request = state.redemptions.find(r => r.id === path.split("/")[2]);
         if (!request) return fail("notFound", 404);
-        const status = body.status;
+        // Legacy clients requesting immediate cancellation must also enter review.
+        const status = user.role !== "admin" && body.status === "cancelled" ? "cancel_requested" : body.status;
         const own = request.customer_email === user.email;
-        if (user.role !== "admin" && (!own || status !== "cancelled")) fail("forbidden", 403);
+        if (user.role !== "admin" && (!own || status !== "cancel_requested")) fail("forbidden", 403);
         if (status === request.status) return send(request);
-        if (user.role !== "admin" && request.status !== "pending") fail("redemptionState", 409);
-        const allowed = request.status === "pending" ? ["processing", "completed", "cancelled", "rejected"] : request.status === "processing" ? ["completed", "rejected"] : [];
+        if (user.role !== "admin" && !["pending", "processing"].includes(request.status)) fail("redemptionState", 409);
+        const allowed = request.status === "cancel_requested" ? ["cancelled", request.cancel_from_status || "pending"] : request.status === "pending" ? ["processing", "completed", "cancel_requested", "rejected"] : request.status === "processing" ? ["completed", "cancel_requested", "rejected"] : [];
         if (typeof status !== "string" || !allowed.includes(status)) return fail("redemptionState", 409);
         const refund = status === "cancelled" || status === "rejected";
         const note = text(body.note ?? "", 1000);
-        if (refund && !note) fail("resolutionRequired");
+        if ((refund || status === "cancel_requested" || request.status === "cancel_requested") && !note) fail("resolutionRequired");
         const at = now();
-        const updated: RedemptionRequestRow = { ...request, status: status as RedemptionRequestRow["status"], updated_at: at, resolution_note: refund ? note : request.resolution_note, refunded_at: refund ? at : request.refunded_at, status_history: [...(request.status_history || []), { status: status as RedemptionRequestRow["status"], at, by: user.id, note }] };
+        const updated: RedemptionRequestRow = { ...request, cancel_from_status: status === "cancel_requested" ? request.status as "pending" | "processing" : request.cancel_from_status, cancellation_note: status === "cancel_requested" ? note : request.cancellation_note, status: status as RedemptionRequestRow["status"], updated_at: at, resolution_note: status === "cancel_requested" ? "" : note || request.resolution_note, refunded_at: refund ? at : request.refunded_at, status_history: [...(request.status_history || []), { status: status as RedemptionRequestRow["status"], at, by: user.id, note }] };
         const owner = allAccounts().find(a => a.email === request.customer_email);
         if (refund && !owner) return fail("notFound", 404);
         const transactions = refund && owner ? [{ refund_redemption_id: request.id, id: randomUUID(), customer_id: owner.id, customer_email: owner.email, description: request.request_code, points: request.points, type: "credit" as const, order_point_request_id: null, operation_id: randomUUID(), created_by: user.id, operator_name: user.username, balance_after: balance(owner) + request.points, created_at: at }, ...state.transactions] : state.transactions;
@@ -391,7 +454,8 @@ export default function localTestBackend(): Plugin {
     name: "bags-star-local-test-accounts",
     apply: "serve",
     configureServer(server) {
-      const handler = createTestBackend(resolve(server.config.root, ".local-test/data.json"), resolve(server.config.root, "public/images/products/uploads"));
+      if (server.config.mode !== "demo") return;
+      const handler = createTestBackend(resolve(server.config.root, process.env.BAGS_STAR_DEMO_DATA_FILE || ".local-test/data.json"), resolve(server.config.root, "public/images/products/uploads"));
       server.middlewares.use((req, res, next) => {
         if (req.url?.startsWith("/api/local-test/")) void handler(req, res);
         else next();

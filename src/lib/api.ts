@@ -1,4 +1,7 @@
+import { createUuid } from "./uuid";
+import { normalizeShippingAddress, type ShippingAddress } from "./shipping-address";
 import type {
+  ContactMessageRow,
   CustomerSummary,
   OrderPointRequestRow,
   PointTransactionInsert,
@@ -23,13 +26,19 @@ export async function getCurrentUser(): Promise<AppUser | null> {
   if (!isSupabaseConfigured) return null;
   const { data, error } = await requireSupabase().auth.getUser();
   if (error || !data.user) return null;
-  return { id: data.user.id, email: data.user.email || "", username: data.user.user_metadata?.name || data.user.email || "", role: data.user.app_metadata.role === "admin" ? "admin" : "customer" };
+  return { id: data.user.id, email: data.user.email || "", username: data.user.user_metadata?.name || data.user.email || "", role: data.user.app_metadata.role === "admin" ? "admin" : "customer", avatarUrl: await profileAvatarUrl(data.user.id, data.user.user_metadata?.avatar_path) };
 }
 export async function signIn(username: string, password: string, remember: boolean): Promise<AppUser> {
   if (isLocalTestMode) return (await localTestRequest<{ user: AppUser }>("/signin", "POST", { username, password, remember })).user;
   if (!isSupabaseConfigured) throw new ApiError("unavailable");
   const { error } = await requireSupabase().auth.signInWithPassword({ email: username.trim(), password });
-  if (error) throw new ApiError("credentials");
+  if (error) {
+    if (error.code === "invalid_credentials") throw new ApiError("credentials");
+    if (error.code === "email_not_confirmed") throw new ApiError("emailNotConfirmed");
+    if (error.code === "user_banned") throw new ApiError("accountBlocked");
+    if (error.status === 429) throw new ApiError("retryLater");
+    throw new ApiError("unavailable");
+  }
   const user = await getCurrentUser();
   if (!user) throw new ApiError("signin");
   return user;
@@ -57,6 +66,9 @@ export async function changePassword(currentPassword: string, newPassword: strin
 
 export function apiErrorKey(error: unknown): string {
   const code = error instanceof ApiError ? error.code : "failed";
+  if (code === "shippingRequired") return "giftMessages.shippingRequired";
+  if (code === "avatarStorageUnavailable" || code === "avatarUploadFailed") return "profileAvatar." + code;
+  if (["otpInvalid", "otpFormat", "emailDelivery", "verificationDisabled"].includes(code)) return "emailVerification." + code;
   if (["redemptionState", "resolutionRequired"].includes(code)) return "portalFixes." + code;
   if (["currentPassword", "passwordLength", "samePassword", "weakPassword", "reauthenticate"].includes(code)) return `passwordChange.${code}`;
   if (["emailExists", "adjustmentConflict"].includes(code)) return "customerManager." + code;
@@ -65,7 +77,7 @@ export function apiErrorKey(error: unknown): string {
   if (["categoryInUse", "categoryInvalid", "categoryDuplicate"].includes(code)) return `categoryManager.${code}`;
   if (code === "productNotDraft") return `adminProducts.${code}`;
   if (["variantInvalid", "variantUnavailable", "priceChanged"].includes(code)) return `productVariants.${code}`;
-  return `testAuth.errors.${["credentials", "signin", "forbidden", "unavailable", "invalid", "notFound", "insufficient", "retryLater"].includes(code) ? code : "failed"}`;
+  return `testAuth.errors.${["credentials", "emailNotConfirmed", "accountBlocked", "signin", "forbidden", "unavailable", "invalid", "notFound", "insufficient", "retryLater"].includes(code) ? code : "failed"}`;
 }
 
 export const PRODUCT_IMAGES_BUCKET = "product-images";
@@ -98,31 +110,48 @@ export async function listMyPointTransactions(): Promise<PointTransactionRow[]> 
   if (isLocalTestMode) return localTestRequest("/transactions");
   const user = await getCurrentUser();
   if (!user) throw new ApiError("signin");
-  return listPointTransactions(user.email);
+  return listPointTransactions(user.id);
 }
 export async function listGiftRequests(forReview = false): Promise<RedemptionRequestRow[]> {
   if (isLocalTestMode) return localTestRequest(`/redemptions${forReview ? "?review=1" : ""}`);
   const user = await getCurrentUser();
   if (!user) throw new ApiError("signin");
   if (forReview && user.role !== "admin") throw new ApiError("forbidden");
-  return listRedemptionRequests(forReview ? undefined : user.email);
+  return listRedemptionRequests(forReview ? undefined : user.id);
 }
 const redemptionAttempts = new Map<string, string>();
-export async function redeemGift(productId: string, variantId?: string, expectedPoints?: number, selectedOptions?: { optionId: string; value: string }[]): Promise<RedemptionRequestRow> {
-  if (isLocalTestMode) {
+export async function redeemGift(productId: string, variantId?: string, expectedPoints?: number, selectedOptions?: { optionId: string; value: string }[], customerNote = ""): Promise<RedemptionRequestRow> {
+  {
     const user = await getCurrentUser();
     if (!user) throw new ApiError("signin");
-    const key = "bags-star:redeem:" + user.id + ":" + JSON.stringify([productId, variantId, expectedPoints, selectedOptions]);
+    customerNote = customerNote.trim();
+    if (customerNote.length > 2000) throw new ApiError("invalid");
+    const key = "bags-star:redeem:" + user.id + ":" + JSON.stringify([productId, variantId, expectedPoints, selectedOptions, customerNote]);
     let operationId = redemptionAttempts.get(key);
     try { operationId ||= sessionStorage.getItem(key) || undefined; } catch { /* memory fallback */ }
-    operationId ||= crypto.randomUUID(); redemptionAttempts.set(key, operationId);
+    operationId ||= createUuid(); redemptionAttempts.set(key, operationId);
     try { sessionStorage.setItem(key, operationId); } catch { /* memory fallback */ }
-    const result = await localTestRequest<RedemptionRequestRow>("/redemptions", "POST", { productId, variantId, expectedPoints, selectedOptions, operationId });
+    let result: RedemptionRequestRow;
+    if (isLocalTestMode) {
+      result = await localTestRequest<RedemptionRequestRow>("/redemptions", "POST", { productId, variantId, expectedPoints, selectedOptions, operationId, customerNote });
+    } else {
+      if (!Number.isInteger(expectedPoints) || (expectedPoints ?? 0) <= 0) throw new ApiError("invalid");
+      const { data, error } = await requireSupabase().rpc("redeem_gift", {
+        p_product_id: productId, p_variant_id: variantId ?? null,
+        p_customer_note: customerNote, p_expected_points: expectedPoints!, p_selected_options: selectedOptions ?? [], p_operation_id: operationId,
+      }).single();
+      if (error) giftRpcError(error);
+      if (!data) throw new ApiError("failed");
+      result = data;
+    }
     redemptionAttempts.delete(key); try { sessionStorage.removeItem(key); } catch { /* memory fallback */ }
     return result;
   }
-  // Production gift debits need an atomic database RPC before enabling submission.
-  throw new ApiError("unavailable");
+}
+
+function giftRpcError(error: { message: string }): never {
+  const codes = ["shippingRequired", "signin", "forbidden", "notFound", "invalid", "insufficient", "adjustmentConflict", "variantUnavailable", "priceChanged", "optionUnavailable", "redemptionState", "resolutionRequired"];
+  throw new ApiError(codes.includes(error.message) ? error.message : "failed");
 }
 
 export type ProductFilters = {
@@ -196,7 +225,7 @@ export async function uploadProductImage(file: File): Promise<string> {
   if (!user) throw new ApiError("signin");
   if (user.role !== "admin") throw new ApiError("forbidden");
   const client = requireSupabase();
-  const filePath = `catalog/${crypto.randomUUID()}.${extension}`;
+  const filePath = `catalog/${createUuid()}.${extension}`;
   const { error: uploadError } = await client.storage.from(PRODUCT_IMAGES_BUCKET).upload(filePath, file, {
     cacheControl: "3600",
     contentType: file.type || undefined,
@@ -208,10 +237,10 @@ export async function uploadProductImage(file: File): Promise<string> {
   return data.publicUrl;
 }
 
-export async function listRedemptionRequests(customerEmail?: string): Promise<RedemptionRequestRow[]> {
+export async function listRedemptionRequests(customerId?: string): Promise<RedemptionRequestRow[]> {
   let query = requireSupabase().from("redemption_requests").select("*").order("created_at", { ascending: false });
-  if (customerEmail) {
-    query = query.eq("customer_email", customerEmail);
+  if (customerId) {
+    query = query.eq("customer_id", customerId);
   }
 
   const { data, error } = await query;
@@ -234,18 +263,20 @@ export async function updateRedemptionRequest(id: string, input: RedemptionReque
 
 export async function setRedemptionRequestStatus(id: string, status: RedemptionRequestRow["status"], note = ""): Promise<RedemptionRequestRow> {
   if (isLocalTestMode) return localTestRequest("/redemptions/" + encodeURIComponent(id), "PATCH", { status, note });
-  // Status changes and refunds must be atomic in the production database.
-  throw new ApiError("unavailable");
+  const { data, error } = await requireSupabase().rpc("set_gift_request_status", { p_request_id: id, p_status: status, p_note: note.trim() }).single();
+  if (error) giftRpcError(error);
+  if (!data) throw new ApiError("failed");
+  return data;
 }
 
-export async function listPointTransactions(customerEmail?: string): Promise<PointTransactionRow[]> {
+export async function listPointTransactions(customerId?: string): Promise<PointTransactionRow[]> {
   const rows: PointTransactionRow[] = [];
   const pageSize = 500;
   // Page through the ledger instead of silently truncating at the API row limit.
   for (let offset = 0; ; offset += pageSize) {
     let query = requireSupabase().from("point_transactions").select("*")
       .order("created_at", { ascending: false }).order("id", { ascending: false });
-    if (customerEmail) query = query.eq("customer_email", customerEmail);
+    if (customerId) query = query.eq("customer_id", customerId);
     const { data, error } = await query.range(offset, offset + pageSize - 1);
     if (error) throw error;
     rows.push(...(data ?? []));
@@ -341,11 +372,40 @@ export async function reviewOrderPointRequest(id: string, approve: boolean, poin
   return data;
 }
 
-export async function signUpCustomer(name: string, email: string, password: string): Promise<void> {
-  if (isLocalTestMode) { await localTestRequest("/signup", "POST", { name, email, password }); return; }
+function signupError(error: { code?: string; status?: number }): never {
+  if (error.status === 429 || error.code?.includes("rate_limit")) throw new ApiError("retryLater");
+  if (error.code === "otp_expired" || error.code === "otp_disabled") throw new ApiError("otpInvalid");
+  if (error.code === "email_address_not_authorized" || error.code === "unexpected_failure") throw new ApiError("emailDelivery");
+  if (error.code === "user_already_exists" || error.code === "email_exists") throw new ApiError("emailExists");
+  if (error.code === "weak_password") throw new ApiError("weakPassword");
+  throw new ApiError("failed");
+}
+
+export async function signUpCustomer(name: string, email: string, password: string): Promise<"registered" | "verificationRequired"> {
+  if (isLocalTestMode) { await localTestRequest("/signup", "POST", { name, email, password }); return "registered"; }
   if (!isSupabaseConfigured) throw new ApiError("unavailable");
-  const { error } = await requireSupabase().auth.signUp({ email, password, options: { data: { name } } });
-  if (error) throw new ApiError(error.code === "user_already_exists" ? "emailExists" : "failed");
+  const { data, error } = await requireSupabase().auth.signUp({ email: email.trim(), password, options: { data: { name } } });
+  if (error) signupError(error);
+  // A session at signup means email confirmation was disabled in the project.
+  if (data.session) {
+    await requireSupabase().auth.signOut({ scope: "local" });
+    throw new ApiError("verificationDisabled");
+  }
+  return "verificationRequired";
+}
+
+export async function verifySignupEmail(email: string, token: string): Promise<void> {
+  if (isLocalTestMode || !isSupabaseConfigured) throw new ApiError("unavailable");
+  if (!/^\d{6,10}$/.test(token.trim())) throw new ApiError("otpFormat");
+  const { data, error } = await requireSupabase().auth.verifyOtp({ email: email.trim(), token: token.trim(), type: "email" });
+  if (error) signupError(error);
+  if (!data.session || !data.user?.email_confirmed_at) throw new ApiError("otpInvalid");
+}
+
+export async function resendSignupEmail(email: string): Promise<void> {
+  if (isLocalTestMode || !isSupabaseConfigured) throw new ApiError("unavailable");
+  const { error } = await requireSupabase().auth.resend({ email: email.trim(), type: "signup" });
+  if (error) signupError(error);
 }
 async function requireAdminCustomerAccess() {
   const user = await getCurrentUser();
@@ -361,6 +421,13 @@ export async function listAdminCustomers(): Promise<CustomerSummary[]> {
   const { data, error } = await requireSupabase().rpc("list_admin_customers");
   if (error) customerRpcError(error);
   return data || [];
+}
+export async function getCustomerShippingAddress(id: string): Promise<ShippingAddress | null> {
+  if (isLocalTestMode) return localTestRequest("/customers/" + encodeURIComponent(id) + "/shipping-address");
+  await requireAdminCustomerAccess();
+  const { data, error } = await requireSupabase().rpc("get_admin_customer_shipping_address", { p_customer_id: id });
+  if (error) customerRpcError(error);
+  return normalizeShippingAddress(data);
 }
 export async function listCustomerTransactions(id: string): Promise<PointTransactionRow[]> {
   if (isLocalTestMode) return localTestRequest("/customers/" + encodeURIComponent(id) + "/transactions");
@@ -378,20 +445,78 @@ export async function adjustCustomerPoints(id: string, type: "credit" | "debit",
   return data;
 }
 
-export type CustomerProfile = { name: string; email: string; company: string; phone: string };
+export type CustomerProfile = { name: string; email: string; company: string; phone: string; avatarUrl?: string | null };
+async function profileAvatarUrl(userId: string, path: unknown): Promise<string | null> {
+  if (typeof path !== "string" || !path.startsWith(`${userId}/`) || !/^[a-f0-9-]+\.(jpg|png|webp)$/.test(path.slice(userId.length + 1))) return null;
+  try {
+    const { data, error } = await requireSupabase().storage.from("customer-avatars").createSignedUrl(path, 86400);
+    return error ? null : data?.signedUrl || null;
+  } catch { return null; } // A missing image must not prevent sign-in or editing other profile fields.
+}
+export async function validateAvatarFile(file: File): Promise<string> {
+  if (!file.size || file.size > MAX_PRODUCT_IMAGE_BYTES) throw new ApiError("imageSize");
+  const extension = productImageExtension(new Uint8Array(await file.slice(0, 12).arrayBuffer()));
+  if (!extension || file.type !== PRODUCT_IMAGE_TYPES[extension]) throw new ApiError("imageType");
+  return extension;
+}
+export async function getMyShippingAddress(): Promise<ShippingAddress | null> {
+  if (isLocalTestMode) return localTestRequest("/shipping-address");
+  const { data, error } = await requireSupabase().auth.getUser();
+  if (error || !data.user) throw new ApiError("signin");
+  return normalizeShippingAddress(data.user.user_metadata?.shipping_address);
+}
+export async function saveMyShippingAddress(address: ShippingAddress): Promise<ShippingAddress> {
+  const values = normalizeShippingAddress(address);
+  if (!values) throw new ApiError("invalid");
+  if (isLocalTestMode) return localTestRequest("/shipping-address", "PATCH", values);
+  const { data, error } = await requireSupabase().auth.updateUser({ data: { shipping_address: values } });
+  if (error) throw error;
+  const saved = normalizeShippingAddress(data.user?.user_metadata?.shipping_address);
+  if (!saved) throw new ApiError("failed");
+  return saved;
+}
 export async function getMyProfile(): Promise<CustomerProfile> {
   if (isLocalTestMode) return localTestRequest("/profile");
   const { data, error } = await requireSupabase().auth.getUser();
   if (error || !data.user) throw new ApiError("signin");
   const meta = data.user.user_metadata;
-  return { name: String(meta.name || ""), email: data.user.email || "", company: String(meta.company || ""), phone: String(meta.phone || "") };
+  return { name: String(meta.name || ""), email: data.user.email || "", company: String(meta.company || ""), phone: String(meta.phone || ""), avatarUrl: await profileAvatarUrl(data.user.id, meta.avatar_path) };
 }
-export async function saveMyProfile(profile: Omit<CustomerProfile, "email">): Promise<void> {
+export async function saveMyProfile(profile: Omit<CustomerProfile, "email">, avatar?: File): Promise<void> {
   const values = { name: profile.name.trim(), company: profile.company.trim(), phone: profile.phone.trim() };
   if (!values.name || values.name.length > 120 || values.company.length > 160 || values.phone.length > 50) throw new ApiError("invalid");
-  if (isLocalTestMode) { await localTestRequest("/profile", "PATCH", values); return; }
-  const { error } = await requireSupabase().auth.updateUser({ data: values });
-  if (error) throw error;
+  const extension = avatar ? await validateAvatarFile(avatar) : null;
+  if (isLocalTestMode) {
+    const avatarUrl = avatar ? (await localTestRequest<{ url: string }>("/avatar", "POST", avatar)).url : undefined;
+    await localTestRequest("/profile", "PATCH", { ...values, ...(avatarUrl ? { avatarUrl } : {}) }); return;
+  }
+  const client = requireSupabase();
+  let newPath: string | undefined;
+  let oldPath: unknown;
+  if (avatar) {
+    const { data, error } = await client.auth.getUser();
+    if (error || !data.user) throw new ApiError("signin");
+    oldPath = data.user.user_metadata?.avatar_path;
+    newPath = `${data.user.id}/${createUuid()}.${extension}`;
+    try {
+      const { error: uploadError } = await client.storage.from("customer-avatars").upload(newPath, avatar, { contentType: avatar.type, upsert: false });
+      if (uploadError) throw new ApiError(/bucket.*not found/i.test(uploadError.message) ? "avatarStorageUnavailable" : "avatarUploadFailed");
+    } catch (error) {
+      if (error instanceof ApiError) throw error;
+      throw new ApiError("avatarUploadFailed");
+    }
+  }
+  try {
+    const { error } = await client.auth.updateUser({ data: { ...values, ...(newPath ? { avatar_path: newPath } : {}) } });
+    if (error) throw error;
+  } catch (error) {
+    if (newPath) await client.storage.from("customer-avatars").remove([newPath]).catch(() => undefined);
+    throw error;
+  }
+  // Delete only after metadata is saved; failed saves keep the previous avatar intact.
+  if (newPath && typeof oldPath === "string" && oldPath.startsWith(newPath.split("/")[0] + "/")) {
+    await client.storage.from("customer-avatars").remove([oldPath]).catch(() => undefined);
+  }
 }
 export type NotificationFeed = { transactions: PointTransactionRow[]; orders: OrderPointRequestRow[]; gifts: RedemptionRequestRow[]; readIds: string[] };
 export async function listMyNotificationFeed(): Promise<NotificationFeed> {
@@ -403,20 +528,55 @@ export async function listMyNotificationFeed(): Promise<NotificationFeed> {
   const results = await Promise.all([
     client.from("point_transactions").select("*").eq("customer_id", user.id).order("created_at", { ascending: false }).limit(50),
     client.from("order_point_requests").select("*").eq("customer_id", user.id).order("reviewed_at", { ascending: false, nullsFirst: false }).order("created_at", { ascending: false }).limit(50),
-    client.from("redemption_requests").select("*").eq("customer_email", user.email!).order("updated_at", { ascending: false }).limit(50),
+    client.from("redemption_requests").select("*").eq("customer_id", user.id).order("updated_at", { ascending: false }).limit(50),
+    client.from("notification_reads").select("notification_id").eq("customer_id", user.id),
   ]);
   for (const result of results) if (result.error) throw result.error;
-  const saved: unknown = user.user_metadata.notification_read_ids;
-  return { transactions: results[0].data || [], orders: results[1].data || [], gifts: results[2].data || [], readIds: Array.isArray(saved) ? saved.filter((id): id is string => typeof id === "string") : [] };
+  return { transactions: results[0].data || [], orders: results[1].data || [], gifts: results[2].data || [], readIds: (results[3].data || []).map(row => row.notification_id) };
 }
 export async function markMyNotificationsRead(ids: string[]): Promise<string[]> {
   if (isLocalTestMode) return localTestRequest("/notification-reads", "PATCH", { ids: ids.slice(-300) });
-  const client = requireSupabase();
-  const { data, error } = await client.auth.getUser();
-  if (error || !data.user) throw new ApiError("signin");
-  const saved: unknown = data.user.user_metadata.notification_read_ids;
-  const merged = [...new Set([...(Array.isArray(saved) ? saved.filter((id): id is string => typeof id === "string") : []), ...ids])].slice(-300);
-  const update = await client.auth.updateUser({ data: { notification_read_ids: merged } });
-  if (update.error) throw update.error;
-  return merged;
+  const { data, error } = await requireSupabase().rpc("mark_notifications_read", { p_ids: ids.slice(-300) });
+  if (error) giftRpcError(error);
+  return data || [];
+}
+
+
+export async function replyGiftRequest(id: string, reply: string): Promise<void> {
+  reply = reply.trim();
+  if (!reply || reply.length > 2000) throw new ApiError("invalid");
+  if (isLocalTestMode) { await localTestRequest(`/redemptions/${encodeURIComponent(id)}/reply`, "PATCH", { reply }); return; }
+  const { error } = await requireSupabase().rpc("reply_gift_request", { p_id: id, p_reply: reply });
+  if (error) giftRpcError(error);
+}
+export async function listContactMessages(page: number, forReview: boolean): Promise<ContactMessageRow[]> {
+  if (!Number.isInteger(page) || page < 0) throw new ApiError("invalid");
+  if (isLocalTestMode) return localTestRequest(`/contact-messages?page=${page}&review=${forReview ? 1 : 0}`);
+  const user = await getCurrentUser();
+  if (!user) throw new ApiError("signin");
+  if (forReview && user.role !== "admin") throw new ApiError("forbidden");
+  let query = requireSupabase().from("contact_messages").select("*").order("created_at", { ascending: false }).order("id", { ascending: false });
+  if (!forReview) query = query.eq("customer_id", user.id);
+  const { data, error } = await query.range(page * 20, page * 20 + 19);
+  if (error) throw error;
+  return data || [];
+}
+export async function submitContactMessage(body: string, operationId: string): Promise<void> {
+  body = body.trim();
+  if (!body || body.length > 2000) throw new ApiError("invalid");
+  if (isLocalTestMode) { await localTestRequest("/contact-messages", "POST", { body, operationId }); return; }
+  const { error } = await requireSupabase().rpc("submit_contact_message", { p_body: body, p_operation_id: operationId });
+  if (error) giftRpcError(error);
+}
+export async function replyContactMessage(id: string, reply: string): Promise<void> {
+  reply = reply.trim();
+  if (!reply || reply.length > 2000) throw new ApiError("invalid");
+  if (isLocalTestMode) { await localTestRequest(`/contact-messages/${encodeURIComponent(id)}`, "PATCH", { reply }); return; }
+  const { error } = await requireSupabase().rpc("reply_contact_message", { p_id: id, p_reply: reply });
+  if (error) giftRpcError(error);
+}
+export async function deleteContactMessage(id: string): Promise<void> {
+  if (isLocalTestMode) { await localTestRequest(`/contact-messages/${encodeURIComponent(id)}`, "DELETE"); return; }
+  const { error } = await requireSupabase().rpc("delete_contact_message", { p_id: id });
+  if (error) giftRpcError(error);
 }
